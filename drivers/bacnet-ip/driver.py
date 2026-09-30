@@ -621,7 +621,8 @@ class Driver:
         except asyncio.TimeoutError:
             await emit({"id": rid, "ok": False, "error": {"code": "timeout", "message": "no answer"}})
         except Exception as e:  # keep the driver alive
-            log(f"error in {req.get('op')}: {e!r}")
+            import traceback
+            log(f"error in {req.get('op')}: {e!r}\n{traceback.format_exc()}")
             await emit({"id": rid, "ok": False, "error": {"code": "internal", "message": repr(e)}})
 
 

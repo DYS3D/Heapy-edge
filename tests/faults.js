@@ -12,6 +12,8 @@ const { Lab, sleep } = require('./lab');
 const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i > 0 ? process.argv[i + 1] : d; };
 const ONLY = arg('only') ? new Set(arg('only').split('|')) : null;
 const STAGES = new Set((arg('stages', 'main,clock,disk,big')).split(','));
+// --web-port / --net / --prefix: run beside another lab or a soak on the same machine
+const LABOPTS = { webPort: Number(arg('web-port', 18770)), net: arg('net', 'bas-sim'), prefix: arg('prefix', '10.77.0') };
 const OUT = arg('out', path.join(__dirname, '..', 'fault-report.json'));
 const results = [];
 
@@ -46,7 +48,7 @@ async function watchStatus(lab, dkey, ms) {
 const lastRead = (lab, dkey) => lab.q(`SELECT max(s.t) t FROM samples s JOIN points p ON p.id=s.p JOIN devices d ON d.id=p.device_id WHERE d.key=?`, dkey)[0].t || 0;
 
 async function mainStage() {
-  const lab = new Lab({ tiny: true });
+  const lab = new Lab({ ...LABOPTS, tiny: true });
   await lab.startSim(); await lab.startServer(); await lab.startBox();
   const spare = lab.simInfo.spare_ips;
   let T0;
@@ -272,7 +274,7 @@ async function mainStage() {
 }
 
 async function clockStage() {
-  const lab = new Lab({ ahus: 3, vavs: 10 });
+  const lab = new Lab({ ...LABOPTS, ahus: 3, vavs: 10 });
   await lab.startSim(); await lab.startServer(); await lab.startBox({ faketime: true });
   const rowsSince = id => lab.q('SELECT count(*) n FROM samples WHERE id>?', id)[0].n;
   const maxId = () => lab.q('SELECT coalesce(max(id),0) m FROM samples')[0].m;
@@ -304,7 +306,7 @@ async function diskStage() {
   fs.mkdirSync(mnt, { recursive: true });
   try { execSync(`umount ${mnt}`, { stdio: 'ignore' }); } catch { /* not mounted */ }
   execSync(`mount -t tmpfs -o size=24m tmpfs ${mnt}`);
-  const lab = new Lab({ ahus: 3, vavs: 10, dataDir: path.join(mnt, 'data') });
+  const lab = new Lab({ ...LABOPTS, ahus: 3, vavs: 10, dataDir: path.join(mnt, 'data') });
   await lab.startSim(); await lab.startServer(); await lab.startBox();
   const maxId = () => lab.q('SELECT coalesce(max(id),0) m FROM samples')[0].m;
   try {
@@ -336,7 +338,7 @@ async function diskStage() {
 }
 
 async function bigStage() {
-  const lab = new Lab({ ahus: 6, vavs: 110, trunks: 8, vavsPerTrunk: 110, extraIp: 150, big: 3000, tiny: true, interval: 60, ips: 200 });
+  const lab = new Lab({ ...LABOPTS, ahus: 6, vavs: 110, trunks: 8, vavsPerTrunk: 110, extraIp: 150, big: 3000, tiny: true, interval: 60, ips: 200 });
   await lab.startSim(); await lab.startServer();
   await lab.startBox({ overrides: { drivers: { 'bacnet-ip': { discover_timeout_s: 5 } } } });
   try {

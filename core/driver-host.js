@@ -24,7 +24,10 @@ class DriverHost extends EventEmitter {
   async start() {
     this.stopping = false;
     const [cmd, ...args] = this.cfg.cmd;
-    this.proc = spawn(cmd, args, { stdio: ['pipe', 'pipe', 'pipe'] });
+    // drivers get the real clock: a test-only clock shim on the box (LD_PRELOAD) must not
+    // reach the protocol libraries, whose timing has to match the devices
+    const env = { ...process.env }; delete env.LD_PRELOAD;
+    this.proc = spawn(cmd, args, { stdio: ['pipe', 'pipe', 'pipe'], env });
     this.startedAt = Date.now();
     const p = this.proc;
     readline.createInterface({ input: p.stdout }).on('line', line => this._line(line));

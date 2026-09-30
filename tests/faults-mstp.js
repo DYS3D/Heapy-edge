@@ -203,6 +203,29 @@ async function refuseStage() {
       return { mac: r.result.mac };
     }, lab);
 
+    await test('a controller wakes up on the address the box chose: box moves to another', async () => {
+      // 4 devices; MAC 4 is powered off while the box joins, so the box (busy trunk: lowest
+      // free address) takes 4. Then the controller comes back on the same address.
+      await lab.simctl({ cmd: 'offline', mac: 4, on: true });
+      await sleep(15000); // the other masters drop 4 from the token ring
+      const box = new Lab({ kind: 'mstp', devices: 4, link: '10.255.83', webPort: 18779 });
+      box.simInfo = lab.simInfo; box.sock = lab.sock;
+      await box.startServer(); await box.startBox({ overrides: { scan: { at_start: false } } });
+      try {
+        const fs = require('node:fs'), path = require('node:path');
+        const log = () => fs.readFileSync(path.join(box.dataDir, 'edge.log'), 'utf8');
+        const m = /MS\/TP router on .* MAC (\d+)/.exec(log());
+        assert(m && m[1] === '4', `box chose MAC ${m && m[1]}, expected the quiet controller's 4`);
+        await lab.simctl({ cmd: 'offline', mac: 4, on: false });
+        await sleep(5000);
+        await box.api('scan', {});
+        await box.waitFor(async () => { const st = await box.boxStatus(); return st.scan.last_result && st.scan.last_result.devices === 4 && st; }, 300000, 'all 4 devices found');
+        const m2 = [...log().matchAll(/MS\/TP router on .* MAC (\d+)/g)].map(x => x[1]);
+        assert(m2.at(-1) !== '4', `box still on MAC 4: ${m2}`);
+        return { addresses: m2, rejoined: /rejoining on another/.test(log()) };
+      } finally { await box.close(); }
+    }, lab);
+
     await test('refuses a private link network that clashes with the site network', async () => {
       execSync('ip link del dummy-site 2>/dev/null; ip link add dummy-site type bridge && ip addr add 10.255.81.7/24 dev dummy-site && ip link set dummy-site up', { shell: '/bin/sh' });
       try {
