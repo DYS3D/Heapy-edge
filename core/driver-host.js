@@ -32,7 +32,8 @@ class DriverHost extends EventEmitter {
     p.on('exit', (code, sig) => this._exit(code, sig));
     p.on('error', e => this.log('error', `${this.name} could not start: ${e.message}`));
     this.info = await this.call('hello', {}, { timeoutMs: 15000 });
-    await this.call('configure', { settings: this.cfg.settings || {} }, { timeoutMs: 20000 });
+    this.configured = await this.call('configure', { settings: this.cfg.settings || {} }, { timeoutMs: 20000 });
+    for (const w of (this.configured && this.configured.warnings) || []) this.log('warn', `${this.name} settings: ${w}`);
     this.ready = true;
     this.log('info', `${this.name} driver ${this.info.version} ready`);
     this.emit('ready');

@@ -109,6 +109,24 @@
       </div></div>
     </section>
 
+    <section data-page="settings" hidden id="conn-page">
+      <div class="hp-card"><div class="hp-card__head">Other connections</div><div class="hp-card__body">
+        <p class="hp-muted small">BACnet/IP is set above. Turn on the other kinds of connection this site needs and list their devices.
+          Passwords and keys are never shown again once saved (leave the dots to keep them).</p>
+        <div id="conn-list"></div>
+        <div id="conn-edit" hidden>
+          <h3 id="conn-title"></h3>
+          <label class="hp-label"><input type="checkbox" id="conn-on"> Turned on</label>
+          <textarea class="hp-input mono" id="conn-json" rows="18" spellcheck="false"></textarea>
+          <p class="err" id="conn-err"></p>
+          <button class="hp-btn hp-btn--primary" id="conn-save">Save</button>
+          <button class="hp-btn" id="conn-example">Show an example</button>
+          <button class="hp-btn" id="conn-cancel">Close</button>
+          <span class="hp-muted" id="conn-ok"></span>
+        </div>
+      </div></div>
+    </section>
+
     <section data-page="log" hidden>
       <div class="hp-card"><div class="hp-card__head">Log</div><div class="hp-card__body--flush"><pre class="log" id="log"></pre></div></div>
     </section>

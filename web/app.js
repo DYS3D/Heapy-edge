@@ -51,8 +51,10 @@
   // ---- tabs ----
   let tab = 'status';
   try { tab = localStorage.getItem('edge.tab') || 'status'; } catch { /* no storage */ }
+  let settingsShown = false;
   function setTab(t) {
     tab = t;
+    settingsShown = false;
     try { localStorage.setItem('edge.tab', t); } catch { /* no storage */ }
     document.querySelectorAll('.hp-tab').forEach(b => b.classList.toggle('is-active', b.dataset.tab === t));
     document.querySelectorAll('[data-page]').forEach(p => { p.hidden = p.dataset.page !== t; });
@@ -76,7 +78,7 @@
       if (tab === 'devices') await renderDevices();
       if (tab === 'points') await renderPoints();
       if (tab === 'connect') renderConnect(st);
-      if (tab === 'settings') await renderSettings();
+      if (tab === 'settings' && !settingsShown) { settingsShown = true; await renderSettings(); await renderConn(); }
       if (tab === 'log') await renderLog();
     } catch (e) { if (e.message !== 'signed out') console.error(e); }
   }
@@ -211,6 +213,55 @@
       $('#set-ok').textContent = 'Saved';
       renderSettings();
     } catch (err) { $('#set-err').textContent = err.message; }
+  });
+
+  // ---- other connections (MS/TP, Modbus, SNMP, Haystack, oBIX) ----
+  const CONN = {
+    'bacnet-mstp': { label: 'BACnet MS/TP (RS-485 adapter on the box)', example: { serial: '/dev/ttyUSB0', baud: 'auto', mac: 'auto', instance: 4194002 } },
+    modbus: { label: 'Modbus TCP / RTU', example: {
+      connections: [{ name: 'meters', type: 'tcp', host: '10.1.2.50', port: 502 }, { name: 'rs485', type: 'rtu', serial: '/dev/ttyUSB1', baud: 9600, parity: 'N' }],
+      templates: { meter: { points: [{ name: 'Power', table: 'holding', address: 0, type: 'f32', order: 'ABCD', units: 'kilowatts' },
+        { name: 'Energy', table: 'holding', address: 2, type: 'u32', scale: 0.1, units: 'kilowatt-hours' }] } },
+      devices: [{ name: 'main-meter', connection: 'meters', unit: 1, template: 'meter' }, { name: 'boiler-1', connection: 'rs485', unit: 5, points: [{ name: 'Water temp', register: 30001, type: 'i16', scale: 0.1 }] }] } },
+    snmp: { label: 'SNMP (UPS, PDU, generator)', example: { devices: [
+      { name: 'ups-1', host: '10.1.2.60', version: '2c', community: 'public', template: 'ups-mib' },
+      { name: 'ups-2', host: '10.1.2.61', version: '3', template: 'ups-mib', v3: { user: 'heapy', auth: 'SHA', auth_key: 'secret-1', priv: 'AES', priv_key: 'secret-2' } }] } },
+    haystack: { label: 'Project Haystack (SkySpark, Niagara nHaystack)', example: { servers: [
+      { name: 'skyspark', url: 'https://skyspark.site.local/api/demo', user: 'heapy', password: 'secret', filter: 'point and cur' }] } },
+    obix: { label: 'Niagara oBIX (JACE or Supervisor)', example: { stations: [
+      { name: 'jace-1', url: 'https://10.1.2.5/obix', user: 'heapy', password: 'secret', roots: ['config/Drivers/'] }] } },
+  };
+  let connName = null;
+  async function renderConn() {
+    const s = await api('settings'); const st = await api('status');
+    settings = s;
+    $('#conn-list').innerHTML = '<table class="hp-table"><tbody>' + Object.entries(CONN).filter(([n]) => s.drivers[n]).map(([n, c]) => {
+      const d = s.drivers[n], run = st.drivers[n];
+      const state = !d.enabled ? 'off' : run && run.ready ? 'running' : 'not running';
+      const warn = run && run.warnings && run.warnings.length ? `<div class="err small">${run.warnings.map(esc).join('<br>')}</div>` : '';
+      return `<tr><td>${esc(c.label)}${warn}</td><td>${state}</td><td><button class="hp-btn" data-conn="${n}">Edit</button></td></tr>`;
+    }).join('') + '</tbody></table>';
+    document.querySelectorAll('[data-conn]').forEach(b => b.addEventListener('click', () => openConn(b.dataset.conn)));
+  }
+  function openConn(n) {
+    connName = n;
+    $('#conn-title').textContent = CONN[n].label;
+    $('#conn-on').checked = !!settings.drivers[n].enabled;
+    $('#conn-json').value = JSON.stringify(settings.drivers[n].settings || {}, null, 2);
+    $('#conn-err').textContent = ''; $('#conn-ok').textContent = '';
+    $('#conn-edit').hidden = false;
+  }
+  $('#conn-example').addEventListener('click', e => { e.preventDefault(); $('#conn-json').value = JSON.stringify(CONN[connName].example, null, 2); });
+  $('#conn-cancel').addEventListener('click', e => { e.preventDefault(); $('#conn-edit').hidden = true; });
+  $('#conn-save').addEventListener('click', async e => {
+    e.preventDefault(); $('#conn-err').textContent = ''; $('#conn-ok').textContent = '';
+    let js;
+    try { js = JSON.parse($('#conn-json').value); } catch (err) { $('#conn-err').textContent = `Not valid JSON: ${err.message}`; return; }
+    try {
+      await api('settings', { drivers: { [connName]: { enabled: $('#conn-on').checked, settings: js } } });
+      $('#conn-ok').textContent = 'Saved. The connection restarts and a scan runs; problems with the list show above.';
+      setTimeout(renderConn, 4000);
+    } catch (err) { $('#conn-err').textContent = err.message; }
   });
 
   async function renderLog() {

@@ -8,5 +8,12 @@ services:
     restart: unless-stopped
     volumes:
       - heapy-edge-data:/data
+    # MS/TP or Modbus RTU through a USB RS-485 adapter: uncomment the adapter.
+    # MS/TP also runs a small router in a private network inside the box, which needs the two capabilities.
+    # devices:
+    #   - /dev/ttyUSB0:/dev/ttyUSB0
+    # cap_add:
+    #   - NET_ADMIN
+    #   - SYS_ADMIN
 volumes:
   heapy-edge-data:

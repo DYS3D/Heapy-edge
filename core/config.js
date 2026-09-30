@@ -22,6 +22,41 @@ function defaults(dataDir) {
         net_rate: 10,                // who-is per second on the network
         rate_per_device: 5,          // requests per second to one device
       },
+      'bacnet-mstp': {
+        enabled: false,
+        cmd: [process.env.HEAPY_EDGE_PYTHON || 'python3', path.join(ROOT, 'drivers', 'bacnet-mstp', 'driver.py')],
+        // RS-485 adapter on the box; baud and MAC are found by listening first
+        settings: { serial: '/dev/ttyUSB0', baud: 'auto', mac: 'auto', instance: 4194002 },
+        targets: {}, discover_timeout_s: 4, net_rate: 5, rate_per_device: 5,
+      },
+      modbus: {
+        enabled: false,
+        cmd: [process.env.HEAPY_EDGE_PYTHON || 'python3', path.join(ROOT, 'drivers', 'modbus', 'driver.py')],
+        // Modbus has no discovery: connections, devices and register maps are listed here
+        settings: { connections: [], templates: {}, devices: [] },
+        targets: {}, discover_timeout_s: 5, rate_per_device: 10,
+      },
+      snmp: {
+        enabled: false,
+        cmd: [process.env.HEAPY_EDGE_PYTHON || 'python3', path.join(ROOT, 'drivers', 'snmp', 'driver.py')],
+        // UPSs, PDUs, generators: devices and OIDs are listed here (templates: ups-mib, system)
+        settings: { devices: [], templates: {} },
+        targets: {}, discover_timeout_s: 5, rate_per_device: 5,
+      },
+      haystack: {
+        enabled: false,
+        cmd: [process.env.HEAPY_EDGE_PYTHON || 'python3', path.join(ROOT, 'drivers', 'haystack', 'driver.py')],
+        // Haystack servers (SkySpark, Niagara nHaystack, ...): one device per server
+        settings: { servers: [] },
+        targets: {}, discover_timeout_s: 10, rate_per_device: 2,
+      },
+      obix: {
+        enabled: false,
+        cmd: [process.env.HEAPY_EDGE_PYTHON || 'python3', path.join(ROOT, 'drivers', 'obix', 'driver.py')],
+        // Niagara stations (JACE / Supervisor) over oBIX: one device per station
+        settings: { stations: [] },
+        targets: {}, discover_timeout_s: 10, rate_per_device: 2,
+      },
     },
     scan: { at_start: true, every_h: 24, windows: ['any'], browse_every_h: 168, auto_select: 'all' },
     poll: {

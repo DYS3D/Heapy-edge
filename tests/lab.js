@@ -16,7 +16,8 @@ const FAKETIME_LIB = '/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1';
 
 class Lab {
   constructor(opts = {}) {
-    this.o = { ahus: 6, vavs: 25, trunks: 2, vavsPerTrunk: 25, extraIp: 0, big: 0, tiny: false, interval: 15, ips: 40, net: 'bas-sim', prefix: '10.77.0', ...opts };
+    this.o = { ahus: 6, vavs: 25, trunks: 2, vavsPerTrunk: 25, extraIp: 0, big: 0, tiny: false, interval: 15, ips: 40, net: 'bas-sim', prefix: '10.77.0', kind: 'bacnet-ip', devices: 10, link: '10.255.77', ...opts };
+    this.driverName = { mstp: 'bacnet-mstp', modbus: 'modbus', snmp: 'snmp', haystack: 'haystack', obix: 'obix' }[this.o.kind] || 'bacnet-ip';
     this.br = this.o.net === 'bas-sim' ? 'br-bas' : `br-${this.o.net.replace(/^bas-/, '')}`;
     this.dir = opts.dir || fs.mkdtempSync(path.join(os.tmpdir(), 'edge-lab-'));
     fs.mkdirSync(this.dir, { recursive: true });
@@ -32,6 +33,11 @@ class Lab {
 
   // ---- simulator ----
   async startSim() {
+    if (this.o.kind === 'mstp') return this.startMstpSim();
+    if (this.o.kind === 'modbus') return this.startModbusSim();
+    if (this.o.kind === 'snmp') return this.startSnmpSim();
+    if (this.o.kind === 'haystack') return this.startHaystackSim();
+    if (this.o.kind === 'obix') return this.startWebSim('obix_sim.py', ['--stations', String(this.o.servers || 2)]);
     execFileSync(path.join(ROOT, 'sim', 'netsetup.sh'), [String(this.o.ips), this.o.net, this.o.prefix], { stdio: 'ignore' });
     const o = this.o;
     const args = [path.join(ROOT, 'sim', 'bacnet_sim.py'), '--ahus', o.ahus, '--vavs', o.vavs, '--trunks', o.trunks,
@@ -47,6 +53,116 @@ class Lab {
     this.simInfo = JSON.parse(line.trim().split('\n')[0]);
     this.note(`simulator: ${this.simInfo.devices} devices`);
     return this.simInfo;
+  }
+
+  async startMstpSim() {
+    this.sim = spawn('python3', [path.join(ROOT, 'sim', 'mstp_site.py'), '--devices', String(this.o.devices), '--control', this.sock],
+      { stdio: ['ignore', 'pipe', fs.openSync(path.join(this.dir, 'sim.log'), 'a')] });
+    this.procs.push(this.sim);
+    const line = await new Promise((res, rej) => {
+      this.sim.stdout.once('data', d => res(String(d)));
+      this.sim.once('exit', c => rej(new Error('MS/TP simulator stopped ' + c)));
+    });
+    this.simInfo = JSON.parse(line.trim().split('\n')[0]);
+    this.note(`MS/TP trunk: ${this.simInfo.devices} devices, box port ${this.simInfo.box_port}`);
+    return this.simInfo;
+  }
+
+  // Modbus site: TCP devices, gateways, an RTU-over-TCP server and an RS-485 bus.
+  // mb: { tcp, gateways, perGateway, rtuOverTcp, serial, baud, big, tiny }
+  async startModbusSim() {
+    const o = this.o, mb = { tcp: 6, gateways: 1, perGateway: 8, rtuOverTcp: 4, serial: 6, baud: 19200, ...(o.mb || {}) };
+    execFileSync(path.join(ROOT, 'sim', 'netsetup.sh'), [String(o.ips), o.net, o.prefix], { stdio: 'ignore' });
+    const args = [path.join(ROOT, 'sim', 'modbus_sim.py'), '--base', `${o.prefix}.`, '--tcp', mb.tcp, '--gateways', mb.gateways,
+      '--per-gateway', mb.perGateway, '--rtu-over-tcp', mb.rtuOverTcp, '--serial', mb.serial, '--baud', mb.baud,
+      '--control', this.sock, '--stats', this.statsFile].map(String);
+    if (mb.big) args.push('--big');
+    if (mb.tiny) args.push('--tiny');
+    this.sim = spawn('ip', ['netns', 'exec', o.net, 'python3', ...args], { stdio: ['ignore', 'pipe', fs.openSync(path.join(this.dir, 'sim.log'), 'a')] });
+    this.procs.push(this.sim);
+    let buf = '';
+    const line = await new Promise((res, rej) => {
+      this.sim.stdout.on('data', d => { buf += d; if (buf.includes('\n')) res(buf.split('\n')[0]); });
+      this.sim.once('exit', c => rej(new Error('Modbus simulator stopped ' + c)));
+    });
+    this.simInfo = JSON.parse(line);
+    const tpl = p => JSON.parse(execFileSync('python3', [path.join(ROOT, 'sim', 'modbus_sim.py'), '--template', p]).toString());
+    this.mbTemplates = { meter: tpl('meter'), big: tpl('big') };
+    this.note(`Modbus site: ${this.simInfo.devices.length} devices`);
+    return this.simInfo;
+  }
+
+  // SNMP site: v2c and v1 agents written for the lab, plus a v3 agent (snmpsim)
+  async startSnmpSim() {
+    const o = this.o, sn = { agents: 6, v3: true, ...(o.snmp || {}) };
+    execFileSync(path.join(ROOT, 'sim', 'netsetup.sh'), [String(o.ips), o.net, o.prefix], { stdio: 'ignore' });
+    const args = [path.join(ROOT, 'sim', 'snmp_sim.py'), '--base', `${o.prefix}.`, '--agents', String(sn.agents), '--control', this.sock];
+    if (sn.v3) args.push('--v3');
+    this.sim = spawn('ip', ['netns', 'exec', o.net, 'python3', ...args], { stdio: ['ignore', 'pipe', fs.openSync(path.join(this.dir, 'sim.log'), 'a')] });
+    this.procs.push(this.sim);
+    let buf = '';
+    const line = await new Promise((res, rej) => {
+      this.sim.stdout.on('data', d => { buf += d; if (buf.includes('\n')) res(buf.split('\n')[0]); });
+      this.sim.once('exit', c => rej(new Error('SNMP simulator stopped ' + c)));
+    });
+    this.simInfo = JSON.parse(line);
+    this.snmpExpected = JSON.parse(execFileSync('python3', [path.join(ROOT, 'sim', 'snmp_sim.py'), '--print-expected']).toString());
+    this.note(`SNMP site: ${this.simInfo.devices.length} agents`);
+    return this.simInfo;
+  }
+
+  async startWebSim(script, extra) {
+    const o = this.o;
+    execFileSync(path.join(ROOT, 'sim', 'netsetup.sh'), [String(o.ips), o.net, o.prefix], { stdio: 'ignore' });
+    const args = [path.join(ROOT, 'sim', script), '--base', `${o.prefix}.`, ...extra, '--control', this.sock];
+    this.sim = spawn('ip', ['netns', 'exec', o.net, 'python3', ...args], { stdio: ['ignore', 'pipe', fs.openSync(path.join(this.dir, 'sim.log'), 'a')] });
+    this.procs.push(this.sim);
+    let buf = '';
+    const line = await new Promise((res, rej) => {
+      this.sim.stdout.on('data', d => { buf += d; if (buf.includes('\n')) res(buf.split('\n')[0]); });
+      this.sim.once('exit', c => rej(new Error(`${script} stopped ${c}`)));
+    });
+    this.simInfo = JSON.parse(line);
+    this.expected = JSON.parse(execFileSync('python3', [path.join(ROOT, 'sim', script), '--print-expected']).toString()).expected;
+    this.note(`${script}: ${this.simInfo.devices.length} servers`);
+    return this.simInfo;
+  }
+
+  async startHaystackSim() {
+    const o = this.o;
+    execFileSync(path.join(ROOT, 'sim', 'netsetup.sh'), [String(o.ips), o.net, o.prefix], { stdio: 'ignore' });
+    const args = [path.join(ROOT, 'sim', 'haystack_sim.py'), '--base', `${o.prefix}.`, '--servers', String(o.servers || 4), '--control', this.sock];
+    this.sim = spawn('ip', ['netns', 'exec', o.net, 'python3', ...args], { stdio: ['ignore', 'pipe', fs.openSync(path.join(this.dir, 'sim.log'), 'a')] });
+    this.procs.push(this.sim);
+    let buf = '';
+    const line = await new Promise((res, rej) => {
+      this.sim.stdout.on('data', d => { buf += d; if (buf.includes('\n')) res(buf.split('\n')[0]); });
+      this.sim.once('exit', c => rej(new Error('Haystack simulator stopped ' + c)));
+    });
+    this.simInfo = JSON.parse(line);
+    this.hsExpected = JSON.parse(execFileSync('python3', [path.join(ROOT, 'sim', 'haystack_sim.py'), '--print-expected']).toString()).expected;
+    this.note(`Haystack site: ${this.simInfo.devices.length} servers`);
+    return this.simInfo;
+  }
+
+  snmpSettings() {
+    const devices = this.simInfo.devices.map(d => {
+      const dv = { name: d.name, host: d.host, port: d.port, version: d.version, template: 'ups-mib',
+        points: [{ name: 'sysUpTime', oid: '1.3.6.1.2.1.1.3.0', scale: 0.01 }, ...this.snmpExpected.extra_points], ...(this.o.devOpts || {}) };
+      if (d.v3) dv.v3 = d.v3; else dv.community = d.community;
+      return dv;
+    });
+    return { devices };
+  }
+
+  modbusSettings() {
+    const conns = new Map();
+    const devices = this.simInfo.devices.map(d => {
+      conns.set(d.conn.name, { ...d.conn, ...(this.o.connOpts || {}) });
+      return { name: d.name, connection: d.conn.name, unit: d.unit, template: d.profile === 'big' ? 'big' : 'meter' };
+    });
+    return { connections: [...conns.values()], devices,
+      templates: { meter: { points: this.mbTemplates.meter.points }, big: { points: this.mbTemplates.big.points } } };
   }
 
   simctl(cmd) {
@@ -84,9 +200,26 @@ class Lab {
   // ---- box ----
   boxOverrides(extra = {}) {
     const iv = this.o.interval;
+    const drivers = this.o.kind === 'mstp' ? {
+      'bacnet-ip': { enabled: false },
+      'bacnet-mstp': { enabled: true, cmd: ['python3', path.join(ROOT, 'drivers', 'bacnet-mstp', 'driver.py')], rate_per_device: 5, discover_timeout_s: 4,
+        settings: { serial: this.simInfo.box_port, router: path.join(ROOT, 'bin', 'router-mstp'), link: this.o.link, instance: 4194003 } },
+    } : this.o.kind === 'obix' ? {
+      'bacnet-ip': { enabled: false },
+      obix: { enabled: true, rate_per_device: 5, settings: { stations: this.simInfo.devices.map(d => ({ ...d, timeout_ms: 5000 })) } },
+    } : this.o.kind === 'haystack' ? {
+      'bacnet-ip': { enabled: false },
+      haystack: { enabled: true, rate_per_device: 5, settings: { servers: this.simInfo.devices.map(d => ({ name: d.name, url: d.url, user: d.user, password: d.password, auth: d.auth, timeout_ms: 5000 })) } },
+    } : this.o.kind === 'snmp' ? {
+      'bacnet-ip': { enabled: false },
+      snmp: { enabled: true, rate_per_device: 5, settings: this.snmpSettings() },
+    } : this.o.kind === 'modbus' ? {
+      'bacnet-ip': { enabled: false },
+      modbus: { enabled: true, rate_per_device: 10, settings: this.modbusSettings() },
+    } : { 'bacnet-ip': { settings: { address: `${this.o.prefix}.2/24`, instance: 4194001 }, rate_per_device: 5, discover_timeout_s: 3 } };
     return deepMerge({
       web: { port: this.o.webPort || 18770, bind: '127.0.0.1' },
-      drivers: { 'bacnet-ip': { settings: { address: `${this.o.prefix}.2/24`, instance: 4194001 }, rate_per_device: 5, discover_timeout_s: 3 } },
+      drivers,
       scan: { at_start: true, every_h: 1000, windows: ['any'] },
       poll: { default_interval_s: iv, offline_after: 3, offline_retry_s: 20 },
       upload: { every_s: 5, checkin_every_s: 10, permanent_retry_s: 30, max_retry_s: 20 },
@@ -112,7 +245,7 @@ class Lab {
     this.procs.push(this.box);
     this.boxExit = null;
     this.box.once('exit', (c, sig) => { this.boxExit = { code: c, sig }; });
-    if (wait) await this.waitFor(async () => (await this.boxStatus())?.drivers?.['bacnet-ip']?.ready, 60000, 'box start');
+    if (wait) await this.waitFor(async () => (await this.boxStatus())?.drivers?.[this.driverName]?.ready, 90000, 'box start');
   }
 
   async stopBox(signal = 'SIGTERM') {
@@ -162,25 +295,35 @@ class Lab {
   fault(device, from, to, why) { this.faults.push({ device, from, to, why }); }
 
   // ---- checks ----
-  // Every gap between readings of a selected point longer than 1.5 intervals
-  // that no recorded fault explains.
+  // Every reading slot of every selected point must hold a reading. The box reads each
+  // point once per interval in clock-aligned slots (with a fixed per-device offset, the
+  // same one the scheduler uses); a slot with no reading that no recorded fault explains
+  // is a gap. Late readings inside their own slot are fine; a missed slot never hides
+  // behind a late neighbour.
   gaps(t0, t1, { slack = 0 } = {}) {
     const iv = this.o.interval * 1000;
-    const rows = this.q(`SELECT p.id, p.key, d.key dkey, s.t FROM samples s JOIN points p ON p.id=s.p JOIN devices d ON d.id=p.device_id
-      WHERE p.selected=1 AND p.missing=0 AND s.t BETWEEN ? AND ? ORDER BY p.id, s.t`, t0, t1);
+    const hash = s => { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
+    const rows = this.q(`SELECT p.id, s.t FROM samples s JOIN points p ON p.id=s.p
+      WHERE p.selected=1 AND p.missing=0 AND s.t BETWEEN ? AND ? ORDER BY p.id, s.t`, t0 - iv, t1 + iv);
     const byPoint = new Map();
-    for (const r of rows) { if (!byPoint.has(r.id)) byPoint.set(r.id, { key: r.key, dkey: r.dkey, ts: [] }); byPoint.get(r.id).ts.push(r.t); }
+    for (const r of rows) { if (!byPoint.has(r.id)) byPoint.set(r.id, []); byPoint.get(r.id).push(r.t); }
     const pts = this.q(`SELECT p.id, p.key, d.key dkey, p.created_at FROM points p JOIN devices d ON d.id=p.device_id WHERE p.selected=1 AND p.missing=0`);
     const bad = [];
     const explained = (dkey, pkey, a, b) => this.faults.some(f => (f.device === '*' || f.device === dkey || f.device === pkey) && f.from - iv * 2 <= b && (f.to ?? Date.now()) + slack + iv * 3 >= a);
     for (const p of pts) {
-      const e = byPoint.get(p.id) || { ts: [] };
-      // a point found during the run starts counting when it was found
+      if (this.o.ignorePoint && this.o.ignorePoint(p.key)) continue;
+      const ts = byPoint.get(p.id) || [];
+      const off = hash(p.dkey) % Math.min(iv, 30000);
+      // a point found during the run counts from its first full slot
       const start = Math.max(t0, (p.created_at || 0) + iv);
-      const ts = [start, ...e.ts.filter(x => x >= start), t1];
-      for (let i = 1; i < ts.length; i++) {
-        const g = ts[i] - ts[i - 1];
-        if (g > 1.5 * iv + 2000 && !explained(p.dkey, p.key, ts[i - 1], ts[i])) bad.push({ point: p.key, from: ts[i - 1], to: ts[i], gap_s: Math.round(g / 1000) });
+      let s = Math.floor((start - off) / iv) * iv + off + iv;
+      let i = 0, run = null;
+      for (; s + iv <= t1; s += iv) {
+        while (i < ts.length && ts[i] < s) i++;
+        const hit = i < ts.length && ts[i] < s + iv;
+        if (!hit && !explained(p.dkey, p.key, s, s + iv)) {
+          if (run && run.to === s) { run.to = s + iv; run.gap_s += iv / 1000; } else { run = { point: p.key, from: s, to: s + iv, gap_s: iv / 1000 }; bad.push(run); }
+        }
       }
     }
     return bad;
@@ -216,7 +359,7 @@ class Lab {
 
   iptables(args) { execSync(`iptables ${args}`); }
   // packet loss on this lab's BAS network only
-  lossOn(p) { this.lossRule = `INPUT -i ${this.br} -p udp -m statistic --mode random --probability ${p} -j DROP`; execSync(`iptables -I ${this.lossRule}`); }
+  lossOn(p, proto = this.o.kind === 'modbus' ? 'tcp' : 'udp') { this.lossRule = `INPUT -i ${this.br} -p ${proto} -m statistic --mode random --probability ${p} -j DROP`; execSync(`iptables -I ${this.lossRule}`); }
   lossOff() { if (this.lossRule) { try { execSync(`iptables -D ${this.lossRule}`); } catch { /* gone */ } this.lossRule = null; } }
   // this lab's driver process only
   killDriver() { execSync(`pkill -9 -P ${this.box.pid} -f "[d]rivers/"`); }

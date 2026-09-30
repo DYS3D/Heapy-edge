@@ -1,10 +1,15 @@
 # 24-hour soak with scheduled faults, run as up to five 5.7-hour pieces that
 # hand the test state to each other. Start it from the Actions tab
-# (Run workflow). Results: the "soak-result" artifact (state.json, soak.log).
+# (Run workflow) and pick the driver. Results: the "soak-result-<driver>" artifacts.
 name: Soak test
 on:
   workflow_dispatch:
     inputs:
+      kind:
+        description: Driver to soak
+        type: choice
+        options: [bacnet-ip, mstp, modbus, snmp, haystack, obix]
+        default: bacnet-ip
       hours:
         description: Soak length in hours
         default: '24'
@@ -16,20 +21,20 @@ permissions:
 jobs:
   part1:
     uses: ./.github/workflows/soak-part.yml
-    with: { part: 1, next: 2, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
+    with: { part: 1, next: 2, kind: '${{ inputs.kind }}', hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
   part2:
     needs: part1
     uses: ./.github/workflows/soak-part.yml
-    with: { part: 2, next: 3, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
+    with: { part: 2, next: 3, kind: '${{ inputs.kind }}', hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
   part3:
     needs: part2
     uses: ./.github/workflows/soak-part.yml
-    with: { part: 3, next: 4, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
+    with: { part: 3, next: 4, kind: '${{ inputs.kind }}', hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
   part4:
     needs: part3
     uses: ./.github/workflows/soak-part.yml
-    with: { part: 4, next: 5, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
+    with: { part: 4, next: 5, kind: '${{ inputs.kind }}', hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
   part5:
     needs: part4
     uses: ./.github/workflows/soak-part.yml
-    with: { part: 5, next: 6, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
+    with: { part: 5, next: 6, kind: '${{ inputs.kind }}', hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }

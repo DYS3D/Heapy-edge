@@ -1,0 +1,3 @@
+# test-only: second SNMP agent implementation for the v3 tests
+snmpsim==1.2.2
+pysmi==2.0.0

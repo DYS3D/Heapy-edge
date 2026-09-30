@@ -3,6 +3,7 @@ name: Soak part
 on:
   workflow_call:
     inputs:
+      kind: { type: string, required: true }
       part: { type: number, required: true }
       next: { type: number, required: true }
       hours: { type: string, required: true }
@@ -18,24 +19,27 @@ jobs:
       - name: Tools
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q iproute2 faketime
-          sudo python3 -m pip install --break-system-packages -r drivers/bacnet-ip/requirements.txt
+          sudo python3 -m pip install --break-system-packages -r drivers/bacnet-ip/requirements.txt -r drivers/snmp/requirements.txt -r tests/requirements-test.txt
+      - name: MS/TP router and test devices
+        if: inputs.kind == 'mstp'
+        run: sh tools/build-bacnet-stack.sh
       - name: State from the previous part
         if: inputs.part > 1
         uses: actions/download-artifact@v4
-        with: { name: 'soak-state-${{ inputs.part }}', path: soak }
+        with: { name: 'soak-state-${{ inputs.kind }}-${{ inputs.part }}', path: soak }
       - name: Soak
         run: |
           mkdir -p soak
           if [ -f soak/state.json ] && grep -q '"finished": true' soak/state.json; then echo "already finished"; exit 0; fi
-          sudo -E env "PATH=$PATH" node --no-warnings tests/soak24.js --hours ${{ inputs.hours }} --interval ${{ inputs.interval }} --dir "$PWD/soak" --segment-minutes 335
+          sudo -E env "PATH=$PATH" node --no-warnings tests/soak24.js --kind ${{ inputs.kind }} --hours ${{ inputs.hours }} --interval ${{ inputs.interval }} --dir "$PWD/soak" --segment-minutes 335
           grep -h "hour\|FINISHED\|STOPPED\|CRASH" soak/soak.log | tail -20
       - name: Tidy
         if: always()
         run: sudo chown -R "$(id -u)" soak; rm -f soak/*.sock
       - name: Hand the state to the next part
         uses: actions/upload-artifact@v4
-        with: { name: 'soak-state-${{ inputs.next }}', path: soak, retention-days: 3 }
+        with: { name: 'soak-state-${{ inputs.kind }}-${{ inputs.next }}', path: soak, retention-days: 3 }
       - name: Result so far
         if: always()
         uses: actions/upload-artifact@v4
-        with: { name: 'soak-result-part${{ inputs.part }}', path: 'soak/state.json', retention-days: 30 }
+        with: { name: 'soak-result-${{ inputs.kind }}-part${{ inputs.part }}', path: 'soak/state.json', retention-days: 30 }

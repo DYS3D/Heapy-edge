@@ -49,7 +49,7 @@
       "states": "optional list of state names (binary: [inactive, active]; multistate: 1..n)",
       "cov": "boolean, device says the object supports change of value"
     },
-    "Sample": { "point": "point key", "t": "epoch milliseconds, time read", "v": "number or null", "error": "optional string when v is null" }
+    "Sample": { "point": "point key", "t": "epoch milliseconds, time read", "v": "number or null", "error": "optional string when v is null", "retry": "optional true: the error is passing (device busy); read again soon" }
   },
   "point_address": {
     "rule": "scheme://device-id/object[?options]. The scheme names the driver. Keys never contain the network route, so a device that moves to a new IP keeps its history.",

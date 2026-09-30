@@ -15,6 +15,24 @@ const { Web } = require('./web');
 
 const VERSION = require('../package.json').version;
 
+// Passwords, keys and communities never go back to the browser.
+const SECRET = /^(password|auth_key|priv_key|community|token)$/;
+const MASK = '••••••••';
+function maskSecrets(o) {
+  if (Array.isArray(o)) o.forEach(maskSecrets);
+  else if (o && typeof o === 'object') for (const k of Object.keys(o)) { if (SECRET.test(k) && typeof o[k] === 'string' && o[k]) o[k] = MASK; else maskSecrets(o[k]); }
+}
+// A masked value coming back from the page means "keep what is saved". Lists are matched by name.
+function unmaskSecrets(neu, old) {
+  if (Array.isArray(neu)) return neu.map((x, i) => unmaskSecrets(x, Array.isArray(old) ? (old.find(o => o && x && o.name !== undefined && o.name === x.name) || old[i]) : undefined));
+  if (neu && typeof neu === 'object') {
+    const out = {};
+    for (const k of Object.keys(neu)) out[k] = neu[k] === MASK ? (old && old[k]) : unmaskSecrets(neu[k], old && old[k]);
+    return out;
+  }
+  return neu;
+}
+
 class EdgeApp {
   constructor({ dataDir, overrides = {} }) {
     this.version = VERSION;
@@ -100,15 +118,16 @@ class EdgeApp {
     return {
       name: this.config.get().name, version: VERSION, started: this.startedAt, host: os.hostname(),
       health: this.health(), scan: this.scanner.state, poll: this.scheduler.stats,
-      drivers: Object.fromEntries(Object.entries(this.drivers).map(([n, h]) => [n, { ready: h.ready, version: h.info?.version, restarts: h.restarts }])),
+      drivers: Object.fromEntries(Object.entries(this.drivers).map(([n, h]) => [n, { ready: h.ready, version: h.info?.version, restarts: h.restarts, warnings: (h.configured && h.configured.warnings) || [] }])),
       destinations: this.uploader.health(),
       link: { paired: !!sec.key, box_id: sec.box_id || null, site: sec.site || null, server: sec.server || null, ...this.link.state },
     };
   }
 
+  // Settings for the setup page: program paths removed, passwords and keys masked.
   publicSettings() {
     const s = JSON.parse(JSON.stringify(this.config.get()));
-    for (const d of Object.values(s.drivers)) delete d.cmd;
+    for (const d of Object.values(s.drivers)) { delete d.cmd; maskSecrets(d.settings); }
     return s;
   }
 
@@ -117,7 +136,13 @@ class EdgeApp {
     const allowed = ['name', 'drivers', 'scan', 'poll', 'upload', 'buffer', 'destinations'];
     const clean = {};
     for (const k of allowed) if (patch[k] !== undefined) clean[k] = patch[k];
-    if (clean.drivers) for (const d of Object.values(clean.drivers)) delete d.cmd; // program paths are never set from the page
+    if (clean.drivers) {
+      for (const [n, d] of Object.entries(clean.drivers)) {
+        if (!this.config.get().drivers[n]) { delete clean.drivers[n]; continue; } // only drivers the box has
+        delete d.cmd; // program paths are never set from the page
+        if (d.settings) d.settings = unmaskSecrets(d.settings, this.config.get().drivers[n].settings); // masked = unchanged
+      }
+    }
     if (clean.destinations) {
       const cur = this.config.get().destinations;
       clean.destinations = cur.map(d => {
@@ -132,7 +157,14 @@ class EdgeApp {
     this.config.update(clean);
     this.scheduler.invalidate();
     if (JSON.stringify(this.config.get().drivers) !== before) {
-      for (const name of Object.keys(this.drivers)) await this.restartDriver(name);
+      const names = new Set([...Object.keys(this.drivers), ...Object.keys(this.config.get().drivers)]);
+      for (const name of names) {
+        const was = JSON.stringify(JSON.parse(before)[name] || null), now = JSON.stringify(this.config.get().drivers[name] || null);
+        if (was !== now || (this.config.get().drivers[name]?.enabled && !this.drivers[name])) await this.restartDriver(name);
+      }
+      this.scanner.state.last_error = null;
+      // connections changed: find their devices now rather than at the next scheduled scan
+      setTimeout(() => this.scanner.run('settings changed').then(() => this.scheduler.invalidate()).catch(() => {}), 2000);
     }
     this.log('info', `settings changed: ${Object.keys(clean).join(', ')}`);
   }
@@ -201,4 +233,4 @@ if (require.main === module) {
   process.on('unhandledRejection', e => { try { app.log('error', `unhandled: ${e && e.stack || e}`); } catch { /* */ } });
 }
 
-module.exports = { EdgeApp };
+module.exports = { EdgeApp, maskSecrets, unmaskSecrets, MASK };

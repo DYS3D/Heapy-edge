@@ -625,8 +625,8 @@ class Driver:
             await emit({"id": rid, "ok": False, "error": {"code": "internal", "message": repr(e)}})
 
 
-async def main():
-    drv = Driver()
+async def main(driver_cls=None):
+    drv = (driver_cls or Driver)()
     loop = asyncio.get_running_loop()
     reader = asyncio.StreamReader(limit=16 * 1024 * 1024)
     await loop.connect_read_pipe(lambda: asyncio.StreamReaderProtocol(reader), sys.stdin)

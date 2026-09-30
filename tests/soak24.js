@@ -1,5 +1,6 @@
 'use strict';
-// 24-hour soak with scheduled faults (BACnet/IP). Resumable: if the machine
+// 24-hour soak with scheduled faults, for any driver (--kind bacnet-ip | mstp |
+// modbus | snmp | haystack | obix). Resumable: if the machine
 // running it restarts, run it again with the same --dir and it carries on; the
 // time it was down is recorded and excluded from the gap check.
 //   node tests/soak24.js --hours 24 --dir /home/claude/soak24
@@ -18,6 +19,7 @@ const IV = Number(arg('interval', 60));
 // run to pick up (GitHub Actions jobs are limited to 6 hours)
 const SEG_MIN = Number(arg('segment-minutes', 0));
 const SEG_END = SEG_MIN ? Date.now() + SEG_MIN * 60000 : Infinity;
+const KIND = arg('kind', 'bacnet-ip');
 const STATE = path.join(DIR, 'state.json');
 fs.mkdirSync(DIR, { recursive: true });
 
@@ -46,10 +48,79 @@ const RARE = [
   [8, 15, 'clock', 2],
 ];
 
+// Hourly fault cycles for the other drivers: [minute, label, minutes, on(lab), off(lab), device keys that may lose readings]
+const F = (dev, f, v = true) => [lab => lab.simctl({ cmd: 'fault', dev, f, v, on: true }), lab => lab.simctl({ cmd: 'fault', dev, f, on: false })];
+const NET = p => [async lab => lab.lossOn(p), async lab => lab.lossOff()];
+const PLANS = {
+  mstp: {
+    lab: { kind: 'mstp', devices: 20, link: '10.255.85' }, key: m => `bacnet://${30000 + m}`,
+    cycle: [
+      [2, 'MS/TP device 4 off', 5, lab => lab.simctl({ cmd: 'offline', mac: 4, on: true }), lab => lab.simctl({ cmd: 'offline', mac: 4, on: false }), [4]],
+      [12, 'trunk noise 5 bytes/s', 10, lab => lab.simctl({ cmd: 'noise', rate: 5 }), lab => lab.simctl({ cmd: 'noise', rate: 0 }), []],
+      [24, 'trunk loses 0.02% of bytes', 10, lab => lab.simctl({ cmd: 'drop', p: 0.0002 }), lab => lab.simctl({ cmd: 'drop', p: 0 }), []],
+      [40, 'box cable pulled', 1, lab => lab.simctl({ cmd: 'cut', port: 0, on: true }), lab => lab.simctl({ cmd: 'cut', port: 0, on: false }), '*'],
+    ],
+    rate: async () => ['n/a', 0],
+  },
+  modbus: {
+    lab: { kind: 'modbus', ips: 30, mb: { tcp: 6, gateways: 1, perGateway: 8, rtuOverTcp: 4, serial: 6, baud: 19200 }, ignorePoint: k => /\/holding:(25|26)\?/.test(k) },
+    key: n => `modbus://${n}`,
+    cycle: [
+      [2, 'TCP device off', 5, ...F('tcp-03', 'offline'), ['tcp-03']],
+      [9, 'TCP device reboots', 2, ...F('tcp-04', 'reboot', 60), ['tcp-04']],
+      [12, '20% lost replies behind the gateway', 10, ...F('gw1-u05', 'drop', 0.2), []],
+      [24, '5% network loss', 10, ...NET(0.05), []],
+      [36, 'RS-485 noise 5 bytes/s', 10, lab => lab.simctl({ cmd: 'bus', noise: 5 }), lab => lab.simctl({ cmd: 'bus', noise: 0 }), []],
+      [47, 'gateway off', 3, ...F('gw1', 'offline'), lab => lab.simInfo.devices.filter(d => d.conn.name === 'gw1').map(d => d.name)],
+      [53, '10% garbage replies', 5, ...F('rs1-u02', 'garbage', 0.1), []],
+    ],
+    rate: async lab => { const st = await lab.simctl({ cmd: 'stats' }); const w = Object.entries(st.devices).sort((a, b) => b[1].max_rate - a[1].max_rate)[0]; return [w[0], w[1].max_rate, 12]; },
+  },
+  snmp: {
+    lab: { kind: 'snmp', ips: 12, snmp: { agents: 6, v3: true } }, key: n => `snmp://${n}`,
+    cycle: [
+      [2, 'agent off', 5, ...F('ups-02', 'offline'), ['ups-02']],
+      [9, 'agent reboots', 2, ...F('ups-04', 'reboot', 60), ['ups-04']],
+      [12, '20% lost replies', 10, ...F('ups-01', 'drop', 0.2), []],
+      [24, '5% network loss', 10, ...NET(0.05), []],
+      [36, 'stale and duplicate replies', 10, lab => Promise.all([lab.simctl({ cmd: 'fault', dev: 'ups-03', f: 'stale', v: 0.3, on: true }), lab.simctl({ cmd: 'fault', dev: 'ups-05', f: 'dup', v: 0.3, on: true })]),
+        lab => Promise.all([lab.simctl({ cmd: 'fault', dev: 'ups-03', f: 'stale', on: false }), lab.simctl({ cmd: 'fault', dev: 'ups-05', f: 'dup', on: false })]), []],
+      [53, '10% garbage replies', 5, ...F('ups-06', 'garbage', 0.1), []],
+    ],
+    rate: async lab => { const st = await lab.simctl({ cmd: 'stats' }); const w = Object.entries(st.devices).sort((a, b) => b[1].max_rate - a[1].max_rate)[0]; return [w[0], w[1].max_rate, 7]; },
+  },
+  haystack: {
+    lab: { kind: 'haystack', ips: 8, servers: 4, ignorePoint: k => /\.(bad|nan|noval)$/.test(k) }, key: n => `haystack://${n}`,
+    cycle: [
+      [2, 'server off', 5, ...F('hs-01', 'offline'), ['hs-01']],
+      [12, '15% HTTP 500', 10, ...F('hs-02', 'err500', 0.15), []],
+      [24, '5% network loss', 10, ...NET(0.05), []],
+      [36, 'login tokens expire', 1, ...F('hs-03', 'expire'), []],
+      [40, 'server hangs', 1, ...F('hs-04', 'hang'), ['hs-04']],
+      [53, '10% broken replies', 5, ...F('hs-01', 'garbage', 0.1), []],
+    ],
+    rate: async lab => { const st = await lab.simctl({ cmd: 'stats' }); const w = Object.entries(st.servers).sort((a, b) => b[1].max_rate - a[1].max_rate)[0]; return [w[0], w[1].max_rate, 8]; },
+  },
+  obix: {
+    lab: { kind: 'obix', ips: 6, servers: 3, ignorePoint: k => /Plant\/points\/(Faulty|Down|NaN)$/.test(k) }, key: n => `obix://${n}`,
+    cycle: [
+      [2, 'station off', 5, ...F('jace-01', 'offline'), ['jace-01']],
+      [12, '15% HTTP 500', 10, ...F('jace-02', 'err500', 0.15), []],
+      [24, '5% network loss', 10, ...NET(0.05), []],
+      [40, 'station hangs', 1, ...F('jace-03', 'hang'), ['jace-03']],
+      [53, '10% broken replies', 5, ...F('jace-01', 'garbage', 0.1), []],
+    ],
+    rate: async lab => { const st = await lab.simctl({ cmd: 'stats' }); const w = Object.entries(st.servers).sort((a, b) => b[1].max_rate - a[1].max_rate)[0]; return [w[0], w[1].max_rate, 8]; },
+  },
+};
+
 async function main() {
   let st = load();
+  const plan = PLANS[KIND];
   const lab = new Lab({ dir: DIR, dataDir: path.join(DIR, 'data'), interval: IV, tiny: true,
-    net: arg('net', 'bas-sim'), prefix: arg('prefix', '10.77.0'), webPort: Number(arg('web-port', 18770)) });
+    ...(plan ? plan.lab : {}),
+    net: arg('net', plan ? `bas-s${KIND.slice(0, 3)}` : 'bas-sim'), prefix: arg('prefix', plan ? `10.78.${20 + Object.keys(PLANS).indexOf(KIND)}` : '10.77.0'),
+    webPort: Number(arg('web-port', 18770)) });
   lab.note = msg => { const l = `${new Date().toISOString()} ${msg}`; fs.appendFileSync(path.join(DIR, 'soak.log'), l + '\n'); };
   if (st && st.finished) { console.log('already finished; see', STATE); return; }
   if (!st) st = { start: now(), end: now() + HOURS * 3600000, faults: [], hourly: [], outages: [], done: {}, lastBeat: now(), restarts_expected: { box: 0, driver: 0 } };
@@ -106,7 +177,13 @@ async function main() {
       }
     }
     // start faults due now
-    for (const [m, what, dev, mins, x] of CYCLE) {
+    for (const [m, label, mins, on, off, devs] of plan ? plan.cycle : []) {
+      if (minute < m || minute > m + 1) continue;
+      const list = typeof devs === 'function' ? devs(lab) : devs;
+      const keys = list === '*' ? '*' : list.map(d => plan.key(d));
+      await start(`${hour}:${label}`, mins, () => on(lab), () => off(lab), keys.length === 0 ? null : keys, label);
+    }
+    for (const [m, what, dev, mins, x] of plan ? [] : CYCLE) {
       if (minute < m || minute > m + 1) continue;
       const key = `${hour}:${what}`;
       const k = dev === '*' ? '*' : `bacnet://${dev}`;
@@ -156,11 +233,11 @@ async function main() {
   await sleep(3 * MIN);
   const loss = await lab.lossCheck();
   const g = lab.gaps(st.start + 10 * MIN, now() - 5 * MIN);
-  const [dev, rate] = lab.maxRate();
-  st.final = { loss, gaps: g.length, gap_examples: g.slice(0, 10), max_rate: [dev, rate], hours: HOURS,
+  const [dev, rate, limit = 6] = plan ? await plan.rate(lab) : lab.maxRate();
+  st.final = { kind: KIND, loss, gaps: g.length, gap_examples: g.slice(0, 10), max_rate: [dev, rate], hours: HOURS,
     points: lab.q('SELECT count(*) n FROM points WHERE selected=1 AND missing=0')[0].n, samples: loss.box,
     outages: st.outages, unexpected_box_stops: st.unexpected || 0 };
-  st.pass = loss.missing === 0 && loss.duplicates === 0 && loss.extra === 0 && g.length === 0 && !st.unexpected && rate <= 6;
+  st.pass = loss.missing === 0 && loss.duplicates === 0 && loss.extra === 0 && g.length === 0 && !st.unexpected && (!limit || rate <= limit);
   st.finished = true;
   save(st);
   lab.note(`FINISHED: ${st.pass ? 'PASS' : 'FAIL'} ${JSON.stringify(st.final).slice(0, 500)}`);

@@ -24,3 +24,7 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .small{font-size:12px}
 .hp-band__meta .hp-meta .hp-num{white-space:nowrap}
 hr{border:0;border-top:1px solid var(--hp-rule);margin:12px 0}
+
+textarea.mono{width:100%;font-family:var(--hp-mono);font-size:12px;margin:8px 0}
+#conn-edit{margin-top:14px}
+#conn-page{margin-top:14px}

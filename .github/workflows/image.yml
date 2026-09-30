@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: '22' }
-      - run: sudo python3 -m pip install --break-system-packages -r drivers/bacnet-ip/requirements.txt
+      - run: sudo python3 -m pip install --break-system-packages -r drivers/bacnet-ip/requirements.txt -r drivers/snmp/requirements.txt -r tests/requirements-test.txt
       - run: sudo apt-get install -y iproute2
       - run: sudo -E env "PATH=$PATH" node --no-warnings tests/selftest.js
   image:

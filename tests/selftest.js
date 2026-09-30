@@ -45,6 +45,7 @@ async function unit() {
     assert.strictEqual(laneOf({ driver: 'b', key: 'bacnet://1', route: '2001:5' }), 'b:net2001');
     assert.strictEqual(laneOf({ driver: 'b', key: 'bacnet://2', route: '2001:9' }), 'b:net2001');
     assert.strictEqual(laneOf({ driver: 'b', key: 'bacnet://3', route: '10.1.2.3' }), 'b:bacnet://3');
+    assert.strictEqual(laneOf({ driver: 'modbus', key: 'modbus://m1', route: 'tcp:10.1.2.3:502 unit 4', meta: { lane: 'link:gw1', lane_max: 1 } }), 'modbus:net:link:gw1');
   });
   await check('settings merge keeps defaults', () => {
     const m = merge({ a: { b: 1, c: 2 }, l: [1] }, { a: { c: 3 }, l: [2, 3] });
@@ -240,10 +241,57 @@ async function site() {
   }
 }
 
+// Modbus driver against the simulated Modbus site (TCP, gateway, RTU over TCP, RS-485 bus):
+// every point on every device must read exactly the value served.
+async function modbusSite() {
+  console.log('Modbus site test');
+  execFileSync(path.join(ROOT, 'sim', 'netsetup.sh'), ['20', 'bas-stm', '10.79.1'], { stdio: 'ignore' });
+  const sim = spawn('ip', ['netns', 'exec', 'bas-stm', 'python3', path.join(ROOT, 'sim', 'modbus_sim.py'), '--base', '10.79.1.',
+    '--tcp', '4', '--gateways', '1', '--per-gateway', '4', '--rtu-over-tcp', '2', '--serial', '3', '--tiny'], { stdio: ['ignore', 'pipe', 'ignore'] });
+  try {
+    let buf = '';
+    const line = await new Promise((res, rej) => { sim.stdout.on('data', d => { buf += d; if (buf.includes('\n')) res(buf.split('\n')[0]); }); sim.once('exit', rej); });
+    const info = path.join(os.tmpdir(), `mb-selftest-${process.pid}.json`);
+    fs.writeFileSync(info, line);
+    await check('Modbus: all value types, word orders and connection types read correctly', async () => {
+      const out = execFileSync('python3', [path.join(__dirname, 'modbus_check.py'), '--sim-info', info, '--rounds', '2'], { timeout: 180000 }).toString();
+      const r = JSON.parse(out.trim().split('\n').pop());
+      assert(r.pass && r.devices === 13, JSON.stringify(r.problems).slice(0, 500));
+    });
+  } finally { sim.kill('SIGKILL'); }
+}
+
+// SNMP (v1, v2c, v3 authPriv), Haystack (SCRAM, basic, none; JSON v3 and v4) and oBIX
+// drivers against their simulators: every value must read exactly as served.
+async function webSites() {
+  const run = async (label, net, prefix, simArgs, checker, extra = []) => {
+    execFileSync(path.join(ROOT, 'sim', 'netsetup.sh'), ['10', net, prefix], { stdio: 'ignore' });
+    const sim = spawn('ip', ['netns', 'exec', net, 'python3', path.join(ROOT, 'sim', simArgs[0]), '--base', `${prefix}.`, ...simArgs.slice(1)], { stdio: ['ignore', 'pipe', 'ignore'] });
+    try {
+      let buf = '';
+      const line = await new Promise((res, rej) => { sim.stdout.on('data', d => { buf += d; if (buf.includes('\n')) res(buf.split('\n')[0]); }); sim.once('exit', rej); });
+      const info = path.join(os.tmpdir(), `${net}-${process.pid}.json`);
+      fs.writeFileSync(info, line);
+      await check(label, async () => {
+        const out = execFileSync('python3', [path.join(__dirname, checker), '--sim-info', info, ...extra], { timeout: 180000 }).toString();
+        const r = JSON.parse(out.trim().split('\n').pop());
+        assert(r.pass, JSON.stringify(r.problems).slice(0, 500));
+      });
+    } finally { sim.kill('SIGKILL'); }
+  };
+  let v3 = true;
+  try { execFileSync('sh', ['-c', 'command -v snmpsim-command-responder'], { stdio: 'ignore' }); } catch { v3 = false; }
+  await run(`SNMP: v1, v2c${v3 ? ', v3 authPriv' : ''} agents read correctly`, 'bas-sts', '10.79.2', ['snmp_sim.py', '--agents', '3', ...(v3 ? ['--v3'] : [])], 'snmp_check.py', ['--walk']);
+  await run('Haystack: SCRAM, basic and open servers, JSON v3 and v4, read correctly', 'bas-sth', '10.79.3', ['haystack_sim.py', '--servers', '4'], 'haystack_check.py');
+  await run('oBIX: Niagara-style stations browsed and read correctly', 'bas-sto', '10.79.4', ['obix_sim.py', '--stations', '2'], 'obix_check.py');
+  await run('HTTPS: self-signed certificates refused unless pinned; pins checked', 'bas-stt', '10.79.5', ['haystack_sim.py', '--servers', '1', '--tls'], 'tls_check.py');
+  await check('Haystack login math matches the SCRAM-SHA-256 test vector', async () => { execFileSync('python3', [path.join(__dirname, 'scram_vector.py')]); });
+}
+
 (async () => {
   await unit();
   if (!process.argv.includes('--unit')) {
-    if (haveSiteNet()) await site();
+    if (haveSiteNet()) { await site(); await modbusSite(); await webSites(); }
     else console.log('Site test skipped (needs Linux root and the ip command)');
   }
   console.log(`\n${passed} passed, ${failed} failed`);

@@ -9,6 +9,8 @@
 function hash(s) { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
 
 function laneOf(dev) {
+  // a driver can say which shared path a device sits on (e.g. a Modbus gateway or serial port)
+  if (dev.meta && dev.meta.lane) return `${dev.driver}:net:${dev.meta.lane}`;
   // BACnet routed devices look like "2001:5" (network:MAC): share one lane per network.
   const r = String(dev.route || '');
   const m = /^(\d+):(\S+)$/.exec(r);
@@ -134,7 +136,7 @@ class Scheduler {
       let lane = laneOf(dev);
       const suspect = (cur.fails || 0) > 0 || cur.status === 'offline' || cur.status === 'error';
       if (suspect && lane.includes(':net')) lane += ':probe';
-      const laneMax = lane.endsWith(':probe') ? 1 : lane.includes(':net') ? (s.poll.per_trunk || 2) : 1;
+      const laneMax = lane.endsWith(':probe') ? 1 : lane.includes(':net') ? (dev.meta?.lane_max || s.poll.per_trunk || 2) : 1;
       if (this.busyDevices.has(devId) || (this.busyLanes.get(lane) || 0) >= laneMax) continue;
       if ((cur.status === 'offline' || cur.status === 'error') && cur.retry_at > now) continue;
       const duePts = entry.points.filter(p => (this.due.get(p.id) || 0) <= now);
@@ -206,7 +208,8 @@ class Scheduler {
       this.stats.point_errors++;
       const err = v.error || 'no value';
       errs.push(err);
-      if (err === 'no answer') { again.push(p); continue; } // lost reply: retried, not a point problem
+      // lost reply, or an error the driver says is passing: read again shortly, not a point problem
+      if (err === 'no answer' || v.retry === true) { again.push(p); if (err === 'no answer') continue; }
       if (p.last_error !== err) this.store.setPointError(p.id, err);
       if (/unknown-object|unknown-property/.test(err)) {
         const n = (this.pointErr.get(p.id) || 0) + 1;
