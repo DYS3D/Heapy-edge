@@ -14,6 +14,10 @@ const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i > 0 ?
 const HOURS = Number(arg('hours', 24));
 const DIR = path.resolve(arg('dir', '/home/claude/soak24'));
 const IV = Number(arg('interval', 60));
+// --segment-minutes N: stop after N minutes and leave the state for the next
+// run to pick up (GitHub Actions jobs are limited to 6 hours)
+const SEG_MIN = Number(arg('segment-minutes', 0));
+const SEG_END = SEG_MIN ? Date.now() + SEG_MIN * 60000 : Infinity;
 const STATE = path.join(DIR, 'state.json');
 fs.mkdirSync(DIR, { recursive: true });
 
@@ -44,7 +48,8 @@ const RARE = [
 
 async function main() {
   let st = load();
-  const lab = new Lab({ dir: DIR, dataDir: path.join(DIR, 'data'), interval: IV, tiny: true });
+  const lab = new Lab({ dir: DIR, dataDir: path.join(DIR, 'data'), interval: IV, tiny: true,
+    net: arg('net', 'bas-sim'), prefix: arg('prefix', '10.77.0'), webPort: Number(arg('web-port', 18770)) });
   lab.note = msg => { const l = `${new Date().toISOString()} ${msg}`; fs.appendFileSync(path.join(DIR, 'soak.log'), l + '\n'); };
   if (st && st.finished) { console.log('already finished; see', STATE); return; }
   if (!st) st = { start: now(), end: now() + HOURS * 3600000, faults: [], hourly: [], outages: [], done: {}, lastBeat: now(), restarts_expected: { box: 0, driver: 0 } };
@@ -80,6 +85,14 @@ async function main() {
 
   let lastHour = Math.floor((now() - st.start) / 3600000);
   while (now() < st.end) {
+    if (now() > SEG_END && !active.size) {
+      st.lastBeat = now();
+      save(st);
+      lab.note('segment finished; the next run continues from here');
+      await lab.stopBox('SIGTERM');
+      await lab.close();
+      return;
+    }
     st.lastBeat = now();
     const el = now() - st.start;
     const hour = Math.floor(el / 3600000), minute = (el % 3600000) / MIN;
