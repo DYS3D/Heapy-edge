@@ -1,23 +1,33 @@
 #!/bin/sh
-# Test network for the HEAPY Edge simulator (Linux, root).
-# br-bas (10.77.0.2/24) = the site box's BAS port; netns "bas-sim" holds the simulated devices.
+# Test network for the HEAPY Edge simulators (Linux, root).
+#   netsetup.sh [count] [name] [prefix]
+# Bridge br-<name> (<prefix>.2/24) is the site box's BAS port; network namespace
+# <name> holds the simulated devices at <prefix>.10 upward. Several labs can run
+# side by side with different names and prefixes.
 set -e
 N=${1:-40}
-ip netns del bas-sim 2>/dev/null || true
-ip link del br-bas 2>/dev/null || true
-ip link add br-bas type bridge
-ip addr add 10.77.0.2/24 brd 10.77.0.255 dev br-bas
-ip link set br-bas up
-ip netns add bas-sim
-ip link add veth-bas type veth peer name veth-sim
-ip link set veth-bas master br-bas
-ip link set veth-bas up
-ip link set veth-sim netns bas-sim
-ip netns exec bas-sim ip link set lo up
-ip netns exec bas-sim ip link set veth-sim up
+NAME=${2:-bas-sim}
+PFX=${3:-10.77.0}
+BR=br-${NAME#bas-}
+[ "$NAME" = "bas-sim" ] && BR=br-bas
+VH=vh-${NAME#bas-}; VS=vs-${NAME#bas-}
+[ "$NAME" = "bas-sim" ] && VH=veth-bas && VS=veth-sim
+ip netns del "$NAME" 2>/dev/null || true
+ip link del "$BR" 2>/dev/null || true
+ip link del "$VH" 2>/dev/null || true
+ip link add "$BR" type bridge
+ip addr add "$PFX.2/24" brd "$PFX.255" dev "$BR"
+ip link set "$BR" up
+ip netns add "$NAME"
+ip link add "$VH" type veth peer name "$VS"
+ip link set "$VH" master "$BR"
+ip link set "$VH" up
+ip link set "$VS" netns "$NAME"
+ip netns exec "$NAME" ip link set lo up
+ip netns exec "$NAME" ip link set "$VS" up
 i=0
 while [ $i -lt $N ]; do
-  ip netns exec bas-sim ip addr add 10.77.0.$((10+i))/24 brd 10.77.0.255 dev veth-sim
+  ip netns exec "$NAME" ip addr add "$PFX.$((10+i))/24" brd "$PFX.255" dev "$VS"
   i=$((i+1))
 done
-echo "br-bas up, bas-sim has 10.77.0.10-10.77.0.$((9+N))"
+echo "$BR up, $NAME has $PFX.10-$PFX.$((9+N))"

@@ -34,12 +34,19 @@ class Store {
     this.db = new DatabaseSync(file);
     this.db.exec('PRAGMA journal_mode=WAL; PRAGMA synchronous=NORMAL; PRAGMA busy_timeout=5000;');
     for (const s of SCHEMA) this.db.exec(s);
+    // migrations for buffers made by older versions
+    const cols = new Set(this.db.prepare('PRAGMA table_info(points)').all().map(c => c.name));
+    if (!cols.has('created_at')) this.db.exec('ALTER TABLE points ADD COLUMN created_at INTEGER');
     this.q = {};
   }
   prep(sql) { return this.q[sql] || (this.q[sql] = this.db.prepare(sql)); }
   tx(fn) {
     this.db.exec('BEGIN');
-    try { const r = fn(); this.db.exec('COMMIT'); return r; } catch (e) { this.db.exec('ROLLBACK'); throw e; }
+    try { const r = fn(); this.db.exec('COMMIT'); return r; } catch (e) {
+      // SQLite may already have rolled back (e.g. disk full): keep the real error
+      try { this.db.exec('ROLLBACK'); } catch { /* nothing to roll back */ }
+      throw e;
+    }
   }
   getMeta(k, d = null) { const r = this.prep('SELECT v FROM meta WHERE k=?').get(k); return r ? JSON.parse(r.v) : d; }
   setMeta(k, v) { this.prep('INSERT INTO meta(k,v) VALUES(?,?) ON CONFLICT(k) DO UPDATE SET v=excluded.v').run(k, JSON.stringify(v)); }
@@ -74,9 +81,9 @@ class Store {
     const old = this.prep('SELECT * FROM points WHERE key=?').get(p.key);
     const states = p.states ? JSON.stringify(p.states) : null;
     if (!old) {
-      this.prep(`INSERT INTO points(key,device_id,name,description,units,kind,states,cov,selected,interval_s,updated_at)
-                 VALUES(?,?,?,?,?,?,?,?,?,?,?)`).run(p.key, deviceId, p.name, p.description || '', p.units ?? null, p.kind,
-        states, p.cov ? 1 : 0, defaults.selected ? 1 : 0, defaults.interval_s, now);
+      this.prep(`INSERT INTO points(key,device_id,name,description,units,kind,states,cov,selected,interval_s,updated_at,created_at)
+                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`).run(p.key, deviceId, p.name, p.description || '', p.units ?? null, p.kind,
+        states, p.cov ? 1 : 0, defaults.selected ? 1 : 0, defaults.interval_s, now, now);
       return 'created';
     }
     const changed = old.name !== p.name || old.description !== (p.description || '') || old.units !== (p.units ?? null) ||
@@ -88,6 +95,7 @@ class Store {
     }
     return 'same';
   }
+  setPointError(id, err) { this.prep('UPDATE points SET last_error=? WHERE id=?').run(err, id); }
   markMissing(deviceId, keepKeys) {
     const keep = new Set(keepKeys);
     let n = 0;
@@ -129,6 +137,9 @@ class Store {
     return {
       devices: this.prep('SELECT count(*) n FROM devices').get().n,
       offline: this.prep("SELECT count(*) n FROM devices WHERE status='offline'").get().n,
+      error: this.prep("SELECT count(*) n FROM devices WHERE status='error'").get().n,
+      duplicates: this.prep("SELECT count(*) n FROM devices WHERE meta LIKE '%duplicate_id%'").get().n,
+      point_errors: this.prep('SELECT count(*) n FROM points WHERE last_error IS NOT NULL AND selected=1 AND missing=0').get().n,
       points: this.prep('SELECT count(*) n FROM points WHERE missing=0').get().n,
       selected: this.prep('SELECT count(*) n FROM points WHERE selected=1 AND missing=0').get().n,
       samples: this.prep('SELECT count(*) n FROM samples').get().n,

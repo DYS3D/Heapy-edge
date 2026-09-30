@@ -84,17 +84,17 @@ async function site() {
   const EXPECT_PTS = 11 + AHUS * 15 + VAVS * 8;
   const RATE = 5;
 
-  execFileSync(path.join(ROOT, 'sim', 'netsetup.sh'), ['20'], { stdio: 'ignore' });
+  execFileSync(path.join(ROOT, 'sim', 'netsetup.sh'), ['20', 'bas-st', '10.79.0'], { stdio: 'ignore' });
   const statsFile = path.join(tmp(), 'sim-stats.json');
-  const sim = spawn('ip', ['netns', 'exec', 'bas-sim', process.env.HEAPY_EDGE_PYTHON || 'python3', path.join(ROOT, 'sim', 'bacnet_sim.py'),
-    '--ahus', String(AHUS), '--vavs', String(VAVS), '--stats', statsFile, '--tick', '2'], { stdio: ['ignore', 'pipe', 'inherit'] });
+  const sim = spawn('ip', ['netns', 'exec', 'bas-st', process.env.HEAPY_EDGE_PYTHON || 'python3', path.join(ROOT, 'sim', 'bacnet_sim.py'),
+    '--ahus', String(AHUS), '--vavs', String(VAVS), '--stats', statsFile, '--tick', '2', '--base', '10.79.0.'], { stdio: ['ignore', 'pipe', 'inherit'] });
   await new Promise((res, rej) => { sim.stdout.once('data', res); sim.once('exit', () => rej(new Error('simulator stopped'))); });
 
   const intake = await startMockIntake();
   const dataDir = tmp();
   const overrides = {
     web: { port: 0, bind: '127.0.0.1' },
-    drivers: { 'bacnet-ip': { settings: { address: '10.77.0.2/24', instance: 4194001 }, rate_per_device: RATE, discover_timeout_s: 3 } },
+    drivers: { 'bacnet-ip': { settings: { address: '10.79.0.2/24', instance: 4194001 }, rate_per_device: RATE, discover_timeout_s: 3 } },
     poll: { default_interval_s: 10 },
     upload: { every_s: 2, checkin_every_s: 2 },
   };
@@ -175,7 +175,7 @@ async function site() {
       assert.strictEqual(intake.st.dupSamples, 0);
     });
     await check('server down for 12 s: readings wait, then all arrive once', async () => {
-      intake.st.failUntil = Date.now() + 12000;
+      intake.st.mode = '500'; intake.st.modeUntil = Date.now() + 12000;
       await sleep(12500);
       const backlog = app.uploader.health().server.backlog;
       assert(backlog > 0, 'backlog should grow while the server is down');
@@ -196,7 +196,7 @@ async function site() {
       assert(worst < 2 * 10000, `largest gap ${worst} ms on a 10 s interval`);
     });
     await check('device that stops answering is marked offline, others keep going', async () => {
-      const { device } = app.store.upsertDevice('bacnet-ip', { key: 'bacnet://9999', route: '10.77.0.250', name: 'GONE', meta: { max_apdu: 480 } });
+      const { device } = app.store.upsertDevice('bacnet-ip', { key: 'bacnet://9999', route: '10.79.0.250', name: 'GONE', meta: { max_apdu: 480 } });
       app.store.upsertPoint(device.id, { key: 'bacnet://9999/analog-input:1', name: 'X', kind: 'number' }, { selected: true, interval_s: 10 });
       app.scheduler.invalidate();
       await waitFor(() => app.store.device('bacnet://9999').status === 'offline', 150000, 1000);

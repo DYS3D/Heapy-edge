@@ -25,7 +25,7 @@ function defaults(dataDir) {
     },
     scan: { at_start: true, every_h: 24, windows: ['any'], browse_every_h: 168, auto_select: 'all' },
     poll: {
-      default_interval_s: 900, max_points_per_read: 200, max_parallel: 8,
+      default_interval_s: 900, max_points_per_read: 200, max_parallel: 8, per_trunk: 2,
       offline_after: 3, offline_retry_s: 300, use_cov: false, cov_heartbeat_s: 3600, cov_lifetime_s: 900,
     },
     upload: { every_s: 300, batch_max: 20000, checkin_every_s: 300 },

@@ -53,6 +53,7 @@ class DriverHost extends EventEmitter {
       return;
     }
     const pend = this.pending.get(m.id);
+    this.hostTimeouts = 0; // the driver is alive
     if (!pend) return;
     this.pending.delete(m.id);
     clearTimeout(pend.timer);
@@ -70,6 +71,13 @@ class DriverHost extends EventEmitter {
       this.pending.delete(id);
       const e = new Error(`${pend.op} timed out`); e.code = 'timeout';
       pend.reject(e);
+      // a driver that stops answering altogether is stuck: restart it
+      this.hostTimeouts = (this.hostTimeouts || 0) + 1;
+      if (this.hostTimeouts >= 3 && this.proc && this.proc.exitCode === null) {
+        this.log('error', `${this.name} driver stopped answering; restarting it`);
+        this.hostTimeouts = 0;
+        try { this.proc.kill('SIGKILL'); } catch { /* already gone */ }
+      }
     }, pend.idleMs || pend.timeoutMs);
   }
 

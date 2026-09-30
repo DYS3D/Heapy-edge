@@ -15,6 +15,8 @@ class Scanner {
   constructor({ store, drivers, settings, log, onChange = () => {} }) {
     Object.assign(this, { store, drivers, settings, log, onChange });
     this.state = { running: false, phase: null, progress: null, last_start: null, last_end: null, last_result: null, last_error: null };
+    this.browseQueue = new Map(); // deviceId -> reason
+    this.browsedAt = new Map();
   }
 
   due(now = Date.now()) {
@@ -24,8 +26,51 @@ class Scanner {
     return now - last >= (s.every_h || 24) * 3600000;
   }
 
+  // List one device's points again (points missing, device replaced). At most hourly per device.
+  requestBrowse(dev, reason) {
+    const last = this.browsedAt.get(dev.id) || 0;
+    if (Date.now() - last < 3600000 || this.browseQueue.has(dev.id)) return;
+    this.browseQueue.set(dev.id, reason);
+  }
+
+  async browseQueued() {
+    for (const [id, reason] of this.browseQueue) {
+      this.browseQueue.delete(id);
+      const d = this.store.deviceById(id);
+      const host = d && this.drivers[d.driver];
+      if (!host || !host.ready) continue;
+      this.browsedAt.set(id, Date.now());
+      this.log('info', `listing points of ${d.name} again (${reason})`);
+      const res = { points_new: 0, points_changed: 0, points_missing: 0 };
+      try { await this.browseDevice(host, d, res); } catch (e) { this.log('warn', `could not list points on ${d.name} (${e.code || e.message})`); }
+      this.log('info', `${d.name}: ${res.points_new} new, ${res.points_missing} gone`);
+      this.onChange();
+    }
+  }
+
+  async browseDevice(host, d, res) {
+    const s = this.settings();
+    const dcfg = s.drivers[d.driver] || {};
+    const keys = [];
+    await host.call('browse', { device: d, rate: dcfg.rate_per_device || 5 }, {
+      idleMs: 60000,
+      onEvent: (ev, p) => {
+        if (ev !== 'point') return;
+        keys.push(p.key);
+        const r = this.store.upsertPoint(d.id, p, { selected: s.scan.auto_select !== 'none', interval_s: s.poll.default_interval_s || 900 });
+        if (r === 'created') res.points_new++; else if (r === 'changed') res.points_changed++;
+      },
+    });
+    res.points_missing += this.store.markMissing(d.id, keys);
+    this.store.setDeviceStatus(d.id, { browsed_at: Date.now() });
+  }
+
   tick() {
     if (this.state.running) return;
+    if (this.browseQueue.size && !this.browsing) {
+      this.browsing = true;
+      this.browseQueued().finally(() => { this.browsing = false; });
+    }
     if (this.state.last_error && Date.now() - this.state.last_end < 30 * 60000) return; // wait after a failed scan
     const s = this.settings().scan;
     if (this.due() && inWindow(s.windows)) this.run('schedule').catch(() => {});
@@ -42,7 +87,8 @@ class Scanner {
         if (!host.ready) { this.log('warn', `scan: ${name} driver not ready`); continue; }
         const dcfg = s.drivers[name] || {};
         const seen = [];
-        await host.call('discover', { targets: dcfg.targets || {}, timeout_s: dcfg.discover_timeout_s || 5, rate: dcfg.net_rate || 10 }, {
+        const known = this.store.devices().filter(d => d.driver === name).map(d => ({ key: d.key, route: d.route }));
+        await host.call('discover', { targets: dcfg.targets || {}, timeout_s: dcfg.discover_timeout_s || 5, rate: dcfg.net_rate || 10, known }, {
           idleMs: 120000,
           onEvent: (ev, data) => {
             if (ev === 'device') {
@@ -60,18 +106,7 @@ class Scanner {
         for (const d of toBrowse) {
           st.progress = { done: i++, of: toBrowse.length, device: d.name };
           try {
-            const keys = [];
-            await host.call('browse', { device: d, rate: dcfg.rate_per_device || 5 }, {
-              idleMs: 60000,
-              onEvent: (ev, p) => {
-                if (ev !== 'point') return;
-                keys.push(p.key);
-                const r = this.store.upsertPoint(d.id, p, { selected: s.scan.auto_select !== 'none', interval_s: s.poll.default_interval_s || 900 });
-                if (r === 'created') res.points_new++; else if (r === 'changed') res.points_changed++;
-              },
-            });
-            res.points_missing += this.store.markMissing(d.id, keys);
-            this.store.setDeviceStatus(d.id, { browsed_at: Date.now() });
+            await this.browseDevice(host, d, res);
             this.onChange(); // start reading this device's points without waiting for the whole scan
             res.browsed++;
           } catch (e) {

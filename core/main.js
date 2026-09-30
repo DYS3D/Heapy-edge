@@ -27,7 +27,11 @@ class EdgeApp {
     this.startedAt = Date.now();
     const settings = () => this.config.get();
     const log = (lvl, msg) => this.log(lvl, msg);
-    this.scheduler = new Scheduler({ store: this.store, drivers: this.drivers, settings, log });
+    this.scheduler = new Scheduler({
+      store: this.store, drivers: this.drivers, settings, log,
+      onDeviceChanged: (dev, why) => this.scanner.requestBrowse(dev, why),
+      onStoreError: e => this.storeError(e),
+    });
     this.scanner = new Scanner({ store: this.store, drivers: this.drivers, settings, log, onChange: () => this.scheduler.invalidate() });
     this.uploader = new Uploader({ store: this.store, settings, secret: () => this.config.secret(), log, boxInfo: () => this.boxInfo() });
     this.link = new Link({ config: this.config, store: this.store, log, health: () => this.health(), boxInfo: () => this.boxInfo(), onConfig: c => this.applyServerConfig(c) });
@@ -46,6 +50,24 @@ class EdgeApp {
     } catch { /* disk issue shows in health */ }
   }
 
+  // The buffer could not be written (disk full, disk error). Readings are being lost
+  // until it clears: say so loudly, and free space by dropping readings the
+  // server already has.
+  storeError(e) {
+    const now = Date.now();
+    this.storeProblem = { t: now, msg: e.message };
+    if (!this.lastStoreLog || now - this.lastStoreLog > 600000) {
+      this.lastStoreLog = now;
+      this.log('error', `cannot save readings: ${e.message}`);
+    }
+    if (/full|SQLITE_FULL|disk/i.test(e.message)) {
+      try {
+        const n = this.uploader.emergencyPrune();
+        if (n) this.log('warn', `disk full: removed ${n} readings the server already has`);
+      } catch { /* nothing more to do */ }
+    }
+  }
+
   boxInfo() {
     const sec = this.config.secret();
     return {
@@ -61,8 +83,12 @@ class EdgeApp {
     const dests = this.uploader.health();
     const srv = dests.server;
     const lastErr = [...this.logs].reverse().find(l => l.level === 'error');
+    const st = this.scheduler.stats;
     return {
       uptime_s: Math.round((Date.now() - this.startedAt) / 1000), backlog_samples: srv && srv.enabled ? srv.backlog : null,
+      devices_error: c.error, duplicate_ids: c.duplicates, points_with_errors: c.point_errors,
+      store_problem: this.storeProblem && Date.now() - this.storeProblem.t < 600000 ? this.storeProblem.msg : null,
+      clock_jumps: st.clock_jumps, lanes_behind: this.scheduler.lanesBehind(), driver_restarts: Object.values(this.drivers).reduce((n, h) => n + h.restarts, 0),
       oldest_unsent_ms: srv && srv.enabled ? srv.oldest_unsent : null, devices: c.devices, devices_offline: c.offline,
       points: c.points, selected: c.selected, late_points: this.store.latePoints(), disk_free_mb: free,
       buffer_mb: Math.round(this.store.sizeMb()), last_error: lastErr ? lastErr.msg : null,
@@ -123,6 +149,7 @@ class EdgeApp {
   async startDriver(name, cfg) {
     const host = new DriverHost(name, cfg, (l, m) => this.log(l, m));
     host.on('cov', d => this.scheduler.onCov(d));
+    host.on('iam', d => this.scheduler.onAnnounce(name, d));
     host.on('ready', () => this.scheduler.resetCov(name));
     this.drivers[name] = host;
     try { await host.start(); } catch (e) { this.log('error', `${name} driver did not start: ${e.message}`); }
@@ -160,12 +187,18 @@ class EdgeApp {
 }
 
 if (require.main === module) {
-  const i = process.argv.indexOf('--data');
-  const dataDir = path.resolve(i > 0 ? process.argv[i + 1] : process.env.HEAPY_EDGE_DATA || path.join(__dirname, '..', 'data'));
-  const app = new EdgeApp({ dataDir });
+  const arg = n => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : null; };
+  const dataDir = path.resolve(arg('--data') || process.env.HEAPY_EDGE_DATA || path.join(__dirname, '..', 'data'));
+  // --overrides file.json: fixed settings for this run (tests, special installs)
+  const ov = arg('--overrides') || process.env.HEAPY_EDGE_OVERRIDES;
+  const overrides = ov ? JSON.parse(fs.readFileSync(ov, 'utf8')) : {};
+  const app = new EdgeApp({ dataDir, overrides });
   app.start().catch(e => { console.error(e); process.exit(1); });
   const bye = () => { app.log('info', 'stopping'); app.stop().finally(() => process.exit(0)); };
   process.on('SIGTERM', bye); process.on('SIGINT', bye);
+  // never die silently: log it, and let the service manager restart us
+  process.on('uncaughtException', e => { try { app.log('error', `crash: ${e.stack || e}`); } catch { /* */ } process.exit(1); });
+  process.on('unhandledRejection', e => { try { app.log('error', `unhandled: ${e && e.stack || e}`); } catch { /* */ } });
 }
 
 module.exports = { EdgeApp };

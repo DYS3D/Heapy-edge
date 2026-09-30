@@ -1,0 +1,157 @@
+'use strict';
+// 24-hour soak with scheduled faults (BACnet/IP). Resumable: if the machine
+// running it restarts, run it again with the same --dir and it carries on; the
+// time it was down is recorded and excluded from the gap check.
+//   node tests/soak24.js --hours 24 --dir /home/claude/soak24
+// Pass: no reading lost between box and server, no gap a fault doesn't explain,
+// box memory steady, the box and driver only restart when the test kills them.
+const fs = require('node:fs');
+const path = require('node:path');
+const { execSync } = require('node:child_process');
+const { Lab, sleep } = require('./lab');
+
+const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i > 0 ? process.argv[i + 1] : d; };
+const HOURS = Number(arg('hours', 24));
+const DIR = path.resolve(arg('dir', '/home/claude/soak24'));
+const IV = Number(arg('interval', 60));
+const STATE = path.join(DIR, 'state.json');
+fs.mkdirSync(DIR, { recursive: true });
+
+const now = () => Date.now();
+const load = () => (fs.existsSync(STATE) ? JSON.parse(fs.readFileSync(STATE, 'utf8')) : null);
+const save = st => { fs.writeFileSync(STATE + '.tmp', JSON.stringify(st, null, 1)); fs.renameSync(STATE + '.tmp', STATE); };
+const MIN = 60000;
+
+// One hour of faults, repeated. [minute, what, device/detail, minutes]
+const CYCLE = [
+  [2, 'offline', 1201, 5],
+  [9, 'reboot', 20005, 1.5],
+  [12, 'drop', 1205, 10, 0.2],
+  [24, 'netloss', '*', 10, 0.05],
+  [36, 'slow', 1206, 10, 2],
+  [47, 'error', 1100, 5],
+  [53, 'odd', 1202, 3],
+  [57, 'storm', '*', 0.3],
+];
+// Less frequent: [every_h, minute, what, minutes]
+const RARE = [
+  [2, 20, 'server500', 10],
+  [3, 40, 'serverhang', 3],
+  [4, 30, 'killdriver', 0],
+  [6, 45, 'killbox', 0.5],
+  [8, 15, 'clock', 2],
+];
+
+async function main() {
+  let st = load();
+  const lab = new Lab({ dir: DIR, dataDir: path.join(DIR, 'data'), interval: IV, tiny: true });
+  lab.note = msg => { const l = `${new Date().toISOString()} ${msg}`; fs.appendFileSync(path.join(DIR, 'soak.log'), l + '\n'); };
+  if (st && st.finished) { console.log('already finished; see', STATE); return; }
+  if (!st) st = { start: now(), end: now() + HOURS * 3600000, faults: [], hourly: [], outages: [], done: {}, lastBeat: now(), restarts_expected: { box: 0, driver: 0 } };
+  else {
+    st.outages.push({ from: st.lastBeat, to: now() });
+    st.faults.push({ device: '*', from: st.lastBeat, to: now() + 5 * MIN, why: 'test machine restart' });
+    lab.note(`resuming after ${Math.round((now() - st.lastBeat) / 60000)} min away`);
+  }
+  lab.faults = st.faults;
+  save(st);
+
+  await lab.startSim();
+  await lab.startServer({ persist: true });
+  await lab.startBox({ faketime: true, overrides: { poll: { offline_retry_s: 120 }, upload: { every_s: 30, checkin_every_s: 60 } } });
+  lab.note(`running until ${new Date(st.end).toISOString()}`);
+
+  const boxPid = () => lab.box.pid;
+  const rss = pid => { try { return Math.round(Number(execSync(`ps -o rss= -p ${pid}`).toString().trim()) / 1024); } catch { return null; } };
+  const drvPid = () => lab.driverPid();
+
+  const active = new Map(); // key -> end time + undo
+  const start = async (key, minutes, doFn, undoFn, device, why, extraAfter = 0) => {
+    if (active.has(key) || st.done[key]) return;
+    st.done[key] = true;
+    const devs = Array.isArray(device) ? device : [device];
+    const fs_ = devs.map(d => ({ device: d, from: now(), to: null, why }));
+    st.faults.push(...fs_);
+    const f = { set to(v) { fs_.forEach(x => { x.to = v + extraAfter; }); } };
+    lab.note(`fault on: ${why}`);
+    try { await doFn(); } catch (e) { lab.note(`fault ${why} failed to start: ${e.message}`); }
+    active.set(key, { end: now() + minutes * MIN, undo: undoFn, f, why });
+  };
+
+  let lastHour = Math.floor((now() - st.start) / 3600000);
+  while (now() < st.end) {
+    st.lastBeat = now();
+    const el = now() - st.start;
+    const hour = Math.floor(el / 3600000), minute = (el % 3600000) / MIN;
+    // finish faults that are due
+    for (const [key, a] of active) {
+      if (now() >= a.end) {
+        try { await a.undo(); } catch (e) { lab.note(`undo ${a.why} failed: ${e.message}`); }
+        a.f.to = now();
+        active.delete(key);
+        lab.note(`fault off: ${a.why}`);
+      }
+    }
+    // start faults due now
+    for (const [m, what, dev, mins, x] of CYCLE) {
+      if (minute < m || minute > m + 1) continue;
+      const key = `${hour}:${what}`;
+      const k = dev === '*' ? '*' : `bacnet://${dev}`;
+      if (what === 'offline') await start(key, mins, () => lab.simctl({ cmd: 'offline', device: dev, on: true }), () => lab.simctl({ cmd: 'offline', device: dev, on: false }), k, `device ${dev} off`);
+      if (what === 'reboot') await start(key, mins, () => lab.simctl({ cmd: 'reboot', device: dev, secs: mins * 60 }), async () => {}, k, `device ${dev} reboot`);
+      if (what === 'drop') await start(key, mins, () => lab.simctl({ cmd: 'drop', device: dev, p: x }), () => lab.simctl({ cmd: 'drop', device: dev, p: 0 }), null, `${x * 100}% loss to ${dev}`);
+      if (what === 'netloss') await start(key, mins, async () => lab.lossOn(x), async () => lab.lossOff(), null, `${x * 100}% network loss`);
+      if (what === 'slow') await start(key, mins, () => lab.simctl({ cmd: 'slow', device: dev, secs: x, jitter: 1 }), () => lab.simctl({ cmd: 'slow', device: dev, secs: 0, jitter: 0 }), null, `device ${dev} slow`);
+      if (what === 'error') await start(key, mins, () => lab.simctl({ cmd: 'error', device: dev, kind: 'error' }), () => lab.simctl({ cmd: 'error', device: dev, kind: null }), k, `device ${dev} errors`);
+      if (what === 'odd') await start(key, mins, () => lab.simctl({ cmd: 'odd', device: dev, on: true }), () => lab.simctl({ cmd: 'odd', device: dev, on: false }), [1, 2, 3].map(i => `bacnet://${dev}/analog-input:${i}`), `device ${dev} odd values`);
+      if (what === 'storm') await start(key, mins, () => lab.simctl({ cmd: 'storm', secs: 20, rate: 10 }), async () => {}, null, 'I-Am storm');
+    }
+    for (const [every, m, what, mins] of RARE) {
+      if (hour % every !== every - 1 || minute < m || minute > m + 1) continue;
+      const key = `${hour}:${what}`;
+      if (what === 'server500') await start(key, mins, () => lab.srv('/mode', { mode: '500' }), () => lab.srv('/mode', { mode: 'ok' }), null, 'server errors');
+      if (what === 'serverhang') await start(key, mins, () => lab.srv('/mode', { mode: 'hang' }), () => lab.srv('/mode', { mode: 'ok' }), null, 'server hangs');
+      if (what === 'killdriver') await start(key, 3, async () => { st.restarts_expected.driver++; lab.killDriver(); }, async () => {}, '*', 'driver killed');
+      if (what === 'killbox') await start(key, 2, async () => { st.restarts_expected.box++; await lab.stopBox('SIGKILL'); await sleep(mins * MIN); await lab.startBox({ faketime: true, overrides: { poll: { offline_retry_s: 120 }, upload: { every_s: 30, checkin_every_s: 60 } } }); }, async () => {}, '*', 'box killed');
+      if (what === 'clock') await start(key, mins, async () => fs.writeFileSync(lab.ftFile, '+300'), async () => fs.writeFileSync(lab.ftFile, '+0'), '*', 'clock +5 min', 10 * MIN);
+    }
+    // the box must never stop by itself
+    if (lab.boxExit && ![...active.keys()].some(k => k.endsWith('killbox'))) {
+      st.unexpected = (st.unexpected || 0) + 1;
+      lab.note(`BOX STOPPED BY ITSELF: ${JSON.stringify(lab.boxExit)}; restarting`);
+      st.faults.push({ device: '*', from: now() - IV * 1000, to: now() + 3 * MIN, why: 'unexpected box stop' });
+      await lab.startBox({ faketime: true, overrides: { poll: { offline_retry_s: 120 }, upload: { every_s: 30, checkin_every_s: 60 } } });
+    }
+    // hourly checks
+    if (hour > lastHour) {
+      lastHour = hour;
+      const t1 = now() - 5 * MIN, t0 = t1 - 60 * MIN;
+      const g = lab.gaps(t0, t1);
+      const s = await lab.boxStatus();
+      const h = { hour, at: new Date().toISOString(), gaps: g.length, gap_examples: g.slice(0, 3), box_rss_mb: rss(boxPid()), driver_rss_mb: rss(drvPid()),
+        samples: lab.q('SELECT count(*) n FROM samples')[0].n, backlog: s?.destinations?.server?.backlog, driver_restarts: s?.health?.driver_restarts,
+        poll: s?.poll, lanes_behind: s?.health?.lanes_behind };
+      st.hourly.push(h);
+      lab.note(`hour ${hour}: ${g.length} gaps, box ${h.box_rss_mb} MB, driver ${h.driver_rss_mb} MB`);
+    }
+    save(st);
+    await sleep(10000);
+  }
+  // final checks
+  for (const [, a] of active) { try { await a.undo(); } catch { /* */ } a.f.to = now(); }
+  save(st);
+  await sleep(3 * MIN);
+  const loss = await lab.lossCheck();
+  const g = lab.gaps(st.start + 10 * MIN, now() - 5 * MIN);
+  const [dev, rate] = lab.maxRate();
+  st.final = { loss, gaps: g.length, gap_examples: g.slice(0, 10), max_rate: [dev, rate], hours: HOURS,
+    points: lab.q('SELECT count(*) n FROM points WHERE selected=1 AND missing=0')[0].n, samples: loss.box,
+    outages: st.outages, unexpected_box_stops: st.unexpected || 0 };
+  st.pass = loss.missing === 0 && loss.duplicates === 0 && loss.extra === 0 && g.length === 0 && !st.unexpected && rate <= 6;
+  st.finished = true;
+  save(st);
+  lab.note(`FINISHED: ${st.pass ? 'PASS' : 'FAIL'} ${JSON.stringify(st.final).slice(0, 500)}`);
+  await lab.close();
+}
+
+main().catch(e => { fs.appendFileSync(path.join(DIR, 'soak.log'), `${new Date().toISOString()} CRASH ${e.stack}\n`); process.exit(1); });

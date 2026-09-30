@@ -23,11 +23,13 @@ const DEST_TYPES = {
       const txt = await res.text();
       if (!res.ok) {
         const e = new Error(`server said ${res.status}: ${txt.slice(0, 200)}`);
-        e.permanent = res.status >= 400 && res.status < 500 && ![408, 429].includes(res.status);
+        e.status = res.status;
+        e.permanent = res.status >= 400 && res.status < 500 && ![408, 413, 429].includes(res.status);
         throw e;
       }
-      const j = JSON.parse(txt);
-      if (!j.ok || j.batch_id !== batch.batch_id) throw new Error('server did not confirm the batch');
+      let j;
+      try { j = JSON.parse(txt); } catch { throw new Error('server reply was not readable'); }
+      if (!j || !j.ok || j.batch_id !== batch.batch_id) throw new Error('server did not confirm the batch');
       return j;
     },
   },
@@ -69,13 +71,14 @@ class Uploader {
     const type = DEST_TYPES[dest.type];
     if (!type) { this.log('error', `unknown destination type ${dest.type}`); return; }
     const s = this.settings();
-    const max = s.upload.batch_max || 20000;
+    this.maxBatch = this.maxBatch || {};
+    const maxFor = () => this.maxBatch[dest.name] || s.upload.batch_max || 20000;
     for (let round = 0; round < 50; round++) {
       const st = this.store.destState(dest.name);
       if (st.next_try > Date.now()) return;
       let pending = st.pending;
       if (!pending) {
-        const rows = this.store.samplesAfter(st.last_id, max);
+        const rows = this.store.samplesAfter(st.last_id, maxFor());
         const devs = this.store.changedDevices(st.meta_t);
         const pts = this.store.changedPoints(st.meta_t);
         if (!rows.length && !devs.length && !pts.length) return;
@@ -99,10 +102,17 @@ class Uploader {
         await type.send(dest, batch, { secret: this.secret, boxInfo: this.boxInfo });
         this.store.setDestState(dest.name, { last_id: pending.to, seq: pending.seq, meta_t: pending.meta_t, pending: null, last_ok: Date.now(), last_error: null, fails: 0, next_try: 0 });
         if (st.fails) this.log('info', `${dest.name}: sending again after ${st.fails} failed tries`);
-        if (rows.length < max) return;
+        if (rows.length < maxFor()) return;
       } catch (e) {
+        if (e.status === 413 && pending.to - pending.from > 100) {
+          // the server wants smaller batches: split this one and try again now
+          this.maxBatch[dest.name] = Math.max(100, Math.floor(rows.length / 2));
+          this.store.setDestState(dest.name, { pending: null });
+          this.log('warn', `${dest.name}: batch too large, sending ${this.maxBatch[dest.name]} readings at a time`);
+          continue;
+        }
         const fails = st.fails + 1;
-        const wait = e.permanent ? 15 * 60000 : Math.min(30 * 60000, 5000 * 2 ** Math.min(fails, 9));
+        const wait = e.permanent ? (s.upload.permanent_retry_s || 900) * 1000 : Math.min((s.upload.max_retry_s || 300) * 1000, 5000 * 2 ** Math.min(fails, 9));
         this.store.setDestState(dest.name, { last_error: e.message, fails, next_try: Date.now() + wait });
         if (fails === 1 || fails % 10 === 0) this.log('warn', `${dest.name}: could not send (${e.message}); next try in ${Math.round(wait / 1000)}s`);
         return;
@@ -124,6 +134,17 @@ class Uploader {
       const n = this.store.dropOldest(100000);
       this.log('error', `buffer over ${maxMb} MB: dropped the ${n} oldest readings`);
     }
+  }
+
+  // Disk full: drop readings every enabled destination already has, oldest first.
+  emergencyPrune() {
+    const dests = this.enabled();
+    if (!dests.length) return 0;
+    let upto = Infinity;
+    for (const d of dests) upto = Math.min(upto, this.store.destState(d.name).last_id);
+    const n = this.store.prune(upto, 0);
+    try { this.store.db.exec('PRAGMA wal_checkpoint(TRUNCATE)'); } catch { /* best effort */ }
+    return n;
   }
 
   health() {
