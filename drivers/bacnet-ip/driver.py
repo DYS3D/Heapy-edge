@@ -218,7 +218,21 @@ class Driver:
         REQ_TIMEOUT = to / 1000.0 * (tries + 1) + 4
         self._hook_iam(self.app)
         await asyncio.sleep(0.2)
+        # A fresh stack knows no routers, so reads to devices behind one (MS/TP trunks)
+        # fail with unknown-route until a scan happens to run. Ask now, and again in the
+        # background a little later for routers that were slow to answer.
+        await self._learn_routers()
+        asyncio.get_running_loop().call_later(20, lambda: asyncio.create_task(self._learn_routers()))
         return {"ok": True}
+
+    async def _learn_routers(self):
+        try:
+            fut = self.app.nse.who_is_router_to_network()
+            await asyncio.wait_for(asyncio.shield(fut), 3.0)
+        except asyncio.TimeoutError:
+            pass  # replies keep arriving into the routing table anyway
+        except Exception as e:
+            log(f"router discovery: {e!r}")
 
     def _hook_iam(self, app):
         """Tell the core when a device announces itself (e.g. after a restart), at most once a minute per device."""

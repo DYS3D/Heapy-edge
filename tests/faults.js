@@ -221,10 +221,14 @@ async function mainStage() {
       const t = Date.now();
       lab.killDriver();
       lab.fault('*', t, null, 'driver killed');
-      await lab.waitFor(() => lab.q('SELECT max(id) m FROM samples')[0].m && lastRead(lab, K.ahu(1)) > t + 1000, 60000, 'readings after restart');
+      // both an IP device and one behind the router must be read again quickly: a fresh
+      // driver has to learn the routers by itself, not wait for the next scan
+      await lab.waitFor(() => lab.q('SELECT max(id) m FROM samples')[0].m && lastRead(lab, K.ahu(1)) > t + 1000 && lastRead(lab, K.vav(3)) > t + 1000, 60000, 'IP and routed readings after restart');
       lab.faults.at(-1).to = Date.now();
       const st = await lab.boxStatus();
       assert(st.health.driver_restarts >= 1, 'no restart counted');
+      const bad = lab.q("SELECT name, last_error FROM devices WHERE last_error LIKE '%unknown-route%'");
+      assert(!bad.length, `routed devices unreachable after the restart: ${JSON.stringify(bad.slice(0, 3))}`);
       return { resumed_after_s: Math.round((lab.faults.at(-1).to - t) / 1000) };
     }, lab);
 
@@ -234,10 +238,12 @@ async function mainStage() {
       const ok = lab.q('PRAGMA integrity_check')[0].integrity_check;
       await sleep(15000);
       await lab.startBox();
-      await lab.waitFor(() => lastRead(lab, K.ahu(1)) > t + 15000, 60000, 'readings after restart');
+      await lab.waitFor(() => lastRead(lab, K.ahu(1)) > t + 15000 && lastRead(lab, K.vav(3)) > t + 15000, 60000, 'IP and routed readings after restart');
       lab.faults.at(-1).to = Date.now();
       const st = await lab.boxStatus();
       assert(ok === 'ok', `database check: ${ok}`);
+      const bad = lab.q("SELECT name, last_error FROM devices WHERE last_error LIKE '%unknown-route%'");
+      assert(!bad.length, `routed devices unreachable after the restart: ${JSON.stringify(bad.slice(0, 3))}`);
       assert(!st.scan.running || st.scan.last_start < t, 'full rescan started after restart');
       return { integrity: ok, resumed_after_s: Math.round((Date.now() - t) / 1000) };
     }, lab);
