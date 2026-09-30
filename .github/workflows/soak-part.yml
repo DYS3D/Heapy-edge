@@ -19,7 +19,9 @@ jobs:
       - name: Tools
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q iproute2 faketime
-          set -o pipefail; sudo python3 -m pip install --break-system-packages -r drivers/bacnet-ip/requirements.txt -r drivers/snmp/requirements.txt -r tests/requirements-test.txt 2>&1 | tee pip.log | tail -n 3 || { echo '### pip failed' >> "$GITHUB_STEP_SUMMARY"; tail -n 40 pip.log >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          python3 -m venv "$HOME/venv"
+          "$HOME/venv/bin/pip" install -q -r drivers/bacnet-ip/requirements.txt -r drivers/snmp/requirements.txt -r tests/requirements-test.txt
+          "$HOME/venv/bin/python" -c "import bacpypes3, pysnmp, cryptography, snmpsim; print('python deps ok')"
       - name: MS/TP router and test devices
         if: inputs.kind == 'mstp'
         run: sh tools/build-bacnet-stack.sh
@@ -31,7 +33,7 @@ jobs:
         run: |
           mkdir -p soak
           if [ -f soak/state.json ] && grep -q '"finished": true' soak/state.json; then echo "already finished"; exit 0; fi
-          sudo -E env "PATH=$PATH" node --no-warnings tests/soak24.js --kind ${{ inputs.kind }} --hours ${{ inputs.hours }} --interval ${{ inputs.interval }} --dir "$PWD/soak" --segment-minutes 335
+          sudo -E env "PATH=$HOME/venv/bin:$PATH" HEAPY_EDGE_PYTHON="$HOME/venv/bin/python" node --no-warnings tests/soak24.js --kind ${{ inputs.kind }} --hours ${{ inputs.hours }} --interval ${{ inputs.interval }} --dir "$PWD/soak" --segment-minutes 335
           grep -h "hour\|FINISHED\|STOPPED\|CRASH" soak/soak.log | tail -20
       - name: Tidy
         if: always()

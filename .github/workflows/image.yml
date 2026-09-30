@@ -17,9 +17,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: '22' }
-      - run: set -o pipefail; sudo python3 -m pip install --break-system-packages -r drivers/bacnet-ip/requirements.txt -r drivers/snmp/requirements.txt -r tests/requirements-test.txt 2>&1 | tee pip.log | tail -n 3 || { echo '### pip failed' >> "$GITHUB_STEP_SUMMARY"; tail -n 40 pip.log >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+      # a venv keeps pip away from Ubuntu's own python packages; the box runs it as root
+      - name: Python for the drivers and simulators
+        run: |
+          python3 -m venv "$HOME/venv"
+          "$HOME/venv/bin/pip" install -q -r drivers/bacnet-ip/requirements.txt -r drivers/snmp/requirements.txt -r tests/requirements-test.txt
+          "$HOME/venv/bin/python" -c "import bacpypes3, pysnmp, cryptography, snmpsim; print('python deps ok', cryptography.__version__)"
       - run: sudo apt-get install -y iproute2
-      - run: sudo -E env "PATH=$PATH" node --no-warnings tests/selftest.js
+      - run: sudo -E env "PATH=$HOME/venv/bin:$PATH" HEAPY_EDGE_PYTHON="$HOME/venv/bin/python" node --no-warnings tests/selftest.js
   image:
     needs: test
     runs-on: ubuntu-latest
