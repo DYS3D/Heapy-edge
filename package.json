@@ -1,0 +1,12 @@
+{
+  "name": "heapy-edge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HEAPY Edge site box: finds BAS devices, reads their points and sends the readings to HEAPY Trend Tracker",
+  "main": "core/main.js",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --no-warnings core/main.js",
+    "test": "node --no-warnings tests/selftest.js"
+  }
+}

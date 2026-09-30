@@ -1,0 +1,12 @@
+# HEAPY Edge on a Raspberry Pi, mini-PC or Linux VM: docker compose up -d
+services:
+  heapy-edge:
+    image: ghcr.io/dys3d/heapy-edge:latest
+    build: .
+    container_name: heapy-edge
+    network_mode: host        # BACnet/IP needs the BAS network's broadcasts
+    restart: unless-stopped
+    volumes:
+      - heapy-edge-data:/data
+volumes:
+  heapy-edge-data:

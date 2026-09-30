@@ -1,0 +1,65 @@
+{
+  "$comment": "HEAPY Edge driver contract v1. A driver is a separate program. The core starts it and talks to it with one JSON object per line on stdin (requests) and stdout (replies and events). stderr is logged. Drivers never write to BAS devices.",
+  "version": 1,
+  "request": {
+    "shape": { "id": "integer, unique per request", "op": "string", "...": "op arguments" },
+    "ops": {
+      "hello": { "args": {}, "result": { "driver": "string", "version": "string", "scheme": "string, e.g. bacnet", "capabilities": ["discover", "browse", "read", "subscribe"] } },
+      "configure": { "args": { "settings": "object, driver-specific (e.g. BAS port address)" }, "result": { "ok": true } },
+      "discover": {
+        "args": { "targets": "optional driver-specific list (BACnet: instance ranges, networks)", "timeout_s": "number", "rate": "max requests per second on the network" },
+        "events": { "device": "Device (below), one per device found" },
+        "result": { "devices": "integer", "networks": "optional list" }
+      },
+      "browse": {
+        "args": { "device": "Device", "rate": "max requests per second to this device" },
+        "events": { "point": "Point (below), one per point" },
+        "result": { "points": "integer" }
+      },
+      "read": {
+        "args": { "device": "Device", "points": ["point key"], "rate": "max requests per second to this device" },
+        "result": { "values": ["Sample"], "requests": "integer, requests sent" }
+      },
+      "subscribe": {
+        "args": { "device": "Device", "points": ["point key"], "lifetime_s": "integer" },
+        "events": { "cov": "Sample, sent whenever a subscribed value changes" },
+        "result": { "subscribed": ["point key"], "failed": ["point key"] }
+      },
+      "unsubscribe": { "args": { "points": ["point key"] }, "result": { "ok": true } },
+      "shutdown": { "args": {}, "result": { "ok": true } }
+    }
+  },
+  "reply": {
+    "ok": { "id": "integer", "ok": true, "result": "object" },
+    "error": { "id": "integer", "ok": false, "error": { "code": "timeout | unreachable | rejected | bad_request | internal", "message": "string" } },
+    "event": { "id": "integer or null (null = not tied to a request)", "event": "device | point | cov | progress | log", "data": "object" }
+  },
+  "types": {
+    "Device": {
+      "key": "stable id, scheme://id, e.g. bacnet://1201 (BACnet device instance)",
+      "route": "how to reach it now, e.g. 10.77.0.11 or 2001:5 (network:MAC); may change, key does not",
+      "name": "string", "vendor": "string", "model": "string",
+      "meta": "object, driver-specific (max_apdu, segmentation, supports_rpm, ...)"
+    },
+    "Point": {
+      "key": "device key + / + object, e.g. bacnet://1201/analog-input:5",
+      "name": "string (BAS object name)", "description": "string",
+      "units": "string (BAS units text, e.g. degrees-fahrenheit)",
+      "kind": "number | binary | multistate",
+      "states": "optional list of state names (binary: [inactive, active]; multistate: 1..n)",
+      "cov": "boolean, device says the object supports change of value"
+    },
+    "Sample": { "point": "point key", "t": "epoch milliseconds, time read", "v": "number or null", "error": "optional string when v is null" }
+  },
+  "point_address": {
+    "rule": "scheme://device-id/object[?options]. The scheme names the driver. Keys never contain the network route, so a device that moves to a new IP keeps its history.",
+    "examples": [
+      "bacnet://1201/analog-input:5",
+      "bacnet://20014/analog-value:3",
+      "modbus://meter-1/holding:40001?type=f32&unit=1",
+      "haystack://jace-1/@p:site:r:2c1f",
+      "snmp://ups-1/1.3.6.1.4.1.318.1.1.1.2.2.3.0",
+      "lon://node-12/nvoSpaceTemp"
+    ]
+  }
+}

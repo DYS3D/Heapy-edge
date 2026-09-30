@@ -1,0 +1,39 @@
+{
+  "$comment": "HEAPY Edge upload contract v1: site box -> central HEAPY Trend Tracker server. HTTPS only, outbound from the box. JSON bodies, gzip allowed (Content-Encoding: gzip). The same batch shape is used by every destination (server, local Trend Tracker, file drop).",
+  "version": 1,
+  "endpoints": {
+    "POST /api/edge/v1/pair": {
+      "auth": "none (one-time pairing code in the body)",
+      "body": { "code": "string, one-time code shown in Trend Tracker", "box": "BoxInfo" },
+      "reply": { "box_id": "string", "key": "string, secret for this box only (store it, never log it)", "site": "string, site name" }
+    },
+    "POST /api/edge/v1/ingest": {
+      "auth": "Authorization: Bearer <key>",
+      "body": "Batch",
+      "reply": { "ok": true, "batch_id": "same as sent", "stored": "integer" },
+      "rules": [
+        "The server must treat a repeated batch_id as already stored (reply ok again, do not duplicate).",
+        "The box deletes nothing until it gets ok for that batch_id.",
+        "4xx other than 408/429: the box stops and reports the error. 408, 429, 5xx and network errors: retry with backoff."
+      ]
+    },
+    "POST /api/edge/v1/checkin": {
+      "auth": "Authorization: Bearer <key>",
+      "body": { "box": "BoxInfo", "health": "Health" },
+      "reply": { "config_version": "integer", "config": "optional object (point selections, intervals, scan windows) when newer than the box's", "update": "optional { version, url, sha256, signature }" }
+    }
+  },
+  "types": {
+    "Batch": {
+      "batch_id": "uuid",
+      "box_id": "string",
+      "seq": "integer, increases by one per batch from this box",
+      "sent_at": "epoch ms",
+      "devices": ["Device (driver contract) - new or changed since the last batch"],
+      "points": ["Point (driver contract) plus { selected, interval_s } - new or changed"],
+      "samples": ["[point_key, t_epoch_ms, value_or_null]"]
+    },
+    "BoxInfo": { "box_id": "string or null before pairing", "name": "string", "version": "string", "hardware": "string", "drivers": ["name@version"] },
+    "Health": { "uptime_s": "integer", "backlog_samples": "integer", "oldest_unsent_ms": "epoch ms or null", "devices": "integer", "devices_offline": "integer", "points": "integer", "late_points": "integer", "disk_free_mb": "integer", "last_error": "string or null" }
+  }
+}

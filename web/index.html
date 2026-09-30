@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HEAPY Edge</title>
+<link rel="stylesheet" href="brand.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="hp-band">
+  <div class="hp-logo"><img alt="HEAPY" src="logo.png"></div>
+  <div class="hp-band__title"><h1 class="hp-title"><span>HEAPY Edge</span><span>Site box</span></h1></div>
+  <div class="hp-band__meta" id="meta"></div>
+</header>
+
+<div id="login" class="login" hidden>
+  <div class="hp-card">
+    <div class="hp-card__head" id="login-title">Sign in</div>
+    <div class="hp-card__body">
+      <p class="hp-muted" id="login-help"></p>
+      <form id="login-form">
+        <label class="hp-label" for="pw">Password</label>
+        <input class="hp-input wide" id="pw" type="password" autocomplete="current-password" required>
+        <label class="hp-label" for="pw2" id="pw2-label" hidden>Type it again</label>
+        <input class="hp-input wide" id="pw2" type="password" autocomplete="new-password" hidden>
+        <p class="err" id="login-err"></p>
+        <button class="hp-btn hp-btn--primary" type="submit" id="login-btn">Sign in</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="main" hidden>
+  <nav class="hp-tabs" id="tabs">
+    <button class="hp-tab is-active" data-tab="status">Status</button>
+    <button class="hp-tab" data-tab="devices">Devices</button>
+    <button class="hp-tab" data-tab="points">Points</button>
+    <button class="hp-tab" data-tab="connect">Connect to HEAPY</button>
+    <button class="hp-tab" data-tab="settings">Settings</button>
+    <button class="hp-tab" data-tab="log">Log</button>
+    <span class="spacer"></span>
+    <button class="hp-btn hp-btn--sm" id="logout">Sign out</button>
+  </nav>
+
+  <main class="page">
+    <section data-page="status">
+      <div class="hp-kpis" id="kpis"></div>
+      <div class="hp-grid">
+        <div class="hp-card"><div class="hp-card__head">Scan <span class="r"><button class="hp-btn hp-btn--sm hp-btn--primary" id="scan-now">Scan now</button></span></div><div class="hp-card__body" id="scan-box"></div></div>
+        <div class="hp-card"><div class="hp-card__head">Sending</div><div class="hp-card__body" id="send-box"></div></div>
+      </div>
+    </section>
+
+    <section data-page="devices" hidden>
+      <div class="hp-card"><div class="hp-card__head">Devices found <span class="r"><input class="hp-input" id="dev-filter" placeholder="Filter"></span></div>
+        <div class="hp-card__body--flush hp-table-wrap"><table class="hp-table"><thead><tr><th>Status</th><th>Name</th><th>Key</th><th>Address</th><th>Vendor / model</th><th class="num">Points</th><th class="num">Trended</th><th>Last problem</th></tr></thead><tbody id="dev-rows"></tbody></table></div></div>
+    </section>
+
+    <section data-page="points" hidden>
+      <div class="hp-card"><div class="hp-card__head">Points
+        <span class="r">
+          <select class="hp-select" id="pt-device"></select>
+          <input class="hp-input" id="pt-filter" placeholder="Filter">
+        </span></div>
+        <div class="toolbar">
+          <button class="hp-btn hp-btn--sm" id="pt-all">Trend all shown</button>
+          <button class="hp-btn hp-btn--sm" id="pt-none">Trend none shown</button>
+          <label class="hp-label" for="pt-iv">Interval for shown</label>
+          <select class="hp-select" id="pt-iv"><option value="60">1 min</option><option value="300">5 min</option><option value="900" selected>15 min</option><option value="3600">60 min</option></select>
+          <button class="hp-btn hp-btn--sm" id="pt-iv-apply">Apply</button>
+          <span class="hp-muted" id="pt-count"></span>
+        </div>
+        <div class="hp-card__body--flush hp-table-wrap"><table class="hp-table"><thead><tr><th>Trend</th><th>Name</th><th>Description</th><th>Object</th><th>Units</th><th class="num">Interval</th><th class="num">Last value</th><th>Last read</th></tr></thead><tbody id="pt-rows"></tbody></table></div></div>
+    </section>
+
+    <section data-page="connect" hidden>
+      <div class="hp-card"><div class="hp-card__head">Connect to HEAPY Trend Tracker</div><div class="hp-card__body">
+        <div id="pair-state"></div>
+        <form id="pair-form" class="form">
+          <label class="hp-label" for="pair-url">Server address</label>
+          <input class="hp-input wide" id="pair-url" placeholder="https://trends.heapy.com" required>
+          <label class="hp-label" for="pair-code">Pairing code (from Trend Tracker, Sites and boxes)</label>
+          <input class="hp-input wide" id="pair-code" placeholder="ABCD-1234" required>
+          <p class="err" id="pair-err"></p>
+          <button class="hp-btn hp-btn--primary" type="submit">Connect</button>
+        </form>
+        <p class="hp-muted small">The box only makes outgoing HTTPS connections. Nothing on the internet can connect to it.</p>
+      </div></div>
+    </section>
+
+    <section data-page="settings" hidden>
+      <div class="hp-card"><div class="hp-card__head">Settings</div><div class="hp-card__body">
+        <form id="set-form" class="form grid2">
+          <label class="hp-label" for="s-name">Box name</label><input class="hp-input" id="s-name">
+          <label class="hp-label" for="s-addr">BAS port address (e.g. 10.1.20.5/24, or host)</label><input class="hp-input" id="s-addr">
+          <label class="hp-label" for="s-inst">This box's BACnet device number</label><input class="hp-input" id="s-inst" type="number" min="0" max="4194302">
+          <label class="hp-label" for="s-bbmd">Remote BBMD (optional, address:port)</label><input class="hp-input" id="s-bbmd">
+          <label class="hp-label" for="s-rate">Requests per second to one device</label><input class="hp-input" id="s-rate" type="number" min="0.2" max="50" step="0.1">
+          <label class="hp-label" for="s-win">Scan windows (any, or e.g. 22:00-06:00)</label><input class="hp-input" id="s-win">
+          <label class="hp-label" for="s-every">Scan every (hours)</label><input class="hp-input" id="s-every" type="number" min="1">
+          <label class="hp-label" for="s-auto">New points</label><select class="hp-select" id="s-auto"><option value="all">Trend all new points</option><option value="none">Trend none until chosen</option></select>
+          <label class="hp-label" for="s-iv">Default interval</label><select class="hp-select" id="s-iv"><option value="60">1 min</option><option value="300">5 min</option><option value="900">15 min</option><option value="3600">60 min</option></select>
+          <label class="hp-label" for="s-cov">Change of value</label><select class="hp-select" id="s-cov"><option value="false">Off (poll only)</option><option value="true">On where devices support it</option></select>
+          <label class="hp-label" for="s-keep">Keep sent readings on the box (days)</label><input class="hp-input" id="s-keep" type="number" min="1">
+          <label class="hp-label" for="s-files">Also write readings to files</label><select class="hp-select" id="s-files"><option value="false">No</option><option value="true">Yes (outbox folder)</option></select>
+          <span></span><div><p class="err" id="set-err"></p><button class="hp-btn hp-btn--primary" type="submit">Save</button> <span class="hp-muted" id="set-ok"></span></div>
+        </form>
+      </div></div>
+    </section>
+
+    <section data-page="log" hidden>
+      <div class="hp-card"><div class="hp-card__head">Log</div><div class="hp-card__body--flush"><pre class="log" id="log"></pre></div></div>
+    </section>
+  </main>
+  <footer class="hp-footer"><span class="hp-slashes"></span><span>HEAPY Edge · read-only BAS data collection</span><span class="r hp-num" id="foot"></span></footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
