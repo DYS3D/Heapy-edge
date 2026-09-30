@@ -474,7 +474,7 @@ class Site:
             for d in units.values():
                 self.dev_server[d.name] = s
         if a.serial:
-            self.bus = Bus(a.serial + 1)
+            self.bus = Bus(a.serial + 2)  # last port: a second master, for the 'master' fault
             loop = asyncio.get_running_loop()
             for i, m in enumerate(self.bus.masters):
                 loop.add_reader(m, self.bus.on_read, i)
@@ -540,6 +540,24 @@ class Site:
                 else:
                     srv.faults[f] = v
                 dev.faults.pop(f, None) if f in ("maxconn",) else None
+            return {}
+        if c == "master":  # another Modbus master starts (or stops) polling the RS-485 bus
+            if r.get("on", True) and not getattr(self, "rogue", None):
+                fd = os.open(self.bus.slaves[-1], os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+                tty.setraw(fd)
+
+                async def poll():
+                    try:
+                        while True:
+                            u = random.randint(1, max(1, self.a.serial))
+                            os.write(fd, with_crc(bytes([u, 3, 0, random.choice([0, 8, 30]), 0, 2])))
+                            await asyncio.sleep(0.25)
+                    finally:
+                        os.close(fd)
+                self.rogue = asyncio.create_task(poll())
+            elif not r.get("on", True) and getattr(self, "rogue", None):
+                self.rogue.cancel()
+                self.rogue = None
             return {}
         if c == "bus":
             if "noise" in r:

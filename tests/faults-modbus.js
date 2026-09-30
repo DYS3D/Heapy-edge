@@ -185,6 +185,21 @@ async function mainStage() {
       return { back_after_s: Math.round((Math.max(...rtu.map(k => lastRead(lab, k))) - back) / 1000) };
     }, lab);
 
+    await test('a second Modbus master appears on the RS-485 bus: box stands back, no wrong values', async () => {
+      const t = Date.now();
+      const rtu = lab.simInfo.devices.filter(d => d.conn.type === 'rtu').map(d => K(d.name));
+      await lab.simctl({ cmd: 'master', on: true }); for (const k of rtu) lab.fault(k, t, null, 'second master');
+      await lab.waitFor(() => rtu.every(k => status(lab, k.slice(9)) === 'offline'), 180000, 'bus devices offline');
+      const msg = lab.q("SELECT last_error FROM devices WHERE key=?", rtu[0])[0].last_error || '';
+      await lab.simctl({ cmd: 'master', on: false });
+      const back = Date.now(); for (const x of lab.faults.filter(x => x.why === 'second master')) x.to = back + 90000;
+      await lab.waitFor(() => rtu.every(k => lastRead(lab, k) > back), 240000, 'bus devices back after the other master left');
+      const w = wrongValues(lab, t);
+      assert(/another Modbus master/.test(msg), `device error was: ${msg}`);
+      assert(!w.bad.length, `${w.bad.length} wrong values while two masters shared the bus`);
+      return { error_shown: msg.slice(0, 80), back_after_s: Math.round((Math.max(...rtu.map(k => lastRead(lab, k))) - back) / 1000) };
+    }, lab);
+
     await faultTest(lab, 'slow replies (1.5 s each)', { dev: ['tcp-05', 'gw1-u05'], f: 'slow', v: 1.5 });
     await faultTest(lab, '15% of requests never answered', { dev: ['tcp-05', 'gw1-u06', 'rs1-u02', 'rtu-u02'], f: 'drop', v: 0.15 });
     await faultTest(lab, '20% "device busy" replies', { dev: ['tcp-06', 'gw1-u07', 'rtu-u04'], f: 'busy', v: 0.2 });

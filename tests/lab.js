@@ -27,6 +27,21 @@ class Lab {
     this.faults = [];      // { device (key or '*'), from, to, why }
     this.log = [];
     this.procs = [];
+    // if the test runner is stopped, take the box and simulators with it: an orphaned box
+    // keeps polling and would disturb the next lab (e.g. a second master on a serial bus)
+    Lab.all = Lab.all || new Set();
+    Lab.all.add(this);
+    if (!Lab.hooked) {
+      Lab.hooked = true;
+      const bye = () => { for (const l of Lab.all) l.killAll(); };
+      process.on('exit', bye);
+      for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) process.on(sig, () => { bye(); process.exit(1); });
+    }
+  }
+
+  killAll() {
+    try { if (this.box && !this.boxExit) execSync(`pkill -9 -P ${this.box.pid}`, { stdio: 'ignore' }); } catch { /* none */ }
+    for (const p of this.procs) { try { p.kill('SIGKILL'); } catch { /* gone */ } }
   }
 
   note(msg) { const l = `${new Date().toISOString().slice(11, 19)} ${msg}`; this.log.push(l); if (!process.env.LAB_QUIET) console.log('   ' + l); }

@@ -167,6 +167,8 @@ class Link:
         self.down_until = 0.0
         self.down_msg = ""
         self.timeouts = 0
+        self.rtt: Dict[int, Tuple[int, float]] = {}
+        self.first_try = True
         self.stats = {"requests": 0, "timeouts": 0, "bad": 0, "reconnects": 0}
 
     def _down(self, msg: str) -> LinkDown:
@@ -186,9 +188,12 @@ class Link:
                 if wait > 0:
                     await asyncio.sleep(wait)
                 self.stats["requests"] += 1
+                self.first_try = attempt == 0
+                t_sent = time.monotonic()
                 try:
                     reply = await self._xfer(unit, pdu, fc, expect_bytes)
                     self.timeouts = 0
+                    self.learn(unit, time.monotonic() - t_sent)
                     return check_pdu(reply, fc, expect_bytes)
                 except ModbusException as e:
                     self.timeouts = 0
@@ -211,6 +216,7 @@ class Link:
                     self.timeouts += 1
                     last = e
                     self.on_timeout()
+                    await self.after_timeout()
                 except BadReply as e:
                     self.stats["bad"] += 1
                     last = e
@@ -221,7 +227,23 @@ class Link:
                 raise last
             raise NoAnswer(str(last))
 
+    def learn(self, unit: int, secs: float) -> None:
+        # smoothed reply time per unit (a gateway's units differ), like TCP's RTT estimate
+        n, avg = self.rtt.get(unit, (0, secs))
+        self.rtt[unit] = (min(n + 1, 50), avg + (secs - avg) * (0.5 if n < 4 else 0.125))
+
+    def wait_for(self, unit: int) -> float:
+        # a device that always answers in 20 ms has lost the reply if nothing came in 0.5 s:
+        # ask again sooner. Retries always wait the full configured time.
+        n, avg = self.rtt.get(unit, (0, 0.0))
+        if not self.first_try or n < 5:
+            return self.timeout
+        return min(self.timeout, max(0.5, avg * 6))
+
     def on_timeout(self) -> None:
+        pass
+
+    async def after_timeout(self) -> None:
         pass
 
     def on_bad(self) -> None:
@@ -297,7 +319,7 @@ class TcpLink(Link):
                     raise NoAnswer("connection lost")
                 await self._connect()  # an idle connection the device had closed
                 fresh = True
-        deadline = time.monotonic() + self.timeout
+        deadline = time.monotonic() + self.wait_for(unit)
         while True:
             remain = deadline - time.monotonic()
             if remain <= 0:
@@ -341,13 +363,37 @@ class RtuBase(Link):
     def __init__(self, cfg, defaults):
         super().__init__(cfg, defaults)
         self.buf = bytearray()
+        self.idle = bytearray()
+        self.busy = False
+        self.listen_s = max(0.0, float(cfg.get("listen_ms", 1500)) / 1000)
         self.data_evt = asyncio.Event()
         self.baud = int(cfg.get("baud", 9600))
         bits = 11  # start + 8 data + parity/stop + stop
         self.char_s = bits / self.baud
         self.silence = 0.00175 if self.baud > 19200 else 3.5 * self.char_s
 
+    async def after_timeout(self) -> None:
+        # a reply that comes after we gave up would look like the answer to the next
+        # request: wait for the line to go quiet, then discard whatever arrived
+        end = time.monotonic() + min(self.timeout, 1.0)
+        while time.monotonic() < end:
+            self.data_evt.clear()
+            try:
+                await asyncio.wait_for(self.data_evt.wait(), max(0.05, 20 * self.char_s))
+            except asyncio.TimeoutError:
+                break
+        self.buf.clear()
+
+    MASTER_MSG = ("another Modbus master is polling this RS-485 bus; Modbus RTU allows only one. "
+                  "Read these devices through that master or a gateway instead")
+
     def _feed(self, data: bytes) -> None:
+        # bytes that arrive while we have been quiet for longer than any reply could take
+        # can only come from another master's traffic
+        if not self.busy and time.monotonic() - self.last_end > self.timeout + 0.2:
+            self.idle += data
+            if len(self.idle) > 4096:
+                del self.idle[:-2048]
         self.buf += data
         if len(self.buf) > 8192:
             del self.buf[:-4096]
@@ -374,8 +420,40 @@ class RtuBase(Link):
                 return frame[1:-2]
         return None
 
+    def foreign_master(self) -> bool:
+        # two or more request frames from someone else (one could be noise that happens to fit)
+        b, n = self.idle, 0
+        for i in range(0, max(0, len(b) - 7)):
+            if 1 <= b[i] <= 247 and b[i + 1] in (1, 2, 3, 4, 5, 6) and crc16(bytes(b[i:i + 6])) == struct.unpack("<H", bytes(b[i + 6:i + 8]))[0]:
+                n += 1
+        self.idle = bytearray()
+        return n >= 2
+
+    async def listen_first(self, secs: float) -> None:
+        # like joining an MS/TP trunk: listen before talking
+        self.last_end = time.monotonic() - self.timeout - 1
+        self.idle = bytearray()
+        await asyncio.sleep(secs)
+        if self.foreign_master():
+            self.down_until = time.monotonic() + 60
+            self.down_msg = self.MASTER_MSG
+            await self.close()
+            raise LinkDown(self.MASTER_MSG)
+
     async def _xfer(self, unit, pdu, fc, expect_bytes):
         await self._open()
+        if self.foreign_master():
+            self.down_until = time.monotonic() + 60
+            self.down_msg = self.MASTER_MSG
+            await self.close()
+            raise LinkDown(self.MASTER_MSG)
+        self.busy = True
+        try:
+            return await self._xfer_inner(unit, pdu, fc, expect_bytes)
+        finally:
+            self.busy = False
+
+    async def _xfer_inner(self, unit, pdu, fc, expect_bytes):
         wait = self.last_end + self.silence - time.monotonic()
         if wait > 0:
             await asyncio.sleep(wait)
@@ -397,7 +475,7 @@ class RtuBase(Link):
             except asyncio.TimeoutError:
                 pass
             if self._lost():
-                raise NoAnswer("connection lost")
+                raise Stale("connection lost")  # resend on a new connection, not a retry
 
 
 class SerialLink(RtuBase):
@@ -444,6 +522,7 @@ class SerialLink(RtuBase):
         self.fd, self.dead = fd, False
         self.stats["reconnects"] += 1
         asyncio.get_running_loop().add_reader(fd, self._readable)
+        await self.listen_first(self.listen_s)
 
     def _readable(self) -> None:
         try:
@@ -530,6 +609,11 @@ class RtuTcpLink(RtuBase):
                 pass
             self.data_evt.set()
         self.pump = asyncio.create_task(pump())
+        # listen for another master on the first connection, and again after a long break;
+        # a quick reconnect (serial server closed an idle socket) doesn't need it
+        if time.monotonic() - getattr(self, "last_listen", 0) > 60:
+            self.last_listen = time.monotonic()
+            await self.listen_first(self.listen_s)
 
     def _lost(self) -> bool:
         return self.pump is None or self.pump.done()
@@ -544,7 +628,7 @@ class RtuTcpLink(RtuBase):
             await self.writer.drain()
         except (OSError, RuntimeError):
             await self.close()
-            raise NoAnswer("connection lost")
+            raise Stale("connection lost")
 
     async def close(self) -> None:
         if self.writer:

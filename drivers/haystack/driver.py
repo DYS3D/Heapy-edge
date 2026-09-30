@@ -265,7 +265,7 @@ class Server:
             raise DriverError("rejected", f"{self.name}: login gave no token")
         self.auth_header = f"BEARER authToken={tok}"
 
-    async def call(self, method, path, body=None, ctype=None):
+    async def _call_once(self, method, path, body=None, ctype=None):
         """A request with login as needed; a refused token is renewed once."""
         if self.auth_header is None:
             await self.login()
@@ -289,6 +289,18 @@ class Server:
                 raise DriverError("rejected", f"{self.name}: {path.split('?')[0]} not found (check the address)")
             return grid_rows(r.body)
         raise NoAnswer("no answer")
+
+    async def call(self, *a, **k):
+        """Quick failures (server error, busy, garbled reply, dropped connection) are asked
+        again at once, up to twice; a real timeout is not (it already cost the full wait)."""
+        for attempt in range(3):
+            try:
+                return await self._call_once(*a, **k)
+            except NoAnswer as e:
+                slow = str(e).startswith(("no answer", "no complete answer"))
+                if slow or attempt == 2:
+                    raise
+                await asyncio.sleep(0.3 * (attempt + 1))
 
 
 class Driver(ed.BaseDriver):

@@ -124,7 +124,7 @@ class Station:
             return None
         return full[len(self.base_path):]
 
-    async def get(self, path: str, method="GET", body=None):
+    async def _get_once(self, path: str, method="GET", body=None):
         h = {"Accept": "text/xml"}
         if self.auth:
             h["Authorization"] = self.auth
@@ -151,6 +151,18 @@ class Station:
         if r.status != 200:
             raise NoAnswer(f"HTTP {r.status}")
         return parse(r.body)
+
+    async def get(self, *a, **k):
+        """Quick failures (server error, busy, garbled reply, dropped connection) are asked
+        again at once, up to twice; a real timeout is not (it already cost the full wait)."""
+        for attempt in range(3):
+            try:
+                return await self._get_once(*a, **k)
+            except NoAnswer as e:
+                slow = str(e).startswith(("no answer", "no complete answer"))
+                if slow or attempt == 2:
+                    raise
+                await asyncio.sleep(0.3 * (attempt + 1))
 
     async def find_batch(self) -> str:
         if self.batch_path is None:
