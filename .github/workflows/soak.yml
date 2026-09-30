@@ -16,20 +16,20 @@ permissions:
 jobs:
   part1:
     uses: ./.github/workflows/soak-part.yml
-    with: { part: 1, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
+    with: { part: 1, next: 2, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
   part2:
     needs: part1
     uses: ./.github/workflows/soak-part.yml
-    with: { part: 2, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
+    with: { part: 2, next: 3, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
   part3:
     needs: part2
     uses: ./.github/workflows/soak-part.yml
-    with: { part: 3, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
+    with: { part: 3, next: 4, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
   part4:
     needs: part3
     uses: ./.github/workflows/soak-part.yml
-    with: { part: 4, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
+    with: { part: 4, next: 5, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
   part5:
     needs: part4
     uses: ./.github/workflows/soak-part.yml
-    with: { part: 5, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }
+    with: { part: 5, next: 6, hours: '${{ inputs.hours }}', interval: '${{ inputs.interval }}' }

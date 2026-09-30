@@ -4,6 +4,7 @@ on:
   workflow_call:
     inputs:
       part: { type: number, required: true }
+      next: { type: number, required: true }
       hours: { type: string, required: true }
       interval: { type: string, required: true }
 jobs:
@@ -33,7 +34,7 @@ jobs:
         run: sudo chown -R "$(id -u)" soak; rm -f soak/*.sock
       - name: Hand the state to the next part
         uses: actions/upload-artifact@v4
-        with: { name: 'soak-state-${{ inputs.part + 1 }}', path: soak, retention-days: 3 }
+        with: { name: 'soak-state-${{ inputs.next }}', path: soak, retention-days: 3 }
       - name: Result so far
         if: always()
         uses: actions/upload-artifact@v4
