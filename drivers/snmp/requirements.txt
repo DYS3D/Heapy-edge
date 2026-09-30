@@ -1,2 +1,2 @@
 pysnmp==7.1.30
-cryptography==50.0.2
+cryptography>=50.0.1

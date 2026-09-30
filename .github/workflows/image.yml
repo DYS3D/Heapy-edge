@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: '22' }
-      - run: sudo python3 -m pip install --break-system-packages -r drivers/bacnet-ip/requirements.txt -r drivers/snmp/requirements.txt -r tests/requirements-test.txt
+      - run: set -o pipefail; sudo python3 -m pip install --break-system-packages -r drivers/bacnet-ip/requirements.txt -r drivers/snmp/requirements.txt -r tests/requirements-test.txt 2>&1 | tee pip.log | tail -n 3 || { echo '### pip failed' >> "$GITHUB_STEP_SUMMARY"; tail -n 40 pip.log >> "$GITHUB_STEP_SUMMARY"; exit 1; }
       - run: sudo apt-get install -y iproute2
       - run: sudo -E env "PATH=$PATH" node --no-warnings tests/selftest.js
   image:
