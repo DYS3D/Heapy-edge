@@ -1,0 +1,74 @@
+{
+ "start": 1790871795499,
+ "end": 1790875395499,
+ "faults": [
+  {
+   "device": "obix://jace-01",
+   "from": 1790871917002,
+   "to": 1790872217329,
+   "why": "station off"
+  },
+  {
+   "device": null,
+   "from": 1790872517624,
+   "to": 1790873118211,
+   "why": "15% HTTP 500"
+  },
+  {
+   "device": null,
+   "from": 1790873238318,
+   "to": 1790873838939,
+   "why": "5% network loss"
+  },
+  {
+   "device": "obix://jace-03",
+   "from": 1790874199278,
+   "to": 1790874259326,
+   "why": "station hangs"
+  },
+  {
+   "device": null,
+   "from": 1790874980026,
+   "to": 1790875280335,
+   "why": "10% broken replies"
+  }
+ ],
+ "hourly": [],
+ "outages": [],
+ "done": {
+  "0:station off": true,
+  "0:15% HTTP 500": true,
+  "0:5% network loss": true,
+  "0:station hangs": true,
+  "0:10% broken replies": true
+ },
+ "lastBeat": 1790875390441,
+ "restarts_expected": {
+  "box": 0,
+  "driver": 0
+ },
+ "final": {
+  "kind": "obix",
+  "loss": {
+   "box": 3720,
+   "server": 3720,
+   "missing": 0,
+   "extra": 0,
+   "duplicates": 0,
+   "box_dup_rows": 0
+  },
+  "gaps": 0,
+  "gap_examples": [],
+  "max_rate": [
+   "jace-01",
+   6
+  ],
+  "hours": 1,
+  "points": 69,
+  "samples": 3720,
+  "outages": [],
+  "unexpected_box_stops": 0
+ },
+ "pass": true,
+ "finished": true
+}
