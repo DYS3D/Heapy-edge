@@ -38,6 +38,7 @@ jobs:
           if [ -f soak/state.json ] && grep -q '"finished": true' soak/state.json; then echo "already finished"; exit 0; fi
           sudo -E env "PATH=$HOME/venv/bin:$PATH" HEAPY_EDGE_PYTHON="$HOME/venv/bin/python" node --no-warnings tests/soak24.js --kind ${{ inputs.kind }} --hours ${{ inputs.hours }} --interval ${{ inputs.interval }} --dir "$PWD/soak" --segment-minutes 335
           grep -h "hour\|FINISHED\|STOPPED\|CRASH" soak/soak.log | tail -20
+          if grep -q '"finished": true' soak/state.json && ! grep -q '"pass": true' soak/state.json; then echo "SOAK FAILED"; exit 2; fi
       - name: Tidy
         if: always()
         run: sudo chown -R "$(id -u)" soak; rm -f soak/*.sock
@@ -52,18 +53,27 @@ jobs:
       # branch soak-results, one folder per driver (state.json + soak.log)
       - name: Publish result to the soak-results branch
         if: always()
+        env:
+          REPO_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
+          KIND: ${{ inputs.kind }}
+          PART: ${{ inputs.part }}
         run: |
-          set -e
-          git config user.name "soak-bot"; git config user.email "soak@heapy-edge"
-          if git fetch -q origin soak-results; then
-            git worktree add -q results origin/soak-results
+          set -eux
+          rm -rf results
+          if git ls-remote --exit-code --heads "$REPO_URL" soak-results >/dev/null; then
+            git clone -q --branch soak-results --depth 1 "$REPO_URL" results
           else
-            mkdir results && cd results && git init -q && git checkout -q -b soak-results \
-              && git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" && cd ..
+            git init -q results && git -C results checkout -q -b soak-results
           fi
+          mkdir -p "results/$KIND"
+          cp soak/state.json "results/$KIND/state.json"
+          cp soak/soak.log "results/$KIND/soak.log" || true
           cd results
-          mkdir -p "${{ inputs.kind }}"
-          cp ../soak/state.json "${{ inputs.kind }}/state.json"; cp ../soak/soak.log "${{ inputs.kind }}/soak.log" 2>/dev/null || true
+          git config user.name soak-bot; git config user.email soak@heapy-edge
           git add -A
-          git commit -q -m "${{ inputs.kind }} part ${{ inputs.part }} $(date -u +%FT%TZ)" || true
-          for i in 1 2 3 4 5; do git push -q origin HEAD:soak-results && break || { git pull -q --rebase origin soak-results || true; sleep $((i*5)); }; done
+          git commit -q -m "$KIND part $PART $(date -u +%FT%TZ)" || echo "nothing new"
+          for i in 1 2 3 4 5; do
+            if git push -q "$REPO_URL" HEAD:soak-results; then exit 0; fi
+            git pull -q --rebase "$REPO_URL" soak-results || true; sleep $((i*5))
+          done
+          echo "could not push results"; exit 1

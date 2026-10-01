@@ -242,6 +242,7 @@ async function main() {
   save(st);
   lab.note(`FINISHED: ${st.pass ? 'PASS' : 'FAIL'} ${JSON.stringify(st.final).slice(0, 500)}`);
   await lab.close();
+  process.exitCode = st.pass ? 0 : 2; // a failed soak fails the job that ran it
 }
 
 main().catch(e => { fs.appendFileSync(path.join(DIR, 'soak.log'), `${new Date().toISOString()} CRASH ${e.stack}\n`); process.exit(1); });
