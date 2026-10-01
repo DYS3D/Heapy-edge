@@ -229,6 +229,42 @@
    "from": 1790896144221,
    "to": 1790896744811,
    "why": "5% network loss"
+  },
+  {
+   "device": "*",
+   "from": 1790896804874,
+   "to": 1790897186739,
+   "why": "test machine restart"
+  },
+  {
+   "device": null,
+   "from": 1790896888162,
+   "to": 1790896948213,
+   "why": "login tokens expire"
+  },
+  {
+   "device": "haystack://hs-04",
+   "from": 1790897108355,
+   "to": 1790897168407,
+   "why": "server hangs"
+  },
+  {
+   "device": null,
+   "from": 1790897108356,
+   "to": 1790897288540,
+   "why": "server hangs"
+  },
+  {
+   "device": "*",
+   "from": 1790897408654,
+   "to": 1790897559854,
+   "why": "box killed"
+  },
+  {
+   "device": null,
+   "from": 1790897890181,
+   "to": null,
+   "why": "10% broken replies"
   }
  ],
  "hourly": [
@@ -401,7 +437,12 @@
    "lanes_behind": []
   }
  ],
- "outages": [],
+ "outages": [
+  {
+   "from": 1790896804874,
+   "to": 1790896886739
+  }
+ ],
  "done": {
   "0:server off": true,
   "0:15% HTTP 500": true,
@@ -440,11 +481,16 @@
   "5:server off": true,
   "5:15% HTTP 500": true,
   "5:server500": true,
-  "5:5% network loss": true
+  "5:5% network loss": true,
+  "5:login tokens expire": true,
+  "5:server hangs": true,
+  "5:serverhang": true,
+  "5:killbox": true,
+  "5:10% broken replies": true
  },
- "lastBeat": 1790896804874,
+ "lastBeat": 1790897990273,
  "restarts_expected": {
-  "box": 0,
+  "box": 1,
   "driver": 1
  }
 }

@@ -82,3 +82,15 @@
 2026-10-01T23:15:04.566Z fault off: server errors
 2026-10-01T23:19:04.811Z fault off: 5% network loss
 2026-10-01T23:20:04.875Z segment finished; the next run continues from here
+2026-10-01T23:21:26.739Z resuming after 1 min away
+2026-10-01T23:21:26.978Z Haystack site: 4 servers
+2026-10-01T23:21:28.162Z running until 2026-10-02T17:45:03.938Z
+2026-10-01T23:21:28.162Z fault on: login tokens expire
+2026-10-01T23:22:28.213Z fault off: login tokens expire
+2026-10-01T23:25:08.355Z fault on: server hangs
+2026-10-01T23:25:08.356Z fault on: server hangs
+2026-10-01T23:26:08.407Z fault off: server hangs
+2026-10-01T23:28:08.540Z fault off: server hangs
+2026-10-01T23:30:08.654Z fault on: box killed
+2026-10-01T23:32:39.854Z fault off: box killed
+2026-10-01T23:38:10.181Z fault on: 10% broken replies
