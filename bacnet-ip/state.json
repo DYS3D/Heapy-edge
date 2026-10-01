@@ -1,499 +1,379 @@
 {
- "start": 1790850856686,
- "end": 1790937256686,
+ "start": 1790876687194,
+ "end": 1790963087194,
  "faults": [
   {
    "device": "bacnet://1201",
-   "from": 1790850980635,
-   "to": 1790851280935,
+   "from": 1790876811027,
+   "to": 1790877111306,
    "why": "device 1201 off"
   },
   {
    "device": "bacnet://20005",
-   "from": 1790851401051,
-   "to": 1790851491137,
+   "from": 1790877231403,
+   "to": 1790877321478,
    "why": "device 20005 reboot"
   },
   {
    "device": null,
-   "from": 1790851581215,
-   "to": 1790852181781,
+   "from": 1790877411572,
+   "to": 1790878012113,
    "why": "20% loss to 1205"
   },
   {
    "device": null,
-   "from": 1790852301888,
-   "to": 1790852902483,
+   "from": 1790878132219,
+   "to": 1790878732802,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790853022604,
-   "to": 1790853623156,
+   "from": 1790878852913,
+   "to": 1790879453460,
    "why": "device 1206 slow"
   },
   {
    "device": "bacnet://1100",
-   "from": 1790853683207,
-   "to": 1790853983502,
+   "from": 1790879513509,
+   "to": 1790879813795,
    "why": "device 1100 errors"
   },
   {
    "device": "bacnet://1202/analog-input:1",
-   "from": 1790854043531,
-   "to": 1790854223706,
+   "from": 1790879873846,
+   "to": 1790880054023,
    "why": "device 1202 odd values"
   },
   {
    "device": "bacnet://1202/analog-input:2",
-   "from": 1790854043531,
-   "to": 1790854223706,
+   "from": 1790879873846,
+   "to": 1790880054023,
    "why": "device 1202 odd values"
   },
   {
    "device": "bacnet://1202/analog-input:3",
-   "from": 1790854043531,
-   "to": 1790854223706,
+   "from": 1790879873846,
+   "to": 1790880054023,
    "why": "device 1202 odd values"
   },
   {
    "device": null,
-   "from": 1790854283758,
-   "to": 1790854303770,
+   "from": 1790880114070,
+   "to": 1790880134091,
    "why": "I-Am storm"
   },
   {
    "device": "bacnet://1201",
-   "from": 1790854584139,
-   "to": 1790854884433,
+   "from": 1790880414435,
+   "to": 1790880714701,
    "why": "device 1201 off"
   },
   {
    "device": "bacnet://20005",
-   "from": 1790855004547,
-   "to": 1790855094624,
+   "from": 1790880834816,
+   "to": 1790880924901,
    "why": "device 20005 reboot"
   },
   {
    "device": null,
-   "from": 1790855184704,
-   "to": 1790855785287,
+   "from": 1790881014983,
+   "to": 1790881615546,
    "why": "20% loss to 1205"
   },
   {
    "device": null,
-   "from": 1790855665170,
-   "to": 1790856265748,
+   "from": 1790881495434,
+   "to": 1790882096012,
    "why": "server errors"
   },
   {
    "device": null,
-   "from": 1790855905371,
-   "to": 1790856505998,
+   "from": 1790881735653,
+   "to": 1790882336252,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790856626121,
-   "to": 1790857226706,
+   "from": 1790882456369,
+   "to": 1790883057111,
    "why": "device 1206 slow"
   },
   {
    "device": "bacnet://1100",
-   "from": 1790857276739,
-   "to": 1790857576998,
+   "from": 1790883117156,
+   "to": 1790883417414,
    "why": "device 1100 errors"
   },
   {
    "device": "bacnet://1202/analog-input:1",
-   "from": 1790857637052,
-   "to": 1790857817204,
+   "from": 1790883467458,
+   "to": 1790883647619,
    "why": "device 1202 odd values"
   },
   {
    "device": "bacnet://1202/analog-input:2",
-   "from": 1790857637052,
-   "to": 1790857817204,
+   "from": 1790883467458,
+   "to": 1790883647619,
    "why": "device 1202 odd values"
   },
   {
    "device": "bacnet://1202/analog-input:3",
-   "from": 1790857637052,
-   "to": 1790857817204,
+   "from": 1790883467458,
+   "to": 1790883647619,
    "why": "device 1202 odd values"
   },
   {
    "device": null,
-   "from": 1790857877249,
-   "to": 1790857897270,
+   "from": 1790883707665,
+   "to": 1790883727686,
    "why": "I-Am storm"
   },
   {
    "device": "bacnet://1201",
-   "from": 1790858177627,
-   "to": 1790858477917,
+   "from": 1790884008019,
+   "to": 1790884308304,
    "why": "device 1201 off"
   },
   {
    "device": "bacnet://20005",
-   "from": 1790858598033,
-   "to": 1790858688120,
+   "from": 1790884428422,
+   "to": 1790884518497,
    "why": "device 20005 reboot"
   },
   {
    "device": null,
-   "from": 1790858778197,
-   "to": 1790859378797,
+   "from": 1790884608587,
+   "to": 1790885209171,
    "why": "20% loss to 1205"
   },
   {
    "device": null,
-   "from": 1790859498904,
-   "to": 1790860099492,
+   "from": 1790885329277,
+   "to": 1790885929894,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790860219611,
-   "to": 1790860820199,
+   "from": 1790886049989,
+   "to": 1790886650540,
    "why": "device 1206 slow"
   },
   {
    "device": null,
-   "from": 1790860459840,
-   "to": 1790860640029,
+   "from": 1790886290189,
+   "to": 1790886470367,
    "why": "server hangs"
   },
   {
    "device": "bacnet://1100",
-   "from": 1790860880248,
-   "to": 1790861180518,
+   "from": 1790886710593,
+   "to": 1790887010875,
    "why": "device 1100 errors"
   },
   {
    "device": "bacnet://1202/analog-input:1",
-   "from": 1790861240563,
-   "to": 1790861420726,
+   "from": 1790887070921,
+   "to": 1790887251091,
    "why": "device 1202 odd values"
   },
   {
    "device": "bacnet://1202/analog-input:2",
-   "from": 1790861240563,
-   "to": 1790861420726,
+   "from": 1790887070921,
+   "to": 1790887251091,
    "why": "device 1202 odd values"
   },
   {
    "device": "bacnet://1202/analog-input:3",
-   "from": 1790861240563,
-   "to": 1790861420726,
+   "from": 1790887070921,
+   "to": 1790887251091,
    "why": "device 1202 odd values"
   },
   {
    "device": null,
-   "from": 1790861480780,
-   "to": 1790861500802,
+   "from": 1790887311145,
+   "to": 1790887331162,
    "why": "I-Am storm"
   },
   {
    "device": "bacnet://1201",
-   "from": 1790861781168,
-   "to": 1790862081440,
+   "from": 1790887611475,
+   "to": 1790887911781,
    "why": "device 1201 off"
   },
   {
    "device": "bacnet://20005",
-   "from": 1790862201547,
-   "to": 1790862291634,
+   "from": 1790888031885,
+   "to": 1790888121962,
    "why": "device 20005 reboot"
   },
   {
    "device": null,
-   "from": 1790862381730,
-   "to": 1790862982279,
+   "from": 1790888212044,
+   "to": 1790888812609,
    "why": "20% loss to 1205"
   },
   {
    "device": null,
-   "from": 1790862862177,
-   "to": 1790863462750,
+   "from": 1790888692491,
+   "to": 1790889293088,
    "why": "server errors"
   },
   {
    "device": null,
-   "from": 1790863102387,
-   "to": 1790863703021,
+   "from": 1790888932722,
+   "to": 1790889533344,
    "why": "5% network loss"
   },
   {
    "device": "*",
-   "from": 1790863462750,
-   "to": 1790863642942,
+   "from": 1790889293088,
+   "to": 1790889473265,
    "why": "driver killed"
   },
   {
    "device": null,
-   "from": 1790863823142,
-   "to": 1790864423718,
+   "from": 1790889653462,
+   "to": 1790890254044,
    "why": "device 1206 slow"
   },
   {
    "device": "bacnet://1100",
-   "from": 1790864483772,
-   "to": 1790864784064,
+   "from": 1790890314092,
+   "to": 1790890614381,
    "why": "device 1100 errors"
   },
   {
    "device": "bacnet://1202/analog-input:1",
-   "from": 1790864844102,
-   "to": 1790865024257,
+   "from": 1790890674427,
+   "to": 1790890854600,
    "why": "device 1202 odd values"
   },
   {
    "device": "bacnet://1202/analog-input:2",
-   "from": 1790864844102,
-   "to": 1790865024257,
+   "from": 1790890674427,
+   "to": 1790890854600,
    "why": "device 1202 odd values"
   },
   {
    "device": "bacnet://1202/analog-input:3",
-   "from": 1790864844102,
-   "to": 1790865024257,
+   "from": 1790890674427,
+   "to": 1790890854600,
    "why": "device 1202 odd values"
   },
   {
    "device": null,
-   "from": 1790865084298,
-   "to": 1790865104310,
+   "from": 1790890914642,
+   "to": 1790890934743,
    "why": "I-Am storm"
   },
   {
    "device": "bacnet://1201",
-   "from": 1790865384631,
-   "to": 1790865684935,
+   "from": 1790891215078,
+   "to": 1790891515375,
    "why": "device 1201 off"
   },
   {
    "device": "bacnet://20005",
-   "from": 1790865805046,
-   "to": 1790865895121,
+   "from": 1790891635478,
+   "to": 1790891725570,
    "why": "device 20005 reboot"
   },
   {
    "device": null,
-   "from": 1790865985208,
-   "to": 1790866585787,
+   "from": 1790891815667,
+   "to": 1790892416220,
    "why": "20% loss to 1205"
   },
   {
    "device": null,
-   "from": 1790866705894,
-   "to": 1790867306465,
+   "from": 1790892536327,
+   "to": 1790893136913,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790867426588,
-   "to": 1790868027195,
+   "from": 1790893257023,
+   "to": 1790893857548,
    "why": "device 1206 slow"
   },
   {
    "device": "bacnet://1100",
-   "from": 1790868077230,
-   "to": 1790868377527,
+   "from": 1790893907583,
+   "to": 1790894207862,
    "why": "device 1100 errors"
   },
   {
    "device": "bacnet://1202/analog-input:1",
-   "from": 1790868437581,
-   "to": 1790868617751,
+   "from": 1790894267916,
+   "to": 1790894448081,
    "why": "device 1202 odd values"
   },
   {
    "device": "bacnet://1202/analog-input:2",
-   "from": 1790868437581,
-   "to": 1790868617751,
+   "from": 1790894267916,
+   "to": 1790894448081,
    "why": "device 1202 odd values"
   },
   {
    "device": "bacnet://1202/analog-input:3",
-   "from": 1790868437581,
-   "to": 1790868617751,
+   "from": 1790894267916,
+   "to": 1790894448081,
    "why": "device 1202 odd values"
   },
   {
    "device": null,
-   "from": 1790868677781,
-   "to": 1790868697804,
+   "from": 1790894508135,
+   "to": 1790894528151,
    "why": "I-Am storm"
   },
   {
    "device": "bacnet://1201",
-   "from": 1790868978166,
-   "to": 1790869278452,
+   "from": 1790894808470,
+   "to": 1790895108764,
    "why": "device 1201 off"
   },
   {
    "device": "bacnet://20005",
-   "from": 1790869398542,
-   "to": 1790869488619,
+   "from": 1790895228883,
+   "to": 1790895318950,
    "why": "device 20005 reboot"
   },
   {
    "device": null,
-   "from": 1790869578716,
-   "to": 1790870179302,
+   "from": 1790895409035,
+   "to": 1790896009685,
    "why": "20% loss to 1205"
   },
   {
    "device": null,
-   "from": 1790870059184,
-   "to": 1790870659769,
+   "from": 1790895889558,
+   "to": 1790896490154,
    "why": "server errors"
   },
   {
    "device": null,
-   "from": 1790870299408,
-   "to": 1790870900016,
+   "from": 1790896129790,
+   "to": 1790896730396,
    "why": "5% network loss"
-  },
-  {
-   "device": "*",
-   "from": 1790870960080,
-   "to": 1790871420213,
-   "why": "test machine restart"
-  },
-  {
-   "device": null,
-   "from": 1790871264384,
-   "to": 1790871444602,
-   "why": "server hangs"
-  },
-  {
-   "device": "*",
-   "from": 1790871564704,
-   "to": 1790871717930,
-   "why": "box killed"
-  },
-  {
-   "device": "bacnet://1100",
-   "from": 1790871677896,
-   "to": 1790871978185,
-   "why": "device 1100 errors"
-  },
-  {
-   "device": "bacnet://1202/analog-input:1",
-   "from": 1790872038221,
-   "to": 1790872218388,
-   "why": "device 1202 odd values"
-  },
-  {
-   "device": "bacnet://1202/analog-input:2",
-   "from": 1790872038221,
-   "to": 1790872218388,
-   "why": "device 1202 odd values"
-  },
-  {
-   "device": "bacnet://1202/analog-input:3",
-   "from": 1790872038221,
-   "to": 1790872218388,
-   "why": "device 1202 odd values"
-  },
-  {
-   "device": null,
-   "from": 1790872278442,
-   "to": 1790872298464,
-   "why": "I-Am storm"
-  },
-  {
-   "device": "bacnet://1201",
-   "from": 1790872578829,
-   "to": 1790872879131,
-   "why": "device 1201 off"
-  },
-  {
-   "device": "bacnet://20005",
-   "from": 1790872999250,
-   "to": 1790873089330,
-   "why": "device 20005 reboot"
-  },
-  {
-   "device": null,
-   "from": 1790873179421,
-   "to": 1790873780072,
-   "why": "20% loss to 1205"
-  },
-  {
-   "device": null,
-   "from": 1790873900178,
-   "to": 1790874500779,
-   "why": "5% network loss"
-  },
-  {
-   "device": null,
-   "from": 1790874620898,
-   "to": 1790875221650,
-   "why": "device 1206 slow"
-  },
-  {
-   "device": "bacnet://1100",
-   "from": 1790875281704,
-   "to": 1790875582132,
-   "why": "device 1100 errors"
-  },
-  {
-   "device": "bacnet://1202/analog-input:1",
-   "from": 1790875642187,
-   "to": 1790875822366,
-   "why": "device 1202 odd values"
-  },
-  {
-   "device": "bacnet://1202/analog-input:2",
-   "from": 1790875642187,
-   "to": 1790875822366,
-   "why": "device 1202 odd values"
-  },
-  {
-   "device": "bacnet://1202/analog-input:3",
-   "from": 1790875642187,
-   "to": 1790875822366,
-   "why": "device 1202 odd values"
-  },
-  {
-   "device": null,
-   "from": 1790875882413,
-   "to": 1790875902434,
-   "why": "I-Am storm"
-  },
-  {
-   "device": "bacnet://1201",
-   "from": 1790876182776,
-   "to": 1790876483081,
-   "why": "device 1201 off"
-  },
-  {
-   "device": "bacnet://20005",
-   "from": 1790876603199,
-   "to": 1790876693267,
-   "why": "device 20005 reboot"
   }
  ],
  "hourly": [
   {
    "hour": 1,
-   "at": "2026-10-01T11:34:23.989Z",
+   "at": "2026-10-01T18:44:54.267Z",
    "gaps": 0,
    "gap_examples": [],
    "box_rss_mb": 112,
    "driver_rss_mb": 33,
-   "samples": 30780,
+   "samples": 30496,
    "backlog": 0,
    "driver_restarts": 0,
    "poll": {
-    "reads": 3829,
-    "read_errors": 10,
-    "samples": 30780,
+    "reads": 3791,
+    "read_errors": 11,
+    "samples": 30496,
     "cov_samples": 0,
-    "last_read": 1790854462197,
+    "last_read": 1790880269768,
     "missed_slots": 0,
     "point_errors": 9,
     "bad_values": 0,
@@ -506,20 +386,20 @@
   },
   {
    "hour": 2,
-   "at": "2026-10-01T12:34:17.470Z",
+   "at": "2026-10-01T19:44:47.882Z",
    "gaps": 0,
    "gap_examples": [],
-   "box_rss_mb": 105,
+   "box_rss_mb": 106,
    "driver_rss_mb": 33,
-   "samples": 61062,
-   "backlog": 269,
+   "samples": 60896,
+   "backlog": 114,
    "driver_restarts": 0,
    "poll": {
-    "reads": 7285,
-    "read_errors": 20,
-    "samples": 61062,
+    "reads": 7260,
+    "read_errors": 22,
+    "samples": 60896,
     "cov_samples": 0,
-    "last_read": 1790858056074,
+    "last_read": 1790883869748,
     "missed_slots": 0,
     "point_errors": 18,
     "bad_values": 0,
@@ -532,141 +412,84 @@
   },
   {
    "hour": 3,
-   "at": "2026-10-01T13:34:21.008Z",
+   "at": "2026-10-01T20:44:51.344Z",
    "gaps": 0,
    "gap_examples": [],
-   "box_rss_mb": 106,
+   "box_rss_mb": 107,
    "driver_rss_mb": 33,
-   "samples": 91548,
-   "backlog": 347,
+   "samples": 91288,
+   "backlog": 83,
    "driver_restarts": 0,
    "poll": {
-    "reads": 10763,
-    "read_errors": 31,
-    "samples": 91548,
+    "reads": 10728,
+    "read_errors": 33,
+    "samples": 91288,
     "cov_samples": 0,
-    "last_read": 1790861660866,
+    "last_read": 1790887469650,
     "missed_slots": 0,
     "point_errors": 27,
     "bad_values": 0,
     "clock_jumps": 0,
     "relocated": 0,
     "store_errors": 0,
-    "retries": 117
+    "retries": 102
    },
    "lanes_behind": []
   },
   {
    "hour": 4,
-   "at": "2026-10-01T14:34:24.483Z",
+   "at": "2026-10-01T21:44:54.944Z",
    "gaps": 0,
    "gap_examples": [],
-   "box_rss_mb": 106,
+   "box_rss_mb": 107,
    "driver_rss_mb": 33,
-   "samples": 122004,
-   "backlog": 395,
+   "samples": 121688,
+   "backlog": 40,
    "driver_restarts": 1,
    "poll": {
-    "reads": 14239,
-    "read_errors": 42,
-    "samples": 122004,
+    "reads": 14197,
+    "read_errors": 44,
+    "samples": 121688,
     "cov_samples": 0,
-    "last_read": 1790865262393,
+    "last_read": 1790891069635,
     "missed_slots": 0,
     "point_errors": 36,
     "bad_values": 0,
     "clock_jumps": 0,
     "relocated": 0,
     "store_errors": 0,
-    "retries": 159
+    "retries": 136
    },
    "lanes_behind": []
   },
   {
    "hour": 5,
-   "at": "2026-10-01T15:34:18.010Z",
+   "at": "2026-10-01T22:44:48.327Z",
    "gaps": 0,
    "gap_examples": [],
-   "box_rss_mb": 106,
+   "box_rss_mb": 107,
    "driver_rss_mb": 33,
-   "samples": 152286,
-   "backlog": 261,
+   "samples": 152088,
+   "backlog": 0,
    "driver_restarts": 1,
    "poll": {
-    "reads": 17695,
-    "read_errors": 52,
-    "samples": 152286,
+    "reads": 17666,
+    "read_errors": 55,
+    "samples": 152088,
     "cov_samples": 0,
-    "last_read": 1790868856269,
+    "last_read": 1790894669600,
     "missed_slots": 0,
     "point_errors": 45,
     "bad_values": 0,
     "clock_jumps": 0,
     "relocated": 0,
     "store_errors": 0,
-    "retries": 193
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 6,
-   "at": "2026-10-01T16:34:18.681Z",
-   "gaps": 0,
-   "gap_examples": [],
-   "box_rss_mb": 104,
-   "driver_rss_mb": 33,
-   "samples": 181917,
-   "backlog": 277,
-   "driver_restarts": 0,
-   "poll": {
-    "reads": 927,
-    "read_errors": 4,
-    "samples": 7453,
-    "cov_samples": 0,
-    "last_read": 1790872458627,
-    "missed_slots": 0,
-    "point_errors": 9,
-    "bad_values": 0,
-    "clock_jumps": 0,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 11
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 7,
-   "at": "2026-10-01T17:34:22.632Z",
-   "gaps": 0,
-   "gap_examples": [],
-   "box_rss_mb": 105,
-   "driver_rss_mb": 33,
-   "samples": 212428,
-   "backlog": 395,
-   "driver_restarts": 0,
-   "poll": {
-    "reads": 4409,
-    "read_errors": 14,
-    "samples": 37964,
-    "cov_samples": 0,
-    "last_read": 1790876062174,
-    "missed_slots": 0,
-    "point_errors": 18,
-    "bad_values": 0,
-    "clock_jumps": 0,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 45
+    "retries": 170
    },
    "lanes_behind": []
   }
  ],
- "outages": [
-  {
-   "from": 1790870960080,
-   "to": 1790871120213
-  }
- ],
+ "outages": [],
  "done": {
   "0:offline": true,
   "0:reboot": true,
@@ -716,26 +539,11 @@
   "5:reboot": true,
   "5:drop": true,
   "5:server500": true,
-  "5:netloss": true,
-  "5:serverhang": true,
-  "5:killbox": true,
-  "5:error": true,
-  "5:odd": true,
-  "5:storm": true,
-  "6:offline": true,
-  "6:reboot": true,
-  "6:drop": true,
-  "6:netloss": true,
-  "6:slow": true,
-  "6:error": true,
-  "6:odd": true,
-  "6:storm": true,
-  "7:offline": true,
-  "7:reboot": true
+  "5:netloss": true
  },
- "lastBeat": 1790876733309,
+ "lastBeat": 1790896790454,
  "restarts_expected": {
-  "box": 1,
+  "box": 0,
   "driver": 1
  }
 }
