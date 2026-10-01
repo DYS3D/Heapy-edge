@@ -199,6 +199,36 @@
    "from": 1790896146268,
    "to": 1790896746849,
    "why": "5% network loss"
+  },
+  {
+   "device": "*",
+   "from": 1790896806902,
+   "to": 1790897197632,
+   "why": "test machine restart"
+  },
+  {
+   "device": "obix://jace-03",
+   "from": 1790897109297,
+   "to": 1790897169349,
+   "why": "station hangs"
+  },
+  {
+   "device": null,
+   "from": 1790897109298,
+   "to": 1790897289463,
+   "why": "server hangs"
+  },
+  {
+   "device": "*",
+   "from": 1790897409558,
+   "to": 1790897560752,
+   "why": "box killed"
+  },
+  {
+   "device": null,
+   "from": 1790897891087,
+   "to": null,
+   "why": "10% broken replies"
   }
  ],
  "hourly": [
@@ -371,7 +401,12 @@
    "lanes_behind": []
   }
  ],
- "outages": [],
+ "outages": [
+  {
+   "from": 1790896806902,
+   "to": 1790896897632
+  }
+ ],
  "done": {
   "0:station off": true,
   "0:15% HTTP 500": true,
@@ -405,11 +440,15 @@
   "5:station off": true,
   "5:15% HTTP 500": true,
   "5:server500": true,
-  "5:5% network loss": true
+  "5:5% network loss": true,
+  "5:station hangs": true,
+  "5:serverhang": true,
+  "5:killbox": true,
+  "5:10% broken replies": true
  },
- "lastBeat": 1790896806902,
+ "lastBeat": 1790897931120,
  "restarts_expected": {
-  "box": 0,
+  "box": 1,
   "driver": 1
  }
 }

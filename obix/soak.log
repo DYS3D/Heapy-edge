@@ -72,3 +72,13 @@
 2026-10-01T23:15:06.633Z fault off: server errors
 2026-10-01T23:19:06.849Z fault off: 5% network loss
 2026-10-01T23:20:06.903Z segment finished; the next run continues from here
+2026-10-01T23:21:37.632Z resuming after 2 min away
+2026-10-01T23:21:37.841Z obix_sim.py: 3 servers
+2026-10-01T23:21:39.101Z running until 2026-10-02T17:45:05.727Z
+2026-10-01T23:25:09.297Z fault on: station hangs
+2026-10-01T23:25:09.298Z fault on: server hangs
+2026-10-01T23:26:09.349Z fault off: station hangs
+2026-10-01T23:28:09.463Z fault off: server hangs
+2026-10-01T23:30:09.558Z fault on: box killed
+2026-10-01T23:32:40.752Z fault off: box killed
+2026-10-01T23:38:11.087Z fault on: 10% broken replies
