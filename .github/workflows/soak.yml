@@ -17,7 +17,8 @@ on:
         description: Reading interval in seconds
         default: '60'
 permissions:
-  contents: read
+  contents: write
+  actions: read
 jobs:
   part1:
     uses: ./.github/workflows/soak-part.yml

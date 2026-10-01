@@ -8,6 +8,9 @@ on:
       next: { type: number, required: true }
       hours: { type: string, required: true }
       interval: { type: string, required: true }
+permissions:
+  contents: write   # results are pushed to the soak-results branch
+  actions: read
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -45,3 +48,22 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with: { name: 'soak-result-${{ inputs.kind }}-part${{ inputs.part }}', path: 'soak/state.json', retention-days: 30 }
+      # Also keep the result where it can be read without the artifact store:
+      # branch soak-results, one folder per driver (state.json + soak.log)
+      - name: Publish result to the soak-results branch
+        if: always()
+        run: |
+          set -e
+          git config user.name "soak-bot"; git config user.email "soak@heapy-edge"
+          if git fetch -q origin soak-results; then
+            git worktree add -q results origin/soak-results
+          else
+            mkdir results && cd results && git init -q && git checkout -q -b soak-results \
+              && git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" && cd ..
+          fi
+          cd results
+          mkdir -p "${{ inputs.kind }}"
+          cp ../soak/state.json "${{ inputs.kind }}/state.json"; cp ../soak/soak.log "${{ inputs.kind }}/soak.log" 2>/dev/null || true
+          git add -A
+          git commit -q -m "${{ inputs.kind }} part ${{ inputs.part }} $(date -u +%FT%TZ)" || true
+          for i in 1 2 3 4 5; do git push -q origin HEAD:soak-results && break || { git pull -q --rebase origin soak-results || true; sleep $((i*5)); }; done
