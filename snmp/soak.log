@@ -1,112 +1,86 @@
-2026-10-01T10:34:46.416Z SNMP site: 7 agents
-2026-10-01T10:34:47.587Z running until 2026-10-02T10:34:42.758Z
-2026-10-01T10:36:47.741Z fault on: agent off
-2026-10-01T10:41:48.405Z fault off: agent off
-2026-10-01T10:43:48.518Z fault on: agent reboots
-2026-10-01T10:45:48.625Z fault off: agent reboots
-2026-10-01T10:46:48.702Z fault on: 20% lost replies
-2026-10-01T10:56:52.402Z fault off: 20% lost replies
-2026-10-01T10:58:52.521Z fault on: 5% network loss
-2026-10-01T11:08:53.206Z fault off: 5% network loss
-2026-10-01T11:10:43.361Z fault on: stale and duplicate replies
-2026-10-01T11:20:43.959Z fault off: stale and duplicate replies
-2026-10-01T11:27:44.497Z fault on: 10% garbage replies
-2026-10-01T11:32:44.931Z fault off: 10% garbage replies
-2026-10-01T11:34:45.164Z hour 1: 18 gaps, box 98 MB, driver 59 MB
-2026-10-01T11:36:45.287Z fault on: agent off
-2026-10-01T11:41:45.572Z fault off: agent off
-2026-10-01T11:43:45.671Z fault on: agent reboots
-2026-10-01T11:45:45.789Z fault off: agent reboots
-2026-10-01T11:46:45.826Z fault on: 20% lost replies
-2026-10-01T11:54:46.284Z fault on: server errors
-2026-10-01T11:56:46.402Z fault off: 20% lost replies
-2026-10-01T11:58:46.494Z fault on: 5% network loss
-2026-10-01T12:04:46.918Z fault off: server errors
-2026-10-01T12:08:47.150Z fault off: 5% network loss
-2026-10-01T12:10:47.276Z fault on: stale and duplicate replies
-2026-10-01T12:20:47.924Z fault off: stale and duplicate replies
-2026-10-01T12:27:48.366Z fault on: 10% garbage replies
-2026-10-01T12:32:48.652Z fault off: 10% garbage replies
-2026-10-01T12:34:48.803Z hour 2: 20 gaps, box 102 MB, driver 59 MB
-2026-10-01T12:36:48.945Z fault on: agent off
-2026-10-01T12:41:49.246Z fault off: agent off
-2026-10-01T12:43:49.358Z fault on: agent reboots
-2026-10-01T12:45:49.551Z fault off: agent reboots
-2026-10-01T12:46:49.581Z fault on: 20% lost replies
-2026-10-01T12:56:50.255Z fault off: 20% lost replies
-2026-10-01T12:58:50.359Z fault on: 5% network loss
-2026-10-01T13:08:51.052Z fault off: 5% network loss
-2026-10-01T13:10:51.167Z fault on: stale and duplicate replies
-2026-10-01T13:14:51.371Z fault on: server hangs
-2026-10-01T13:17:51.615Z fault off: server hangs
-2026-10-01T13:20:52.065Z fault off: stale and duplicate replies
-2026-10-01T13:27:52.649Z fault on: 10% garbage replies
-2026-10-01T13:32:52.930Z fault off: 10% garbage replies
-2026-10-01T13:34:43.064Z hour 3: 20 gaps, box 103 MB, driver 60 MB
-2026-10-01T13:36:43.180Z fault on: agent off
-2026-10-01T13:41:43.455Z fault off: agent off
-2026-10-01T13:43:43.563Z fault on: agent reboots
-2026-10-01T13:45:43.681Z fault off: agent reboots
-2026-10-01T13:46:43.726Z fault on: 20% lost replies
-2026-10-01T13:54:44.365Z fault on: server errors
-2026-10-01T13:56:44.479Z fault off: 20% lost replies
-2026-10-01T13:58:44.621Z fault on: 5% network loss
-2026-10-01T14:04:44.965Z fault off: server errors
-2026-10-01T14:04:44.965Z fault on: driver killed
-2026-10-01T14:07:45.194Z fault off: driver killed
-2026-10-01T14:08:45.263Z fault off: 5% network loss
-2026-10-01T14:10:45.369Z fault on: stale and duplicate replies
-2026-10-01T14:20:45.975Z fault off: stale and duplicate replies
-2026-10-01T14:27:46.369Z fault on: 10% garbage replies
-2026-10-01T14:32:46.658Z fault off: 10% garbage replies
-2026-10-01T14:34:46.813Z hour 4: 36 gaps, box 104 MB, driver 60 MB
-2026-10-01T14:36:46.919Z fault on: agent off
-2026-10-01T14:41:47.206Z fault off: agent off
-2026-10-01T14:43:47.303Z fault on: agent reboots
-2026-10-01T14:45:47.426Z fault off: agent reboots
-2026-10-01T14:46:47.468Z fault on: 20% lost replies
-2026-10-01T14:56:48.099Z fault off: 20% lost replies
-2026-10-01T14:58:48.209Z fault on: 5% network loss
-2026-10-01T15:08:48.892Z fault off: 5% network loss
-2026-10-01T15:10:48.988Z fault on: stale and duplicate replies
-2026-10-01T15:20:49.575Z fault off: stale and duplicate replies
-2026-10-01T15:27:49.985Z fault on: 10% garbage replies
-2026-10-01T15:32:50.397Z fault off: 10% garbage replies
-2026-10-01T15:34:50.518Z hour 5: 20 gaps, box 104 MB, driver 61 MB
-2026-10-01T15:36:50.634Z fault on: agent off
-2026-10-01T15:41:50.901Z fault off: agent off
-2026-10-01T15:43:51.017Z fault on: agent reboots
-2026-10-01T15:45:51.110Z fault off: agent reboots
-2026-10-01T15:46:51.153Z fault on: 20% lost replies
-2026-10-01T15:54:51.679Z fault on: server errors
-2026-10-01T15:56:51.768Z fault off: 20% lost replies
-2026-10-01T15:58:51.938Z fault on: 5% network loss
-2026-10-01T16:04:52.329Z fault off: server errors
-2026-10-01T16:08:52.558Z fault off: 5% network loss
-2026-10-01T16:09:52.617Z segment finished; the next run continues from here
-2026-10-01T16:12:28.547Z resuming after 3 min away
-2026-10-01T16:12:31.831Z SNMP site: 7 agents
-2026-10-01T16:12:33.010Z running until 2026-10-02T10:34:42.758Z
-2026-10-01T16:14:43.127Z fault on: server hangs
-2026-10-01T16:17:43.307Z fault off: server hangs
-2026-10-01T16:19:43.414Z fault on: box killed
-2026-10-01T16:22:14.621Z fault off: box killed
-2026-10-01T16:27:44.950Z fault on: 10% garbage replies
-2026-10-01T16:32:45.239Z fault off: 10% garbage replies
-2026-10-01T16:34:45.407Z hour 6: 36 gaps, box 92 MB, driver 59 MB
-2026-10-01T16:36:45.515Z fault on: agent off
-2026-10-01T16:41:45.779Z fault off: agent off
-2026-10-01T16:43:45.882Z fault on: agent reboots
-2026-10-01T16:45:46.001Z fault off: agent reboots
-2026-10-01T16:46:46.050Z fault on: 20% lost replies
-2026-10-01T16:56:46.608Z fault off: 20% lost replies
-2026-10-01T16:58:46.712Z fault on: 5% network loss
-2026-10-01T17:08:47.298Z fault off: 5% network loss
-2026-10-01T17:10:47.411Z fault on: stale and duplicate replies
-2026-10-01T17:20:47.972Z fault off: stale and duplicate replies
-2026-10-01T17:27:48.350Z fault on: 10% garbage replies
-2026-10-01T17:32:48.628Z fault off: 10% garbage replies
-2026-10-01T17:34:48.798Z hour 7: 20 gaps, box 102 MB, driver 59 MB
-2026-10-01T17:36:48.925Z fault on: agent off
-2026-10-01T17:41:49.205Z fault off: agent off
-2026-10-01T17:43:49.314Z fault on: agent reboots
+2026-10-01T17:45:06.708Z SNMP site: 7 agents
+2026-10-01T17:45:07.989Z running until 2026-10-02T17:45:03.494Z
+2026-10-01T17:47:08.095Z fault on: agent off
+2026-10-01T17:52:08.390Z fault off: agent off
+2026-10-01T17:54:08.496Z fault on: agent reboots
+2026-10-01T17:56:08.597Z fault off: agent reboots
+2026-10-01T17:57:08.646Z fault on: 20% lost replies
+2026-10-01T18:07:09.240Z fault off: 20% lost replies
+2026-10-01T18:09:09.350Z fault on: 5% network loss
+2026-10-01T18:19:10.177Z fault off: 5% network loss
+2026-10-01T18:21:10.344Z fault on: stale and duplicate replies
+2026-10-01T18:31:10.921Z fault off: stale and duplicate replies
+2026-10-01T18:38:11.348Z fault on: 10% garbage replies
+2026-10-01T18:43:11.747Z fault off: 10% garbage replies
+2026-10-01T18:45:11.920Z hour 1: 18 gaps, box 101 MB, driver 59 MB
+2026-10-01T18:47:12.035Z fault on: agent off
+2026-10-01T18:52:12.344Z fault off: agent off
+2026-10-01T18:54:12.445Z fault on: agent reboots
+2026-10-01T18:56:12.550Z fault off: agent reboots
+2026-10-01T18:57:12.617Z fault on: 20% lost replies
+2026-10-01T19:05:13.214Z fault on: server errors
+2026-10-01T19:07:13.339Z fault off: 20% lost replies
+2026-10-01T19:09:13.492Z fault on: 5% network loss
+2026-10-01T19:15:13.869Z fault off: server errors
+2026-10-01T19:19:14.138Z fault off: 5% network loss
+2026-10-01T19:21:04.291Z fault on: stale and duplicate replies
+2026-10-01T19:31:05.004Z fault off: stale and duplicate replies
+2026-10-01T19:38:05.478Z fault on: 10% garbage replies
+2026-10-01T19:43:05.763Z fault off: 10% garbage replies
+2026-10-01T19:45:05.915Z hour 2: 20 gaps, box 103 MB, driver 59 MB
+2026-10-01T19:47:06.039Z fault on: agent off
+2026-10-01T19:52:06.409Z fault off: agent off
+2026-10-01T19:54:06.515Z fault on: agent reboots
+2026-10-01T19:56:06.624Z fault off: agent reboots
+2026-10-01T19:57:06.661Z fault on: 20% lost replies
+2026-10-01T20:07:07.360Z fault off: 20% lost replies
+2026-10-01T20:09:07.616Z fault on: 5% network loss
+2026-10-01T20:19:08.228Z fault off: 5% network loss
+2026-10-01T20:21:08.336Z fault on: stale and duplicate replies
+2026-10-01T20:25:08.818Z fault on: server hangs
+2026-10-01T20:28:09.026Z fault off: server hangs
+2026-10-01T20:31:09.259Z fault off: stale and duplicate replies
+2026-10-01T20:38:09.715Z fault on: 10% garbage replies
+2026-10-01T20:43:10.225Z fault off: 10% garbage replies
+2026-10-01T20:45:10.441Z hour 3: 20 gaps, box 103 MB, driver 59 MB
+2026-10-01T20:47:10.550Z fault on: agent off
+2026-10-01T20:52:10.875Z fault off: agent off
+2026-10-01T20:54:10.969Z fault on: agent reboots
+2026-10-01T20:56:11.070Z fault off: agent reboots
+2026-10-01T20:57:11.117Z fault on: 20% lost replies
+2026-10-01T21:05:11.571Z fault on: server errors
+2026-10-01T21:07:11.694Z fault off: 20% lost replies
+2026-10-01T21:09:11.779Z fault on: 5% network loss
+2026-10-01T21:15:12.304Z fault off: server errors
+2026-10-01T21:15:12.304Z fault on: driver killed
+2026-10-01T21:18:12.603Z fault off: driver killed
+2026-10-01T21:19:12.683Z fault off: 5% network loss
+2026-10-01T21:21:12.803Z fault on: stale and duplicate replies
+2026-10-01T21:31:13.351Z fault off: stale and duplicate replies
+2026-10-01T21:38:03.757Z fault on: 10% garbage replies
+2026-10-01T21:43:04.055Z fault off: 10% garbage replies
+2026-10-01T21:45:04.207Z hour 4: 36 gaps, box 104 MB, driver 60 MB
+2026-10-01T21:47:04.351Z fault on: agent off
+2026-10-01T21:52:04.713Z fault off: agent off
+2026-10-01T21:54:04.819Z fault on: agent reboots
+2026-10-01T21:56:05.046Z fault off: agent reboots
+2026-10-01T21:57:05.142Z fault on: 20% lost replies
+2026-10-01T22:07:05.827Z fault off: 20% lost replies
+2026-10-01T22:09:05.954Z fault on: 5% network loss
+2026-10-01T22:19:06.598Z fault off: 5% network loss
+2026-10-01T22:21:06.713Z fault on: stale and duplicate replies
+2026-10-01T22:31:07.301Z fault off: stale and duplicate replies
+2026-10-01T22:38:07.776Z fault on: 10% garbage replies
+2026-10-01T22:43:08.081Z fault off: 10% garbage replies
+2026-10-01T22:45:08.229Z hour 5: 20 gaps, box 104 MB, driver 60 MB
+2026-10-01T22:47:08.332Z fault on: agent off
+2026-10-01T22:52:08.715Z fault off: agent off
+2026-10-01T22:54:08.830Z fault on: agent reboots
+2026-10-01T22:56:08.937Z fault off: agent reboots
+2026-10-01T22:57:08.988Z fault on: 20% lost replies
+2026-10-01T23:05:09.530Z fault on: server errors
+2026-10-01T23:07:09.649Z fault off: 20% lost replies
+2026-10-01T23:09:09.735Z fault on: 5% network loss
+2026-10-01T23:15:10.087Z fault off: server errors
+2026-10-01T23:19:10.339Z fault off: 5% network loss
+2026-10-01T23:20:10.404Z segment finished; the next run continues from here
