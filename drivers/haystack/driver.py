@@ -464,7 +464,13 @@ class Driver(ed.BaseDriver):
         if k == "na":
             return None, "not available"
         txt = hstr(cv)
+        # the state names come from the browse; after a driver restart they are gone until
+        # the next browse, so take them from the read row itself when it carries the enum tag
         enum = (s.points.get(key) or {}).get("enum") or []
+        if not enum and r.get("enum") is not None:
+            enum = [x.strip() for x in (hstr(r.get("enum")) or "").split(",") if x.strip()]
+            if enum:
+                s.points[key] = {"enum": enum}
         if txt in enum:
             return enum.index(txt), None
         v, err = ed.finite_number(txt)

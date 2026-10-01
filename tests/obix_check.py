@@ -42,7 +42,9 @@ async def main():
     d = Drv()
     await d.start()
     await d.call("hello")
-    r, _ = await d.call("configure", settings={"stations": info["devices"]})
+    SETTINGS = {"stations": info["devices"]}
+    EXPECT = lambda nw: nw[1]
+    r, _ = await d.call("configure", settings=SETTINGS)
     assert r["ok"], r
     r, ev = await d.call("discover")
     devices = [e["data"] for e in ev if e["event"] == "device"]
@@ -66,8 +68,25 @@ async def main():
                 n, w = by[v["point"]]
                 if n is None or not ok_value(w, v["v"]):
                     problems.append(f"round {rnd} {dev['name']} {n}: got {v['v']} ({v.get('error')}), want {w}")
-    print(json.dumps({"pass": not problems, "devices": len(devices), "problems": problems[:30]}))
+    # A restarted driver has no browse memory: reads must still give enum values
     d.p.kill()
+    d2 = Drv()
+    await d2.start()
+    await d2.call("hello")
+    await d2.call("configure", settings=SETTINGS)
+    for dev in devices:
+        by = names.get(dev["key"]) or {}
+        r, _ = await d2.call("read", device=dev, points=list(by), rate=0)
+        if not r["ok"]:
+            problems.append(f"after restart {dev['name']}: {r['error']}")
+            continue
+        for v in r["result"]["values"]:
+            n = by[v["point"]] if not isinstance(by[v["point"]], tuple) else by[v["point"]][0]
+            w = EXPECT(by[v["point"]])
+            if not ok_value(w, v["v"]):
+                problems.append(f"after restart {dev['name']} {n}: got {v['v']} ({v.get('error')}), want {w}")
+    d2.p.kill()
+    print(json.dumps({"pass": not problems, "devices": len(devices), "problems": problems[:30]}))
     sys.exit(0 if not problems else 1)
 
 

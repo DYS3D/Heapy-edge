@@ -346,6 +346,16 @@ class Driver(ed.BaseDriver):
                 continue
             answered, misses = True, 0
             for p, el in zip(part, items):
+                if tag(el) == "enum" and p not in s.states and el.get("range"):
+                    # state names were learned at browse time; a restarted driver has none,
+                    # so fetch the range once (the reply says where it is) and keep it
+                    rp = s.path_of(el.get("range"), s.base + p)
+                    if rp:
+                        try:
+                            rng = await s.get(rp)
+                            s.states[p] = [c.get("name") for c in rng if c.get("name")]
+                        except (NoAnswer, DriverError):
+                            s.states[p] = []  # don't ask again every read
                 res[p] = value_of(el, s.states.get(p))
         if not answered:
             raise DriverError("timeout", f"{s.name}: {dead or 'no answer'}")

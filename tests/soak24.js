@@ -77,7 +77,9 @@ const PLANS = {
     rate: async lab => { const st = await lab.simctl({ cmd: 'stats' }); const w = Object.entries(st.devices).sort((a, b) => b[1].max_rate - a[1].max_rate)[0]; return [w[0], w[1].max_rate, 12]; },
   },
   snmp: {
-    lab: { kind: 'snmp', ips: 12, snmp: { agents: 6, v3: true } }, key: n => `snmp://${n}`,
+    // 99999.1.2.0 (text) and .5.0 (missing) are meant to error; v1 agents (every third) have no Counter64 (.3.0)
+    lab: { kind: 'snmp', ips: 12, snmp: { agents: 6, v3: true }, ignorePoint: k => /99999\.1\.(2|5)\.0$/.test(k) || (/99999\.1\.3\.0$/.test(k) && /ups-0[36]\//.test(k)) },
+    key: n => `snmp://${n}`,
     cycle: [
       [2, 'agent off', 5, ...F('ups-02', 'offline'), ['ups-02']],
       [9, 'agent reboots', 2, ...F('ups-04', 'reboot', 60), ['ups-04']],
