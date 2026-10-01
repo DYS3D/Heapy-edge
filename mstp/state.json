@@ -1,0 +1,462 @@
+{
+ "start": 1790850913357,
+ "end": 1790937313357,
+ "faults": [
+  {
+   "device": "bacnet://30004",
+   "from": 1790851037798,
+   "to": 1790851338104,
+   "why": "MS/TP device 4 off"
+  },
+  {
+   "device": null,
+   "from": 1790851638404,
+   "to": 1790852239022,
+   "why": "trunk noise 5 bytes/s"
+  },
+  {
+   "device": null,
+   "from": 1790852359138,
+   "to": 1790852959759,
+   "why": "trunk loses 0.02% of bytes"
+  },
+  {
+   "device": "*",
+   "from": 1790853320126,
+   "to": 1790853380182,
+   "why": "box cable pulled"
+  },
+  {
+   "device": "bacnet://30004",
+   "from": 1790854641576,
+   "to": 1790854941887,
+   "why": "MS/TP device 4 off"
+  },
+  {
+   "device": null,
+   "from": 1790855242190,
+   "to": 1790855842809,
+   "why": "trunk noise 5 bytes/s"
+  },
+  {
+   "device": null,
+   "from": 1790855722686,
+   "to": 1790856323295,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1790855962926,
+   "to": 1790856563543,
+   "why": "trunk loses 0.02% of bytes"
+  },
+  {
+   "device": "*",
+   "from": 1790856913900,
+   "to": 1790856973955,
+   "why": "box cable pulled"
+  },
+  {
+   "device": "bacnet://30004",
+   "from": 1790858235335,
+   "to": 1790858535643,
+   "why": "MS/TP device 4 off"
+  },
+  {
+   "device": null,
+   "from": 1790858835944,
+   "to": 1790859436563,
+   "why": "trunk noise 5 bytes/s"
+  },
+  {
+   "device": null,
+   "from": 1790859556679,
+   "to": 1790860157301,
+   "why": "trunk loses 0.02% of bytes"
+  },
+  {
+   "device": "*",
+   "from": 1790860517666,
+   "to": 1790860577719,
+   "why": "box cable pulled"
+  },
+  {
+   "device": null,
+   "from": 1790860517667,
+   "to": 1790860697837,
+   "why": "server hangs"
+  },
+  {
+   "device": "bacnet://30004",
+   "from": 1790861839093,
+   "to": 1790862139403,
+   "why": "MS/TP device 4 off"
+  },
+  {
+   "device": null,
+   "from": 1790862439708,
+   "to": 1790863040326,
+   "why": "trunk noise 5 bytes/s"
+  },
+  {
+   "device": null,
+   "from": 1790862920201,
+   "to": 1790863520814,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1790863160441,
+   "to": 1790863761081,
+   "why": "trunk loses 0.02% of bytes"
+  },
+  {
+   "device": "*",
+   "from": 1790863520814,
+   "to": 1790863701017,
+   "why": "driver killed"
+  },
+  {
+   "device": "*",
+   "from": 1790864121447,
+   "to": 1790864181502,
+   "why": "box cable pulled"
+  },
+  {
+   "device": "bacnet://30004",
+   "from": 1790865442892,
+   "to": 1790865743205,
+   "why": "MS/TP device 4 off"
+  },
+  {
+   "device": null,
+   "from": 1790866033502,
+   "to": 1790866634122,
+   "why": "trunk noise 5 bytes/s"
+  },
+  {
+   "device": null,
+   "from": 1790866754239,
+   "to": 1790867354862,
+   "why": "trunk loses 0.02% of bytes"
+  },
+  {
+   "device": "*",
+   "from": 1790867715228,
+   "to": 1790867775282,
+   "why": "box cable pulled"
+  },
+  {
+   "device": "bacnet://30004",
+   "from": 1790869036671,
+   "to": 1790869336979,
+   "why": "MS/TP device 4 off"
+  },
+  {
+   "device": null,
+   "from": 1790869637288,
+   "to": 1790870237913,
+   "why": "trunk noise 5 bytes/s"
+  },
+  {
+   "device": null,
+   "from": 1790870117787,
+   "to": 1790870718398,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1790870358030,
+   "to": 1790870958645,
+   "why": "trunk loses 0.02% of bytes"
+  },
+  {
+   "device": "*",
+   "from": 1790871018698,
+   "to": 1790871522631,
+   "why": "test machine restart"
+  },
+  {
+   "device": "*",
+   "from": 1790871317153,
+   "to": 1790871377211,
+   "why": "box cable pulled"
+  },
+  {
+   "device": null,
+   "from": 1790871317155,
+   "to": 1790871497330,
+   "why": "server hangs"
+  },
+  {
+   "device": "*",
+   "from": 1790871617454,
+   "to": 1790871776767,
+   "why": "box killed"
+  },
+  {
+   "device": "bacnet://30004",
+   "from": 1790872637775,
+   "to": 1790872938086,
+   "why": "MS/TP device 4 off"
+  },
+  {
+   "device": null,
+   "from": 1790873238391,
+   "to": 1790873839014,
+   "why": "trunk noise 5 bytes/s"
+  },
+  {
+   "device": null,
+   "from": 1790873959129,
+   "to": 1790874559747,
+   "why": "trunk loses 0.02% of bytes"
+  },
+  {
+   "device": "*",
+   "from": 1790874920112,
+   "to": 1790874980171,
+   "why": "box cable pulled"
+  },
+  {
+   "device": "bacnet://30004",
+   "from": 1790876241579,
+   "to": 1790876541889,
+   "why": "MS/TP device 4 off"
+  }
+ ],
+ "hourly": [
+  {
+   "hour": 1,
+   "at": "2026-10-01T11:35:21.393Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 97,
+   "driver_rss_mb": 33,
+   "samples": 14470,
+   "backlog": 156,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 1352,
+    "read_errors": 16,
+    "samples": 14470,
+    "cov_samples": 0,
+    "last_read": 1790854518997,
+    "missed_slots": 0,
+    "point_errors": 0,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 120
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 2,
+   "at": "2026-10-01T12:35:15.167Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 104,
+   "driver_rss_mb": 33,
+   "samples": 28726,
+   "backlog": 96,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 2540,
+    "read_errors": 34,
+    "samples": 28726,
+    "cov_samples": 0,
+    "last_read": 1790858114951,
+    "missed_slots": 0,
+    "point_errors": 0,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 252
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 3,
+   "at": "2026-10-01T13:35:18.928Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 105,
+   "driver_rss_mb": 33,
+   "samples": 43066,
+   "backlog": 120,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 3735,
+    "read_errors": 52,
+    "samples": 43066,
+    "cov_samples": 0,
+    "last_read": 1790861718215,
+    "missed_slots": 0,
+    "point_errors": 0,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 384
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 4,
+   "at": "2026-10-01T14:35:22.727Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 107,
+   "driver_rss_mb": 32,
+   "samples": 57358,
+   "backlog": 132,
+   "driver_restarts": 1,
+   "poll": {
+    "reads": 4926,
+    "read_errors": 73,
+    "samples": 57358,
+    "cov_samples": 0,
+    "last_read": 1790865322681,
+    "missed_slots": 0,
+    "point_errors": 0,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 540,
+    "late_reads": 12
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 5,
+   "at": "2026-10-01T15:35:16.504Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 105,
+   "driver_rss_mb": 32,
+   "samples": 71614,
+   "backlog": 72,
+   "driver_restarts": 1,
+   "poll": {
+    "reads": 6114,
+    "read_errors": 91,
+    "samples": 71614,
+    "cov_samples": 0,
+    "last_read": 1790868915407,
+    "missed_slots": 0,
+    "point_errors": 0,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 672,
+    "late_reads": 12
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 6,
+   "at": "2026-10-01T16:35:17.586Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 92,
+   "driver_rss_mb": 33,
+   "samples": 85330,
+   "backlog": 120,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 307,
+    "read_errors": 0,
+    "samples": 3600,
+    "cov_samples": 0,
+    "last_read": 1790872515697,
+    "missed_slots": 0,
+    "point_errors": 0,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 7,
+   "at": "2026-10-01T17:35:21.407Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 101,
+   "driver_rss_mb": 33,
+   "samples": 99658,
+   "backlog": 156,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 1502,
+    "read_errors": 18,
+    "samples": 17940,
+    "cov_samples": 0,
+    "last_read": 1790876119215,
+    "missed_slots": 0,
+    "point_errors": 0,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 132
+   },
+   "lanes_behind": []
+  }
+ ],
+ "outages": [
+  {
+   "from": 1790871018698,
+   "to": 1790871222631
+  }
+ ],
+ "done": {
+  "0:MS/TP device 4 off": true,
+  "0:trunk noise 5 bytes/s": true,
+  "0:trunk loses 0.02% of bytes": true,
+  "0:box cable pulled": true,
+  "1:MS/TP device 4 off": true,
+  "1:trunk noise 5 bytes/s": true,
+  "1:server500": true,
+  "1:trunk loses 0.02% of bytes": true,
+  "1:box cable pulled": true,
+  "2:MS/TP device 4 off": true,
+  "2:trunk noise 5 bytes/s": true,
+  "2:trunk loses 0.02% of bytes": true,
+  "2:box cable pulled": true,
+  "2:serverhang": true,
+  "3:MS/TP device 4 off": true,
+  "3:trunk noise 5 bytes/s": true,
+  "3:server500": true,
+  "3:trunk loses 0.02% of bytes": true,
+  "3:killdriver": true,
+  "3:box cable pulled": true,
+  "4:MS/TP device 4 off": true,
+  "4:trunk noise 5 bytes/s": true,
+  "4:trunk loses 0.02% of bytes": true,
+  "4:box cable pulled": true,
+  "5:MS/TP device 4 off": true,
+  "5:trunk noise 5 bytes/s": true,
+  "5:server500": true,
+  "5:trunk loses 0.02% of bytes": true,
+  "5:box cable pulled": true,
+  "5:serverhang": true,
+  "5:killbox": true,
+  "6:MS/TP device 4 off": true,
+  "6:trunk noise 5 bytes/s": true,
+  "6:trunk loses 0.02% of bytes": true,
+  "6:box cable pulled": true,
+  "7:MS/TP device 4 off": true
+ },
+ "lastBeat": 1790876712057,
+ "restarts_expected": {
+  "box": 1,
+  "driver": 1
+ }
+}
