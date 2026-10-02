@@ -1,517 +1,253 @@
 {
- "start": 1790897948277,
- "end": 1790984348277,
+ "start": 1790938371031,
+ "end": 1791024771031,
  "faults": [
   {
    "device": "haystack://hs-01",
-   "from": 1790898069768,
-   "to": 1790898370084,
+   "from": 1790938492552,
+   "to": 1790938792873,
    "why": "server off"
   },
   {
    "device": null,
-   "from": 1790898670368,
-   "to": 1790899270965,
+   "from": 1790939093153,
+   "to": 1790939693738,
    "why": "15% HTTP 500"
   },
   {
    "device": null,
-   "from": 1790899391071,
-   "to": 1790899991691,
+   "from": 1790939813851,
+   "to": 1790940414464,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790900111805,
-   "to": 1790900171861,
+   "from": 1790940534582,
+   "to": 1790940594630,
    "why": "login tokens expire"
   },
   {
    "device": "haystack://hs-04",
-   "from": 1790900352032,
-   "to": 1790900412084,
+   "from": 1790940774841,
+   "to": 1790940834895,
    "why": "server hangs"
   },
   {
    "device": null,
-   "from": 1790901132778,
-   "to": 1790901433080,
+   "from": 1790941555584,
+   "to": 1790941855881,
    "why": "10% broken replies"
   },
   {
    "device": "haystack://hs-01",
-   "from": 1790901673361,
-   "to": 1790901973673,
+   "from": 1790942096174,
+   "to": 1790942396558,
    "why": "server off"
   },
   {
    "device": null,
-   "from": 1790902273988,
-   "to": 1790902874580,
+   "from": 1790942696843,
+   "to": 1790943297449,
    "why": "15% HTTP 500"
   },
   {
    "device": null,
-   "from": 1790902754459,
-   "to": 1790903355040,
+   "from": 1790943177304,
+   "to": 1790943777918,
    "why": "server errors"
   },
   {
    "device": null,
-   "from": 1790902994692,
-   "to": 1790903595260,
+   "from": 1790943417567,
+   "to": 1790944018127,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790903715378,
-   "to": 1790903775433,
+   "from": 1790944138249,
+   "to": 1790944198290,
    "why": "login tokens expire"
   },
   {
    "device": "haystack://hs-04",
-   "from": 1790903955591,
-   "to": 1790904015647,
+   "from": 1790944378456,
+   "to": 1790944438511,
    "why": "server hangs"
   },
   {
    "device": null,
-   "from": 1790904736344,
-   "to": 1790905036643,
+   "from": 1790945159245,
+   "to": 1790945459529,
    "why": "10% broken replies"
   },
   {
    "device": "haystack://hs-01",
-   "from": 1790905276934,
-   "to": 1790905577248,
+   "from": 1790945699808,
+   "to": 1790946000138,
    "why": "server off"
   },
   {
    "device": null,
-   "from": 1790905877557,
-   "to": 1790906478138,
+   "from": 1790946300416,
+   "to": 1790946901001,
    "why": "15% HTTP 500"
   },
   {
    "device": null,
-   "from": 1790906598256,
-   "to": 1790907198818,
+   "from": 1790947011108,
+   "to": 1790947611776,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790907308934,
-   "to": 1790907368981,
+   "from": 1790947731881,
+   "to": 1790947791937,
    "why": "login tokens expire"
   },
   {
    "device": "haystack://hs-04",
-   "from": 1790907549147,
-   "to": 1790907609202,
+   "from": 1790947972173,
+   "to": 1790948032221,
    "why": "server hangs"
   },
   {
    "device": null,
-   "from": 1790907549147,
-   "to": 1790907729309,
+   "from": 1790947972174,
+   "to": 1790948152338,
    "why": "server hangs"
   },
   {
    "device": null,
-   "from": 1790908329926,
-   "to": 1790908630189,
+   "from": 1790948752926,
+   "to": 1790949053189,
    "why": "10% broken replies"
   },
   {
    "device": "haystack://hs-01",
-   "from": 1790908870456,
-   "to": 1790909170778,
+   "from": 1790949293470,
+   "to": 1790949593806,
    "why": "server off"
   },
   {
    "device": null,
-   "from": 1790909471035,
-   "to": 1790910071591,
+   "from": 1790949894081,
+   "to": 1790950494662,
    "why": "15% HTTP 500"
   },
   {
    "device": null,
-   "from": 1790909951470,
-   "to": 1790910552053,
+   "from": 1790950374537,
+   "to": 1790950975141,
    "why": "server errors"
   },
   {
    "device": null,
-   "from": 1790910191708,
-   "to": 1790910792307,
+   "from": 1790950614765,
+   "to": 1790951215379,
    "why": "5% network loss"
   },
   {
    "device": "*",
-   "from": 1790910552053,
-   "to": 1790910732246,
+   "from": 1790950975141,
+   "to": 1790951155310,
    "why": "driver killed"
   },
   {
    "device": null,
-   "from": 1790910912425,
-   "to": 1790910972462,
+   "from": 1790951335498,
+   "to": 1790951395551,
    "why": "login tokens expire"
   },
   {
    "device": "haystack://hs-04",
-   "from": 1790911152607,
-   "to": 1790911212662,
+   "from": 1790951575716,
+   "to": 1790951635772,
    "why": "server hangs"
   },
   {
    "device": null,
-   "from": 1790911933407,
-   "to": 1790912233707,
+   "from": 1790952356612,
+   "to": 1790952656879,
    "why": "10% broken replies"
   },
   {
    "device": "haystack://hs-01",
-   "from": 1790912473968,
-   "to": 1790912774306,
+   "from": 1790952897145,
+   "to": 1790953197525,
    "why": "server off"
   },
   {
    "device": null,
-   "from": 1790913074596,
-   "to": 1790913675191,
+   "from": 1790953497819,
+   "to": 1790954098388,
    "why": "15% HTTP 500"
   },
   {
    "device": null,
-   "from": 1790913795293,
-   "to": 1790914395926,
+   "from": 1790954218497,
+   "to": 1790954819146,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790914516040,
-   "to": 1790914576086,
+   "from": 1790954939262,
+   "to": 1790954999312,
    "why": "login tokens expire"
   },
   {
    "device": "haystack://hs-04",
-   "from": 1790914756269,
-   "to": 1790914816315,
+   "from": 1790955179486,
+   "to": 1790955239535,
    "why": "server hangs"
   },
   {
    "device": null,
-   "from": 1790915537029,
-   "to": 1790915837323,
+   "from": 1790955960233,
+   "to": 1790956260527,
    "why": "10% broken replies"
   },
   {
    "device": "haystack://hs-01",
-   "from": 1790916077594,
-   "to": 1790916377912,
+   "from": 1790956500793,
+   "to": 1790956801100,
    "why": "server off"
   },
   {
    "device": null,
-   "from": 1790916678200,
-   "to": 1790917278785,
+   "from": 1790957091369,
+   "to": 1790957691976,
    "why": "15% HTTP 500"
   },
   {
    "device": null,
-   "from": 1790917148674,
-   "to": 1790917749266,
+   "from": 1790957571854,
+   "to": 1790958172442,
    "why": "server errors"
   },
   {
    "device": null,
-   "from": 1790917388891,
-   "to": 1790917989524,
+   "from": 1790957812074,
+   "to": 1790958412701,
    "why": "5% network loss"
-  },
-  {
-   "device": "*",
-   "from": 1790918049582,
-   "to": 1790918419506,
-   "why": "test machine restart"
-  },
-  {
-   "device": null,
-   "from": 1790918120974,
-   "to": 1790918181014,
-   "why": "login tokens expire"
-  },
-  {
-   "device": "haystack://hs-04",
-   "from": 1790918351175,
-   "to": 1790918411226,
-   "why": "server hangs"
-  },
-  {
-   "device": null,
-   "from": 1790918351176,
-   "to": 1790918531344,
-   "why": "server hangs"
-  },
-  {
-   "device": "*",
-   "from": 1790918651463,
-   "to": 1790918802646,
-   "why": "box killed"
-  },
-  {
-   "device": null,
-   "from": 1790919132945,
-   "to": 1790919433253,
-   "why": "10% broken replies"
-  },
-  {
-   "device": "haystack://hs-01",
-   "from": 1790919673532,
-   "to": 1790919973843,
-   "why": "server off"
-  },
-  {
-   "device": null,
-   "from": 1790920274130,
-   "to": 1790920874717,
-   "why": "15% HTTP 500"
-  },
-  {
-   "device": null,
-   "from": 1790920994813,
-   "to": 1790921595421,
-   "why": "5% network loss"
-  },
-  {
-   "device": null,
-   "from": 1790921715543,
-   "to": 1790921775600,
-   "why": "login tokens expire"
-  },
-  {
-   "device": "haystack://hs-04",
-   "from": 1790921955756,
-   "to": 1790922015800,
-   "why": "server hangs"
-  },
-  {
-   "device": null,
-   "from": 1790922736493,
-   "to": 1790923036781,
-   "why": "10% broken replies"
-  },
-  {
-   "device": "haystack://hs-01",
-   "from": 1790923277029,
-   "to": 1790923577373,
-   "why": "server off"
-  },
-  {
-   "device": null,
-   "from": 1790923877635,
-   "to": 1790924478210,
-   "why": "15% HTTP 500"
-  },
-  {
-   "device": "*",
-   "from": 1790924057806,
-   "to": 1790924777921,
-   "why": "clock +5 min"
-  },
-  {
-   "device": null,
-   "from": 1790924358084,
-   "to": 1790924958668,
-   "why": "server errors"
-  },
-  {
-   "device": null,
-   "from": 1790924588306,
-   "to": 1790925188911,
-   "why": "5% network loss"
-  },
-  {
-   "device": "*",
-   "from": 1790924948642,
-   "to": 1790925128836,
-   "why": "driver killed"
-  },
-  {
-   "device": null,
-   "from": 1790925309031,
-   "to": 1790925369088,
-   "why": "login tokens expire"
-  },
-  {
-   "device": "haystack://hs-04",
-   "from": 1790925549253,
-   "to": 1790925609308,
-   "why": "server hangs"
-  },
-  {
-   "device": null,
-   "from": 1790926330002,
-   "to": 1790926630272,
-   "why": "10% broken replies"
-  },
-  {
-   "device": "haystack://hs-01",
-   "from": 1790926870538,
-   "to": 1790927170847,
-   "why": "server off"
-  },
-  {
-   "device": null,
-   "from": 1790927471113,
-   "to": 1790928071701,
-   "why": "15% HTTP 500"
-  },
-  {
-   "device": null,
-   "from": 1790928191807,
-   "to": 1790928792405,
-   "why": "5% network loss"
-  },
-  {
-   "device": null,
-   "from": 1790928912526,
-   "to": 1790928972579,
-   "why": "login tokens expire"
-  },
-  {
-   "device": "haystack://hs-04",
-   "from": 1790929152749,
-   "to": 1790929212801,
-   "why": "server hangs"
-  },
-  {
-   "device": null,
-   "from": 1790929152749,
-   "to": 1790929332900,
-   "why": "server hangs"
-  },
-  {
-   "device": null,
-   "from": 1790929933509,
-   "to": 1790930233778,
-   "why": "10% broken replies"
-  },
-  {
-   "device": "haystack://hs-01",
-   "from": 1790930474063,
-   "to": 1790930774354,
-   "why": "server off"
-  },
-  {
-   "device": null,
-   "from": 1790931074634,
-   "to": 1790931675208,
-   "why": "15% HTTP 500"
-  },
-  {
-   "device": null,
-   "from": 1790931555085,
-   "to": 1790932155678,
-   "why": "server errors"
-  },
-  {
-   "device": null,
-   "from": 1790931795317,
-   "to": 1790932395925,
-   "why": "5% network loss"
-  },
-  {
-   "device": null,
-   "from": 1790932516037,
-   "to": 1790932576091,
-   "why": "login tokens expire"
-  },
-  {
-   "device": "haystack://hs-04",
-   "from": 1790932756250,
-   "to": 1790932816299,
-   "why": "server hangs"
-  },
-  {
-   "device": null,
-   "from": 1790933537005,
-   "to": 1790933837307,
-   "why": "10% broken replies"
-  },
-  {
-   "device": "haystack://hs-01",
-   "from": 1790934077590,
-   "to": 1790934377903,
-   "why": "server off"
-  },
-  {
-   "device": null,
-   "from": 1790934678185,
-   "to": 1790935278775,
-   "why": "15% HTTP 500"
-  },
-  {
-   "device": null,
-   "from": 1790935388853,
-   "to": 1790935989451,
-   "why": "5% network loss"
-  },
-  {
-   "device": null,
-   "from": 1790936109571,
-   "to": 1790936169626,
-   "why": "login tokens expire"
-  },
-  {
-   "device": "haystack://hs-04",
-   "from": 1790936349790,
-   "to": 1790936409845,
-   "why": "server hangs"
-  },
-  {
-   "device": null,
-   "from": 1790937130570,
-   "to": 1790937430876,
-   "why": "10% broken replies"
-  },
-  {
-   "device": "haystack://hs-01",
-   "from": 1790937671162,
-   "to": 1790937971495,
-   "why": "server off"
-  },
-  {
-   "device": "*",
-   "from": 1790938221741,
-   "to": 1790938595424,
-   "why": "test machine restart"
-  },
-  {
-   "device": null,
-   "from": 1790938296728,
-   "to": null,
-   "why": "15% HTTP 500"
   }
  ],
  "hourly": [
   {
    "hour": 1,
-   "at": "2026-10-02T00:39:13.205Z",
+   "at": "2026-10-02T11:52:56.004Z",
    "gaps": 0,
    "gap_examples": [],
-   "box_rss_mb": 95,
+   "box_rss_mb": 96,
    "driver_rss_mb": 25,
    "samples": 6426,
    "backlog": 0,
    "driver_restarts": 0,
    "poll": {
-    "reads": 279,
-    "read_errors": 5,
+    "reads": 273,
+    "read_errors": 6,
     "samples": 6426,
     "cov_samples": 0,
-    "last_read": 1790901546540,
+    "last_read": 1790941949661,
     "missed_slots": 0,
     "point_errors": 714,
     "bad_values": 0,
@@ -524,22 +260,22 @@
   },
   {
    "hour": 2,
-   "at": "2026-10-02T01:39:16.775Z",
+   "at": "2026-10-02T12:52:59.658Z",
    "gaps": 0,
    "gap_examples": [],
-   "box_rss_mb": 95,
+   "box_rss_mb": 99,
    "driver_rss_mb": 25,
-   "samples": 12771,
-   "backlog": 27,
+   "samples": 12744,
+   "backlog": 0,
    "driver_restarts": 0,
    "poll": {
-    "reads": 514,
-    "read_errors": 11,
-    "samples": 12771,
+    "reads": 507,
+    "read_errors": 12,
+    "samples": 12744,
     "cov_samples": 0,
-    "last_read": 1790905154894,
+    "last_read": 1790945549511,
     "missed_slots": 0,
-    "point_errors": 1419,
+    "point_errors": 1416,
     "bad_values": 0,
     "clock_jumps": 0,
     "relocated": 0,
@@ -550,22 +286,22 @@
   },
   {
    "hour": 3,
-   "at": "2026-10-02T02:39:10.306Z",
+   "at": "2026-10-02T13:52:53.322Z",
    "gaps": 0,
    "gap_examples": [],
    "box_rss_mb": 99,
    "driver_rss_mb": 25,
-   "samples": 19089,
+   "samples": 19062,
    "backlog": 27,
    "driver_restarts": 0,
    "poll": {
-    "reads": 748,
-    "read_errors": 16,
-    "samples": 19089,
+    "reads": 741,
+    "read_errors": 18,
+    "samples": 19062,
     "cov_samples": 0,
-    "last_read": 1790908746639,
+    "last_read": 1790949149667,
     "missed_slots": 0,
-    "point_errors": 2121,
+    "point_errors": 2118,
     "bad_values": 0,
     "clock_jumps": 0,
     "relocated": 0,
@@ -576,41 +312,22 @@
   },
   {
    "hour": 4,
-   "at": "2026-10-02T03:39:13.836Z",
-   "gaps": 20,
-   "gap_examples": [
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790910929348,
-     "to": 1790912009348,
-     "gap_s": 1080
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu2.mode",
-     "from": 1790910929348,
-     "to": 1790912009348,
-     "gap_s": 1080
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu3.mode",
-     "from": 1790910929348,
-     "to": 1790912009348,
-     "gap_s": 1080
-    }
-   ],
-   "box_rss_mb": 102,
-   "driver_rss_mb": 24,
-   "samples": 24954,
-   "backlog": 23,
+   "at": "2026-10-02T14:52:57.005Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 101,
+   "driver_rss_mb": 25,
+   "samples": 25380,
+   "backlog": 27,
    "driver_restarts": 1,
    "poll": {
-    "reads": 983,
-    "read_errors": 21,
-    "samples": 24954,
+    "reads": 975,
+    "read_errors": 24,
+    "samples": 25380,
     "cov_samples": 0,
-    "last_read": 1790912346834,
+    "last_read": 1790952749399,
     "missed_slots": 0,
-    "point_errors": 3306,
+    "point_errors": 2820,
     "bad_values": 0,
     "clock_jumps": 0,
     "relocated": 0,
@@ -621,41 +338,22 @@
   },
   {
    "hour": 5,
-   "at": "2026-10-02T04:39:17.445Z",
-   "gaps": 24,
-   "gap_examples": [
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790912069348,
-     "to": 1790912309348,
-     "gap_s": 240
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790912969348,
-     "to": 1790915609348,
-     "gap_s": 2640
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu2.mode",
-     "from": 1790912069348,
-     "to": 1790912309348,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 102,
-   "driver_rss_mb": 24,
-   "samples": 30359,
-   "backlog": 46,
+   "at": "2026-10-02T15:53:00.643Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 101,
+   "driver_rss_mb": 25,
+   "samples": 31698,
+   "backlog": 0,
    "driver_restarts": 1,
    "poll": {
-    "reads": 1218,
-    "read_errors": 27,
-    "samples": 30359,
+    "reads": 1209,
+    "read_errors": 30,
+    "samples": 31698,
     "cov_samples": 0,
-    "last_read": 1790915955030,
+    "last_read": 1790956349459,
     "missed_slots": 0,
-    "point_errors": 4951,
+    "point_errors": 3522,
     "bad_values": 0,
     "clock_jumps": 0,
     "relocated": 0,
@@ -663,287 +361,9 @@
     "retries": 300
    },
    "lanes_behind": []
-  },
-  {
-   "hour": 6,
-   "at": "2026-10-02T05:39:13.384Z",
-   "gaps": 36,
-   "gap_examples": [
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790915669348,
-     "to": 1790915909348,
-     "gap_s": 240
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790916569348,
-     "to": 1790917889348,
-     "gap_s": 1320
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790919029348,
-     "to": 1790919209348,
-     "gap_s": 180
-    }
-   ],
-   "box_rss_mb": 85,
-   "driver_rss_mb": 25,
-   "samples": 35706,
-   "backlog": 0,
-   "driver_restarts": 0,
-   "poll": {
-    "reads": 98,
-    "read_errors": 0,
-    "samples": 1380,
-    "cov_samples": 0,
-    "last_read": 1790919546951,
-    "missed_slots": 0,
-    "point_errors": 427,
-    "bad_values": 0,
-    "clock_jumps": 0,
-    "relocated": 0,
-    "store_errors": 0
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 7,
-   "at": "2026-10-02T06:39:16.893Z",
-   "gaps": 24,
-   "gap_examples": [
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790919269348,
-     "to": 1790919509348,
-     "gap_s": 240
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790920169348,
-     "to": 1790922809348,
-     "gap_s": 2640
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu2.mode",
-     "from": 1790919269348,
-     "to": 1790919509348,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 94,
-   "driver_rss_mb": 25,
-   "samples": 41111,
-   "backlog": 23,
-   "driver_restarts": 0,
-   "poll": {
-    "reads": 333,
-    "read_errors": 6,
-    "samples": 6785,
-    "cov_samples": 0,
-    "last_read": 1790923154647,
-    "missed_slots": 0,
-    "point_errors": 2072,
-    "bad_values": 0,
-    "clock_jumps": 0,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 60
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 8,
-   "at": "2026-10-02T07:39:10.390Z",
-   "gaps": 40,
-   "gap_examples": [
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790922869348,
-     "to": 1790923109348,
-     "gap_s": 240
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790923769348,
-     "to": 1790923889348,
-     "gap_s": 120
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790925329348,
-     "to": 1790926409348,
-     "gap_s": 1080
-    }
-   ],
-   "box_rss_mb": 102,
-   "driver_rss_mb": 24,
-   "samples": 46677,
-   "backlog": 23,
-   "driver_restarts": 1,
-   "poll": {
-    "reads": 579,
-    "read_errors": 11,
-    "samples": 12351,
-    "cov_samples": 0,
-    "last_read": 1790926746761,
-    "missed_slots": 0,
-    "point_errors": 3766,
-    "bad_values": 0,
-    "clock_jumps": 2,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 120
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 9,
-   "at": "2026-10-02T08:39:13.909Z",
-   "gaps": 24,
-   "gap_examples": [
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790926469348,
-     "to": 1790926709348,
-     "gap_s": 240
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790927369348,
-     "to": 1790930009348,
-     "gap_s": 2640
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu2.mode",
-     "from": 1790926469348,
-     "to": 1790926709348,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 103,
-   "driver_rss_mb": 24,
-   "samples": 52082,
-   "backlog": 23,
-   "driver_restarts": 1,
-   "poll": {
-    "reads": 814,
-    "read_errors": 16,
-    "samples": 17756,
-    "cov_samples": 0,
-    "last_read": 1790930346866,
-    "missed_slots": 0,
-    "point_errors": 5411,
-    "bad_values": 0,
-    "clock_jumps": 2,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 180
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 10,
-   "at": "2026-10-02T09:39:17.433Z",
-   "gaps": 24,
-   "gap_examples": [
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790930069348,
-     "to": 1790930309348,
-     "gap_s": 240
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790930969348,
-     "to": 1790933609348,
-     "gap_s": 2640
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu2.mode",
-     "from": 1790930069348,
-     "to": 1790930309348,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 103,
-   "driver_rss_mb": 24,
-   "samples": 57487,
-   "backlog": 46,
-   "driver_restarts": 1,
-   "poll": {
-    "reads": 1049,
-    "read_errors": 23,
-    "samples": 23161,
-    "cov_samples": 0,
-    "last_read": 1790933955004,
-    "missed_slots": 0,
-    "point_errors": 7056,
-    "bad_values": 0,
-    "clock_jumps": 2,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 270
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 11,
-   "at": "2026-10-02T10:39:11.005Z",
-   "gaps": 24,
-   "gap_examples": [
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790933669348,
-     "to": 1790933909348,
-     "gap_s": 240
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu1.mode",
-     "from": 1790934569348,
-     "to": 1790937209348,
-     "gap_s": 2640
-    },
-    {
-     "point": "haystack://hs-01/p:hs-01:ahu2.mode",
-     "from": 1790933669348,
-     "to": 1790933909348,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 103,
-   "driver_rss_mb": 25,
-   "samples": 62869,
-   "backlog": 23,
-   "driver_restarts": 1,
-   "poll": {
-    "reads": 1283,
-    "read_errors": 28,
-    "samples": 28543,
-    "cov_samples": 0,
-    "last_read": 1790937546677,
-    "missed_slots": 0,
-    "point_errors": 8694,
-    "bad_values": 0,
-    "clock_jumps": 2,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 330
-   },
-   "lanes_behind": []
   }
  ],
- "outages": [
-  {
-   "from": 1790918049582,
-   "to": 1790918119506
-  },
-  {
-   "from": 1790938221741,
-   "to": 1790938295424
-  }
- ],
+ "outages": [],
  "done": {
   "0:server off": true,
   "0:15% HTTP 500": true,
@@ -982,53 +402,11 @@
   "5:server off": true,
   "5:15% HTTP 500": true,
   "5:server500": true,
-  "5:5% network loss": true,
-  "5:login tokens expire": true,
-  "5:server hangs": true,
-  "5:serverhang": true,
-  "5:killbox": true,
-  "5:10% broken replies": true,
-  "6:server off": true,
-  "6:15% HTTP 500": true,
-  "6:5% network loss": true,
-  "6:login tokens expire": true,
-  "6:server hangs": true,
-  "6:10% broken replies": true,
-  "7:server off": true,
-  "7:15% HTTP 500": true,
-  "7:clock": true,
-  "7:server500": true,
-  "7:5% network loss": true,
-  "7:killdriver": true,
-  "7:login tokens expire": true,
-  "7:server hangs": true,
-  "7:10% broken replies": true,
-  "8:server off": true,
-  "8:15% HTTP 500": true,
-  "8:5% network loss": true,
-  "8:login tokens expire": true,
-  "8:server hangs": true,
-  "8:serverhang": true,
-  "8:10% broken replies": true,
-  "9:server off": true,
-  "9:15% HTTP 500": true,
-  "9:server500": true,
-  "9:5% network loss": true,
-  "9:login tokens expire": true,
-  "9:server hangs": true,
-  "9:10% broken replies": true,
-  "10:server off": true,
-  "10:15% HTTP 500": true,
-  "10:5% network loss": true,
-  "10:login tokens expire": true,
-  "10:server hangs": true,
-  "10:10% broken replies": true,
-  "11:server off": true,
-  "11:15% HTTP 500": true
+  "5:5% network loss": true
  },
- "lastBeat": 1790938356777,
+ "lastBeat": 1790958472764,
  "restarts_expected": {
-  "box": 1,
-  "driver": 2
+  "box": 0,
+  "driver": 1
  }
 }
