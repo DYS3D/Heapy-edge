@@ -82,3 +82,95 @@
 2026-10-02T05:09:09.266Z fault off: server errors
 2026-10-02T05:13:09.524Z fault off: 5% network loss
 2026-10-02T05:14:09.582Z segment finished; the next run continues from here
+2026-10-02T05:15:19.506Z resuming after 1 min away
+2026-10-02T05:15:19.779Z Haystack site: 4 servers
+2026-10-02T05:15:20.974Z running until 2026-10-02T23:39:08.277Z
+2026-10-02T05:15:20.974Z fault on: login tokens expire
+2026-10-02T05:16:21.014Z fault off: login tokens expire
+2026-10-02T05:19:11.175Z fault on: server hangs
+2026-10-02T05:19:11.176Z fault on: server hangs
+2026-10-02T05:20:11.226Z fault off: server hangs
+2026-10-02T05:22:11.344Z fault off: server hangs
+2026-10-02T05:24:11.463Z fault on: box killed
+2026-10-02T05:26:42.646Z fault off: box killed
+2026-10-02T05:32:12.945Z fault on: 10% broken replies
+2026-10-02T05:37:13.253Z fault off: 10% broken replies
+2026-10-02T05:39:13.416Z hour 6: 36 gaps, box 85 MB, driver 25 MB
+2026-10-02T05:41:13.532Z fault on: server off
+2026-10-02T05:46:13.843Z fault off: server off
+2026-10-02T05:51:14.130Z fault on: 15% HTTP 500
+2026-10-02T06:01:14.717Z fault off: 15% HTTP 500
+2026-10-02T06:03:14.813Z fault on: 5% network loss
+2026-10-02T06:13:15.421Z fault off: 5% network loss
+2026-10-02T06:15:15.543Z fault on: login tokens expire
+2026-10-02T06:16:15.600Z fault off: login tokens expire
+2026-10-02T06:19:15.756Z fault on: server hangs
+2026-10-02T06:20:15.800Z fault off: server hangs
+2026-10-02T06:32:16.493Z fault on: 10% broken replies
+2026-10-02T06:37:16.781Z fault off: 10% broken replies
+2026-10-02T06:39:16.924Z hour 7: 24 gaps, box 94 MB, driver 25 MB
+2026-10-02T06:41:17.029Z fault on: server off
+2026-10-02T06:46:17.373Z fault off: server off
+2026-10-02T06:51:17.635Z fault on: 15% HTTP 500
+2026-10-02T06:54:17.806Z fault on: clock +5 min
+2026-10-02T06:56:17.921Z fault off: clock +5 min
+2026-10-02T06:59:18.084Z fault on: server errors
+2026-10-02T07:01:18.210Z fault off: 15% HTTP 500
+2026-10-02T07:03:08.306Z fault on: 5% network loss
+2026-10-02T07:09:08.642Z fault on: driver killed
+2026-10-02T07:09:18.668Z fault off: server errors
+2026-10-02T07:12:08.836Z fault off: driver killed
+2026-10-02T07:13:08.911Z fault off: 5% network loss
+2026-10-02T07:15:09.031Z fault on: login tokens expire
+2026-10-02T07:16:09.088Z fault off: login tokens expire
+2026-10-02T07:19:09.253Z fault on: server hangs
+2026-10-02T07:20:09.308Z fault off: server hangs
+2026-10-02T07:32:10.002Z fault on: 10% broken replies
+2026-10-02T07:37:10.272Z fault off: 10% broken replies
+2026-10-02T07:39:10.420Z hour 8: 40 gaps, box 102 MB, driver 24 MB
+2026-10-02T07:41:10.538Z fault on: server off
+2026-10-02T07:46:10.847Z fault off: server off
+2026-10-02T07:51:11.113Z fault on: 15% HTTP 500
+2026-10-02T08:01:11.701Z fault off: 15% HTTP 500
+2026-10-02T08:03:11.807Z fault on: 5% network loss
+2026-10-02T08:13:12.405Z fault off: 5% network loss
+2026-10-02T08:15:12.527Z fault on: login tokens expire
+2026-10-02T08:16:12.579Z fault off: login tokens expire
+2026-10-02T08:19:12.749Z fault on: server hangs
+2026-10-02T08:19:12.749Z fault on: server hangs
+2026-10-02T08:20:12.801Z fault off: server hangs
+2026-10-02T08:22:12.900Z fault off: server hangs
+2026-10-02T08:32:13.509Z fault on: 10% broken replies
+2026-10-02T08:37:13.778Z fault off: 10% broken replies
+2026-10-02T08:39:13.940Z hour 9: 24 gaps, box 103 MB, driver 24 MB
+2026-10-02T08:41:14.063Z fault on: server off
+2026-10-02T08:46:14.354Z fault off: server off
+2026-10-02T08:51:14.634Z fault on: 15% HTTP 500
+2026-10-02T08:59:15.085Z fault on: server errors
+2026-10-02T09:01:15.208Z fault off: 15% HTTP 500
+2026-10-02T09:03:15.317Z fault on: 5% network loss
+2026-10-02T09:09:15.678Z fault off: server errors
+2026-10-02T09:13:15.925Z fault off: 5% network loss
+2026-10-02T09:15:16.037Z fault on: login tokens expire
+2026-10-02T09:16:16.091Z fault off: login tokens expire
+2026-10-02T09:19:16.250Z fault on: server hangs
+2026-10-02T09:20:16.299Z fault off: server hangs
+2026-10-02T09:32:17.005Z fault on: 10% broken replies
+2026-10-02T09:37:17.307Z fault off: 10% broken replies
+2026-10-02T09:39:17.465Z hour 10: 24 gaps, box 103 MB, driver 24 MB
+2026-10-02T09:41:17.590Z fault on: server off
+2026-10-02T09:46:17.903Z fault off: server off
+2026-10-02T09:51:18.185Z fault on: 15% HTTP 500
+2026-10-02T10:01:18.775Z fault off: 15% HTTP 500
+2026-10-02T10:03:08.853Z fault on: 5% network loss
+2026-10-02T10:13:09.451Z fault off: 5% network loss
+2026-10-02T10:15:09.571Z fault on: login tokens expire
+2026-10-02T10:16:09.626Z fault off: login tokens expire
+2026-10-02T10:19:09.790Z fault on: server hangs
+2026-10-02T10:20:09.845Z fault off: server hangs
+2026-10-02T10:32:10.570Z fault on: 10% broken replies
+2026-10-02T10:37:10.876Z fault off: 10% broken replies
+2026-10-02T10:39:11.036Z hour 11: 24 gaps, box 103 MB, driver 25 MB
+2026-10-02T10:41:11.162Z fault on: server off
+2026-10-02T10:46:11.495Z fault off: server off
+2026-10-02T10:50:21.741Z segment finished; the next run continues from here
