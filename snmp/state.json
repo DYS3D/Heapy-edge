@@ -1,950 +1,341 @@
 {
- "start": 1790897972382,
- "end": 1790984372382,
+ "start": 1790938378346,
+ "end": 1791024778346,
  "faults": [
   {
    "device": "snmp://ups-02",
-   "from": 1790898097111,
-   "to": 1790898397412,
+   "from": 1790938502955,
+   "to": 1790938803277,
    "why": "agent off"
   },
   {
    "device": "snmp://ups-04",
-   "from": 1790898517515,
-   "to": 1790898637632,
+   "from": 1790938923380,
+   "to": 1790939043535,
    "why": "agent reboots"
   },
   {
    "device": null,
-   "from": 1790898697686,
-   "to": 1790899298261,
+   "from": 1790939103609,
+   "to": 1790939704192,
    "why": "20% lost replies"
   },
   {
    "device": null,
-   "from": 1790899418374,
-   "to": 1790900018997,
+   "from": 1790939824282,
+   "to": 1790940424870,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790900139122,
-   "to": 1790900739699,
+   "from": 1790940544980,
+   "to": 1790941145532,
    "why": "stale and duplicate replies"
   },
   {
    "device": null,
-   "from": 1790901160121,
-   "to": 1790901460388,
+   "from": 1790941565988,
+   "to": 1790941866305,
    "why": "10% garbage replies"
   },
   {
    "device": "snmp://ups-02",
-   "from": 1790901700707,
-   "to": 1790902000988,
+   "from": 1790942106570,
+   "to": 1790942406986,
    "why": "agent off"
   },
   {
    "device": "snmp://ups-04",
-   "from": 1790902121094,
-   "to": 1790902241206,
+   "from": 1790942527098,
+   "to": 1790942647203,
    "why": "agent reboots"
   },
   {
    "device": null,
-   "from": 1790902301255,
-   "to": 1790902901844,
+   "from": 1790942707244,
+   "to": 1790943307822,
    "why": "20% lost replies"
   },
   {
    "device": null,
-   "from": 1790902781722,
-   "to": 1790903382309,
+   "from": 1790943187706,
+   "to": 1790943788279,
    "why": "server errors"
   },
   {
    "device": null,
-   "from": 1790903021963,
-   "to": 1790903622552,
+   "from": 1790943427932,
+   "to": 1790944028588,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790903732667,
-   "to": 1790904333235,
+   "from": 1790944138700,
+   "to": 1790944739326,
    "why": "stale and duplicate replies"
   },
   {
    "device": null,
-   "from": 1790904753619,
-   "to": 1790905053913,
+   "from": 1790945159770,
+   "to": 1790945460106,
    "why": "10% garbage replies"
   },
   {
    "device": "snmp://ups-02",
-   "from": 1790905294191,
-   "to": 1790905594493,
+   "from": 1790945700372,
+   "to": 1790946000733,
    "why": "agent off"
   },
   {
    "device": "snmp://ups-04",
-   "from": 1790905714612,
-   "to": 1790905834708,
+   "from": 1790946120842,
+   "to": 1790946240942,
    "why": "agent reboots"
   },
   {
    "device": null,
-   "from": 1790905894751,
-   "to": 1790906495342,
+   "from": 1790946300983,
+   "to": 1790946901651,
    "why": "20% lost replies"
   },
   {
    "device": null,
-   "from": 1790906615443,
-   "to": 1790907216011,
+   "from": 1790947021762,
+   "to": 1790947622365,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790907336129,
-   "to": 1790907936707,
+   "from": 1790947742479,
+   "to": 1790948343129,
    "why": "stale and duplicate replies"
   },
   {
    "device": null,
-   "from": 1790907576355,
-   "to": 1790907756536,
+   "from": 1790947982708,
+   "to": 1790948162885,
    "why": "server hangs"
   },
   {
    "device": null,
-   "from": 1790908357091,
-   "to": 1790908657380,
+   "from": 1790948763626,
+   "to": 1790949063904,
    "why": "10% garbage replies"
   },
   {
    "device": "snmp://ups-02",
-   "from": 1790908897646,
-   "to": 1790909197973,
+   "from": 1790949304158,
+   "to": 1790949604420,
    "why": "agent off"
   },
   {
    "device": "snmp://ups-04",
-   "from": 1790909318089,
-   "to": 1790909438203,
+   "from": 1790949724517,
+   "to": 1790949844622,
    "why": "agent reboots"
   },
   {
    "device": null,
-   "from": 1790909498251,
-   "to": 1790910098858,
+   "from": 1790949904667,
+   "to": 1790950505265,
    "why": "20% lost replies"
   },
   {
    "device": null,
-   "from": 1790909978737,
-   "to": 1790910579297,
+   "from": 1790950385104,
+   "to": 1790950985773,
    "why": "server errors"
   },
   {
    "device": null,
-   "from": 1790910218955,
-   "to": 1790910819559,
+   "from": 1790950625387,
+   "to": 1790951226092,
    "why": "5% network loss"
   },
   {
    "device": "*",
-   "from": 1790910579297,
-   "to": 1790910759483,
+   "from": 1790950985773,
+   "to": 1790951165989,
    "why": "driver killed"
   },
   {
    "device": null,
-   "from": 1790910939682,
-   "to": 1790911540279,
+   "from": 1790951346203,
+   "to": 1790951946734,
    "why": "stale and duplicate replies"
   },
   {
    "device": null,
-   "from": 1790911960683,
-   "to": 1790912260956,
+   "from": 1790952367266,
+   "to": 1790952667541,
    "why": "10% garbage replies"
   },
   {
    "device": "snmp://ups-02",
-   "from": 1790912501223,
-   "to": 1790912801537,
+   "from": 1790952908091,
+   "to": 1790953208367,
    "why": "agent off"
   },
   {
    "device": "snmp://ups-04",
-   "from": 1790912921635,
-   "to": 1790913041742,
+   "from": 1790953318463,
+   "to": 1790953438562,
    "why": "agent reboots"
   },
   {
    "device": null,
-   "from": 1790913101785,
-   "to": 1790913702350,
+   "from": 1790953498612,
+   "to": 1790954099262,
    "why": "20% lost replies"
   },
   {
    "device": null,
-   "from": 1790913812457,
-   "to": 1790914413033,
+   "from": 1790954219365,
+   "to": 1790954820052,
    "why": "5% network loss"
   },
   {
    "device": null,
-   "from": 1790914533142,
-   "to": 1790915133690,
+   "from": 1790954940175,
+   "to": 1790955540784,
    "why": "stale and duplicate replies"
   },
   {
    "device": null,
-   "from": 1790915554078,
-   "to": 1790915854385,
+   "from": 1790955961247,
+   "to": 1790956261592,
    "why": "10% garbage replies"
   },
   {
    "device": "snmp://ups-02",
-   "from": 1790916094651,
-   "to": 1790916394932,
+   "from": 1790956501855,
+   "to": 1790956802192,
    "why": "agent off"
   },
   {
    "device": "snmp://ups-04",
-   "from": 1790916515033,
-   "to": 1790916635118,
+   "from": 1790956922300,
+   "to": 1790957042450,
    "why": "agent reboots"
   },
   {
    "device": null,
-   "from": 1790916695174,
-   "to": 1790917295780,
+   "from": 1790957102539,
+   "to": 1790957703228,
    "why": "20% lost replies"
   },
   {
    "device": null,
-   "from": 1790917175651,
-   "to": 1790917776229,
+   "from": 1790957583105,
+   "to": 1790958183819,
    "why": "server errors"
   },
   {
    "device": null,
-   "from": 1790917415892,
-   "to": 1790918016480,
+   "from": 1790957823365,
+   "to": 1790958424086,
    "why": "5% network loss"
-  },
-  {
-   "device": "*",
-   "from": 1790918076543,
-   "to": 1790918445138,
-   "why": "test machine restart"
-  },
-  {
-   "device": null,
-   "from": 1790918149492,
-   "to": 1790918751058,
-   "why": "stale and duplicate replies"
-  },
-  {
-   "device": null,
-   "from": 1790918379678,
-   "to": 1790918559853,
-   "why": "server hangs"
-  },
-  {
-   "device": "*",
-   "from": 1790918679965,
-   "to": 1790918831122,
-   "why": "box killed"
-  },
-  {
-   "device": null,
-   "from": 1790919161434,
-   "to": 1790919461734,
-   "why": "10% garbage replies"
-  },
-  {
-   "device": "snmp://ups-02",
-   "from": 1790919702009,
-   "to": 1790920002323,
-   "why": "agent off"
-  },
-  {
-   "device": "snmp://ups-04",
-   "from": 1790920112422,
-   "to": 1790920232539,
-   "why": "agent reboots"
-  },
-  {
-   "device": null,
-   "from": 1790920292582,
-   "to": 1790920893140,
-   "why": "20% lost replies"
-  },
-  {
-   "device": null,
-   "from": 1790921013242,
-   "to": 1790921613849,
-   "why": "5% network loss"
-  },
-  {
-   "device": null,
-   "from": 1790921733952,
-   "to": 1790922334532,
-   "why": "stale and duplicate replies"
-  },
-  {
-   "device": null,
-   "from": 1790922754924,
-   "to": 1790923055198,
-   "why": "10% garbage replies"
-  },
-  {
-   "device": "snmp://ups-02",
-   "from": 1790923295464,
-   "to": 1790923595759,
-   "why": "agent off"
-  },
-  {
-   "device": "snmp://ups-04",
-   "from": 1790923715873,
-   "to": 1790923835973,
-   "why": "agent reboots"
-  },
-  {
-   "device": null,
-   "from": 1790923896027,
-   "to": 1790924496614,
-   "why": "20% lost replies"
-  },
-  {
-   "device": "*",
-   "from": 1790924076198,
-   "to": 1790924796318,
-   "why": "clock +5 min"
-  },
-  {
-   "device": null,
-   "from": 1790924376498,
-   "to": 1790924977061,
-   "why": "server errors"
-  },
-  {
-   "device": null,
-   "from": 1790924616724,
-   "to": 1790925217328,
-   "why": "5% network loss"
-  },
-  {
-   "device": "*",
-   "from": 1790924977062,
-   "to": 1790925157251,
-   "why": "driver killed"
-  },
-  {
-   "device": null,
-   "from": 1790925337452,
-   "to": 1790925938028,
-   "why": "stale and duplicate replies"
-  },
-  {
-   "device": null,
-   "from": 1790926358412,
-   "to": 1790926658697,
-   "why": "10% garbage replies"
-  },
-  {
-   "device": "snmp://ups-02",
-   "from": 1790926898958,
-   "to": 1790927199271,
-   "why": "agent off"
-  },
-  {
-   "device": "snmp://ups-04",
-   "from": 1790927319389,
-   "to": 1790927439509,
-   "why": "agent reboots"
-  },
-  {
-   "device": null,
-   "from": 1790927499562,
-   "to": 1790928100115,
-   "why": "20% lost replies"
-  },
-  {
-   "device": null,
-   "from": 1790928220230,
-   "to": 1790928820846,
-   "why": "5% network loss"
-  },
-  {
-   "device": null,
-   "from": 1790928940963,
-   "to": 1790929541502,
-   "why": "stale and duplicate replies"
-  },
-  {
-   "device": null,
-   "from": 1790929181192,
-   "to": 1790929361343,
-   "why": "server hangs"
-  },
-  {
-   "device": null,
-   "from": 1790929961917,
-   "to": 1790930262218,
-   "why": "10% garbage replies"
-  },
-  {
-   "device": "snmp://ups-02",
-   "from": 1790930492440,
-   "to": 1790930792753,
-   "why": "agent off"
-  },
-  {
-   "device": "snmp://ups-04",
-   "from": 1790930912860,
-   "to": 1790931032975,
-   "why": "agent reboots"
-  },
-  {
-   "device": null,
-   "from": 1790931093024,
-   "to": 1790931693541,
-   "why": "20% lost replies"
-  },
-  {
-   "device": null,
-   "from": 1790931573437,
-   "to": 1790932174017,
-   "why": "server errors"
-  },
-  {
-   "device": null,
-   "from": 1790931813660,
-   "to": 1790932414273,
-   "why": "5% network loss"
-  },
-  {
-   "device": null,
-   "from": 1790932534384,
-   "to": 1790933134952,
-   "why": "stale and duplicate replies"
-  },
-  {
-   "device": null,
-   "from": 1790933555345,
-   "to": 1790933855636,
-   "why": "10% garbage replies"
-  },
-  {
-   "device": "snmp://ups-02",
-   "from": 1790934095910,
-   "to": 1790934396194,
-   "why": "agent off"
-  },
-  {
-   "device": "snmp://ups-04",
-   "from": 1790934516302,
-   "to": 1790934636409,
-   "why": "agent reboots"
-  },
-  {
-   "device": null,
-   "from": 1790934696457,
-   "to": 1790935297038,
-   "why": "20% lost replies"
-  },
-  {
-   "device": null,
-   "from": 1790935417156,
-   "to": 1790936017716,
-   "why": "5% network loss"
-  },
-  {
-   "device": null,
-   "from": 1790936137838,
-   "to": 1790936738418,
-   "why": "stale and duplicate replies"
-  },
-  {
-   "device": null,
-   "from": 1790937158827,
-   "to": 1790937459113,
-   "why": "10% garbage replies"
-  },
-  {
-   "device": "snmp://ups-02",
-   "from": 1790937699386,
-   "to": 1790937999702,
-   "why": "agent off"
-  },
-  {
-   "device": "snmp://ups-04",
-   "from": 1790938119811,
-   "to": 1790938239916,
-   "why": "agent reboots"
-  },
-  {
-   "device": "*",
-   "from": 1790938249918,
-   "to": 1790938621391,
-   "why": "test machine restart"
-  },
-  {
-   "device": null,
-   "from": 1790938325780,
-   "to": null,
-   "why": "20% lost replies"
   }
  ],
  "hourly": [
   {
    "hour": 1,
-   "at": "2026-10-02T00:39:40.519Z",
-   "gaps": 18,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790898070853,
-     "to": 1790901250853,
-     "gap_s": 3180
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790898070853,
-     "to": 1790901250853,
-     "gap_s": 3180
-    },
-    {
-     "point": "snmp://ups-02/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790898617996,
-     "to": 1790901257996,
-     "gap_s": 2640
-    }
-   ],
-   "box_rss_mb": 102,
+   "at": "2026-10-02T11:53:06.414Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 97,
    "driver_rss_mb": 59,
-   "samples": 8719,
+   "samples": 8740,
    "backlog": 0,
    "driver_restarts": 0,
    "poll": {
-    "reads": 506,
-    "read_errors": 6,
-    "samples": 8719,
+    "reads": 507,
+    "read_errors": 4,
+    "samples": 8740,
     "cov_samples": 0,
-    "last_read": 1790901567846,
+    "last_read": 1790941983038,
     "missed_slots": 0,
-    "point_errors": 964,
+    "point_errors": 966,
     "bad_values": 0,
     "clock_jumps": 0,
     "relocated": 0,
     "store_errors": 0,
-    "retries": 46
+    "retries": 23
    },
    "lanes_behind": []
   },
   {
    "hour": 2,
-   "at": "2026-10-02T01:39:34.037Z",
-   "gaps": 20,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790901310853,
-     "to": 1790904850853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790901310853,
-     "to": 1790904850853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-02/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790901317996,
-     "to": 1790901557996,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 104,
+   "at": "2026-10-02T12:53:00.228Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 101,
    "driver_rss_mb": 59,
-   "samples": 17293,
-   "backlog": 124,
+   "samples": 17314,
+   "backlog": 0,
    "driver_restarts": 0,
    "poll": {
-    "reads": 920,
-    "read_errors": 12,
-    "samples": 17293,
+    "reads": 921,
+    "read_errors": 9,
+    "samples": 17314,
     "cov_samples": 0,
-    "last_read": 1790905167731,
+    "last_read": 1790945547691,
     "missed_slots": 0,
-    "point_errors": 1912,
+    "point_errors": 1914,
     "bad_values": 0,
     "clock_jumps": 0,
     "relocated": 0,
     "store_errors": 0,
-    "retries": 92
+    "retries": 69
    },
    "lanes_behind": []
   },
   {
    "hour": 3,
-   "at": "2026-10-02T02:39:37.510Z",
-   "gaps": 20,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790904910853,
-     "to": 1790908450853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790904910853,
-     "to": 1790908450853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-02/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790904917996,
-     "to": 1790905157996,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 105,
-   "driver_rss_mb": 60,
-   "samples": 25867,
-   "backlog": 82,
+   "at": "2026-10-02T13:53:04.019Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 102,
+   "driver_rss_mb": 59,
+   "samples": 25909,
+   "backlog": 21,
    "driver_restarts": 0,
    "poll": {
-    "reads": 1334,
-    "read_errors": 18,
-    "samples": 25867,
+    "reads": 1336,
+    "read_errors": 15,
+    "samples": 25909,
     "cov_samples": 0,
-    "last_read": 1790908768019,
+    "last_read": 1790949183033,
     "missed_slots": 0,
-    "point_errors": 2860,
+    "point_errors": 2864,
     "bad_values": 0,
     "clock_jumps": 0,
     "relocated": 0,
     "store_errors": 0,
-    "retries": 138
+    "retries": 115
    },
    "lanes_behind": []
   },
   {
    "hour": 4,
-   "at": "2026-10-02T03:39:41.080Z",
-   "gaps": 36,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790908510853,
-     "to": 1790910430853,
-     "gap_s": 1920
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790910970853,
-     "to": 1790912050853,
-     "gap_s": 1080
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790908510853,
-     "to": 1790910430853,
-     "gap_s": 1920
-    }
-   ],
-   "box_rss_mb": 105,
-   "driver_rss_mb": 60,
-   "samples": 34441,
-   "backlog": 82,
-   "driver_restarts": 1,
-   "poll": {
-    "reads": 1748,
-    "read_errors": 25,
-    "samples": 34441,
-    "cov_samples": 0,
-    "last_read": 1790912368079,
-    "missed_slots": 0,
-    "point_errors": 3808,
-    "bad_values": 0,
-    "clock_jumps": 0,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 207
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 5,
-   "at": "2026-10-02T04:39:34.501Z",
-   "gaps": 20,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790912110853,
-     "to": 1790915650853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790912110853,
-     "to": 1790915650853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-02/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790912117996,
-     "to": 1790912357996,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 107,
-   "driver_rss_mb": 60,
-   "samples": 43015,
-   "backlog": 82,
-   "driver_restarts": 1,
-   "poll": {
-    "reads": 2162,
-    "read_errors": 31,
-    "samples": 43015,
-    "cov_samples": 0,
-    "last_read": 1790915967852,
-    "missed_slots": 0,
-    "point_errors": 4756,
-    "bad_values": 0,
-    "clock_jumps": 0,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 253
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 6,
-   "at": "2026-10-02T05:39:41.871Z",
-   "gaps": 36,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790915710853,
-     "to": 1790917930853,
-     "gap_s": 2220
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790919070853,
-     "to": 1790919250853,
-     "gap_s": 180
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790915710853,
-     "to": 1790917930853,
-     "gap_s": 2220
-    }
-   ],
-   "box_rss_mb": 90,
-   "driver_rss_mb": 60,
-   "samples": 51589,
-   "backlog": 0,
-   "driver_restarts": 0,
-   "poll": {
-    "reads": 135,
-    "read_errors": 0,
-    "samples": 2175,
-    "cov_samples": 0,
-    "last_read": 1790919567688,
-    "missed_slots": 0,
-    "point_errors": 250,
-    "bad_values": 0,
-    "clock_jumps": 0,
-    "relocated": 0,
-    "store_errors": 0
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 7,
-   "at": "2026-10-02T06:39:35.320Z",
-   "gaps": 20,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790919310853,
-     "to": 1790922850853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790919310853,
-     "to": 1790922850853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-02/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790919317996,
-     "to": 1790919557996,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 102,
-   "driver_rss_mb": 60,
-   "samples": 60163,
-   "backlog": 82,
-   "driver_restarts": 0,
-   "poll": {
-    "reads": 549,
-    "read_errors": 6,
-    "samples": 10749,
-    "cov_samples": 0,
-    "last_read": 1790923168123,
-    "missed_slots": 0,
-    "point_errors": 1198,
-    "bad_values": 0,
-    "clock_jumps": 0,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 46
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 8,
-   "at": "2026-10-02T07:39:38.813Z",
-   "gaps": 34,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790922910853,
-     "to": 1790923930853,
-     "gap_s": 1020
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790925370853,
-     "to": 1790926450853,
-     "gap_s": 1080
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790922910853,
-     "to": 1790923930853,
-     "gap_s": 1020
-    }
-   ],
-   "box_rss_mb": 104,
+   "at": "2026-10-02T14:53:07.817Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 103,
    "driver_rss_mb": 59,
-   "samples": 69027,
-   "backlog": 0,
+   "samples": 34504,
+   "backlog": 21,
    "driver_restarts": 1,
    "poll": {
-    "reads": 979,
-    "read_errors": 12,
-    "samples": 19613,
+    "reads": 1751,
+    "read_errors": 21,
+    "samples": 34504,
     "cov_samples": 0,
-    "last_read": 1790926768033,
+    "last_read": 1790952783251,
     "missed_slots": 0,
-    "point_errors": 2178,
+    "point_errors": 3814,
     "bad_values": 0,
-    "clock_jumps": 2,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 92
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 9,
-   "at": "2026-10-02T08:39:42.320Z",
-   "gaps": 20,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790926510853,
-     "to": 1790930050853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790926510853,
-     "to": 1790930050853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-02/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790926517996,
-     "to": 1790926757996,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 106,
-   "driver_rss_mb": 59,
-   "samples": 77601,
-   "backlog": 0,
-   "driver_restarts": 1,
-   "poll": {
-    "reads": 1393,
-    "read_errors": 18,
-    "samples": 28187,
-    "cov_samples": 0,
-    "last_read": 1790930368007,
-    "missed_slots": 0,
-    "point_errors": 3126,
-    "bad_values": 0,
-    "clock_jumps": 2,
-    "relocated": 0,
-    "store_errors": 0,
-    "retries": 138
-   },
-   "lanes_behind": []
-  },
-  {
-   "hour": 10,
-   "at": "2026-10-02T09:39:35.767Z",
-   "gaps": 20,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790930110853,
-     "to": 1790933650853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790930110853,
-     "to": 1790933650853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-02/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790930117996,
-     "to": 1790930357996,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 102,
-   "driver_rss_mb": 60,
-   "samples": 86175,
-   "backlog": 82,
-   "driver_restarts": 1,
-   "poll": {
-    "reads": 1807,
-    "read_errors": 24,
-    "samples": 36761,
-    "cov_samples": 0,
-    "last_read": 1790933967884,
-    "missed_slots": 0,
-    "point_errors": 4074,
-    "bad_values": 0,
-    "clock_jumps": 2,
+    "clock_jumps": 0,
     "relocated": 0,
     "store_errors": 0,
     "retries": 184
@@ -952,61 +343,33 @@
    "lanes_behind": []
   },
   {
-   "hour": 11,
-   "at": "2026-10-02T10:39:39.244Z",
-   "gaps": 20,
-   "gap_examples": [
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790933710853,
-     "to": 1790937250853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-01/1.3.6.1.4.1.99999.1.5.0",
-     "from": 1790933710853,
-     "to": 1790937250853,
-     "gap_s": 3540
-    },
-    {
-     "point": "snmp://ups-02/1.3.6.1.4.1.99999.1.2.0",
-     "from": 1790933717996,
-     "to": 1790933957996,
-     "gap_s": 240
-    }
-   ],
-   "box_rss_mb": 105,
-   "driver_rss_mb": 60,
-   "samples": 94749,
-   "backlog": 82,
+   "hour": 5,
+   "at": "2026-10-02T15:53:01.709Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 103,
+   "driver_rss_mb": 59,
+   "samples": 43057,
+   "backlog": 0,
    "driver_restarts": 1,
    "poll": {
-    "reads": 2221,
-    "read_errors": 30,
-    "samples": 45335,
+    "reads": 2165,
+    "read_errors": 27,
+    "samples": 43057,
     "cov_samples": 0,
-    "last_read": 1790937567779,
+    "last_read": 1790956347873,
     "missed_slots": 0,
-    "point_errors": 5022,
+    "point_errors": 4763,
     "bad_values": 0,
-    "clock_jumps": 2,
+    "clock_jumps": 0,
     "relocated": 0,
     "store_errors": 0,
-    "retries": 230
+    "retries": 233
    },
    "lanes_behind": []
   }
  ],
- "outages": [
-  {
-   "from": 1790918076543,
-   "to": 1790918145138
-  },
-  {
-   "from": 1790938249918,
-   "to": 1790938321391
-  }
- ],
+ "outages": [],
  "done": {
   "0:agent off": true,
   "0:agent reboots": true,
@@ -1046,53 +409,11 @@
   "5:agent reboots": true,
   "5:20% lost replies": true,
   "5:server500": true,
-  "5:5% network loss": true,
-  "5:stale and duplicate replies": true,
-  "5:serverhang": true,
-  "5:killbox": true,
-  "5:10% garbage replies": true,
-  "6:agent off": true,
-  "6:agent reboots": true,
-  "6:20% lost replies": true,
-  "6:5% network loss": true,
-  "6:stale and duplicate replies": true,
-  "6:10% garbage replies": true,
-  "7:agent off": true,
-  "7:agent reboots": true,
-  "7:20% lost replies": true,
-  "7:clock": true,
-  "7:server500": true,
-  "7:5% network loss": true,
-  "7:killdriver": true,
-  "7:stale and duplicate replies": true,
-  "7:10% garbage replies": true,
-  "8:agent off": true,
-  "8:agent reboots": true,
-  "8:20% lost replies": true,
-  "8:5% network loss": true,
-  "8:stale and duplicate replies": true,
-  "8:serverhang": true,
-  "8:10% garbage replies": true,
-  "9:agent off": true,
-  "9:agent reboots": true,
-  "9:20% lost replies": true,
-  "9:server500": true,
-  "9:5% network loss": true,
-  "9:stale and duplicate replies": true,
-  "9:10% garbage replies": true,
-  "10:agent off": true,
-  "10:agent reboots": true,
-  "10:20% lost replies": true,
-  "10:5% network loss": true,
-  "10:stale and duplicate replies": true,
-  "10:10% garbage replies": true,
-  "11:agent off": true,
-  "11:agent reboots": true,
-  "11:20% lost replies": true
+  "5:5% network loss": true
  },
- "lastBeat": 1790938385818,
+ "lastBeat": 1790958484149,
  "restarts_expected": {
-  "box": 1,
-  "driver": 2
+  "box": 0,
+  "driver": 1
  }
 }
