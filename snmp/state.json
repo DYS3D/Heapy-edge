@@ -487,6 +487,18 @@
    "from": 1790938119811,
    "to": 1790938239916,
    "why": "agent reboots"
+  },
+  {
+   "device": "*",
+   "from": 1790938249918,
+   "to": 1790938621391,
+   "why": "test machine restart"
+  },
+  {
+   "device": null,
+   "from": 1790938325780,
+   "to": null,
+   "why": "20% lost replies"
   }
  ],
  "hourly": [
@@ -989,6 +1001,10 @@
   {
    "from": 1790918076543,
    "to": 1790918145138
+  },
+  {
+   "from": 1790938249918,
+   "to": 1790938321391
   }
  ],
  "done": {
@@ -1071,9 +1087,10 @@
   "10:stale and duplicate replies": true,
   "10:10% garbage replies": true,
   "11:agent off": true,
-  "11:agent reboots": true
+  "11:agent reboots": true,
+  "11:20% lost replies": true
  },
- "lastBeat": 1790938249918,
+ "lastBeat": 1790938385818,
  "restarts_expected": {
   "box": 1,
   "driver": 2

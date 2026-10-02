@@ -176,3 +176,7 @@
 2026-10-02T10:48:39.811Z fault on: agent reboots
 2026-10-02T10:50:39.916Z fault off: agent reboots
 2026-10-02T10:50:49.918Z segment finished; the next run continues from here
+2026-10-02T10:52:01.391Z resuming after 1 min away
+2026-10-02T10:52:04.602Z SNMP site: 7 agents
+2026-10-02T10:52:05.780Z running until 2026-10-02T23:39:32.382Z
+2026-10-02T10:52:05.781Z fault on: 20% lost replies
