@@ -481,6 +481,18 @@
    "from": 1790937671162,
    "to": 1790937971495,
    "why": "server off"
+  },
+  {
+   "device": "*",
+   "from": 1790938221741,
+   "to": 1790938595424,
+   "why": "test machine restart"
+  },
+  {
+   "device": null,
+   "from": 1790938296728,
+   "to": null,
+   "why": "15% HTTP 500"
   }
  ],
  "hourly": [
@@ -926,6 +938,10 @@
   {
    "from": 1790918049582,
    "to": 1790918119506
+  },
+  {
+   "from": 1790938221741,
+   "to": 1790938295424
   }
  ],
  "done": {
@@ -1007,9 +1023,10 @@
   "10:login tokens expire": true,
   "10:server hangs": true,
   "10:10% broken replies": true,
-  "11:server off": true
+  "11:server off": true,
+  "11:15% HTTP 500": true
  },
- "lastBeat": 1790938221741,
+ "lastBeat": 1790938356777,
  "restarts_expected": {
   "box": 1,
   "driver": 2
