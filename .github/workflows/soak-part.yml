@@ -59,21 +59,21 @@ jobs:
           PART: ${{ inputs.part }}
         run: |
           set -eux
-          rm -rf results
-          if git ls-remote --exit-code --heads "$REPO_URL" soak-results >/dev/null; then
-            git clone -q --branch soak-results --depth 1 "$REPO_URL" results
-          else
-            git init -q results && git -C results checkout -q -b soak-results
-          fi
-          mkdir -p "results/$KIND"
-          cp soak/state.json "results/$KIND/state.json"
-          cp soak/soak.log "results/$KIND/soak.log" || true
-          cd results
-          git config user.name soak-bot; git config user.email soak@heapy-edge
-          git add -A
-          git commit -q -m "$KIND part $PART $(date -u +%FT%TZ)" || echo "nothing new"
-          for i in 1 2 3 4 5; do
-            if git push -q "$REPO_URL" HEAD:soak-results; then exit 0; fi
-            git pull -q --rebase "$REPO_URL" soak-results || true; sleep $((i*5))
+          for i in 1 2 3 4 5 6; do
+            rm -rf results
+            if git ls-remote --exit-code --heads "$REPO_URL" soak-results >/dev/null; then
+              git clone -q --branch soak-results --depth 1 "$REPO_URL" results
+            else
+              git init -q results && git -C results checkout -q -b soak-results
+            fi
+            mkdir -p "results/$KIND"
+            cp soak/state.json "results/$KIND/state.json"
+            cp soak/soak.log "results/$KIND/soak.log" || true
+            git -C results config user.name soak-bot; git -C results config user.email soak@heapy-edge
+            git -C results add -A
+            git -C results commit -q -m "$KIND part $PART $(date -u +%FT%TZ)" || echo "nothing new"
+            # several soaks publish at once: on a lost race, start again from a fresh clone
+            if git -C results push -q "$REPO_URL" HEAD:soak-results; then exit 0; fi
+            sleep $((i*7))
           done
           echo "could not push results"; exit 1
