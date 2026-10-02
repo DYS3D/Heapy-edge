@@ -335,3 +335,119 @@
 2026-10-02T10:31:47.554Z fault on: device 1100 errors
 2026-10-02T10:36:47.883Z fault off: device 1100 errors
 2026-10-02T10:36:57.894Z segment finished; the next run continues from here
+2026-10-02T10:38:12.771Z resuming after 1 min away
+2026-10-02T10:38:13.504Z simulator: 60 devices
+2026-10-02T10:38:17.082Z running until 2026-10-02T17:44:47.194Z
+2026-10-02T10:38:17.083Z fault on: device 1202 odd values
+2026-10-02T10:41:17.261Z fault off: device 1202 odd values
+2026-10-02T10:41:47.270Z fault on: I-Am storm
+2026-10-02T10:42:07.284Z fault off: I-Am storm
+2026-10-02T10:44:47.584Z hour 17: 0 gaps, box 94 MB, driver 33 MB
+2026-10-02T10:46:47.701Z fault on: device 1201 off
+2026-10-02T10:51:47.973Z fault off: device 1201 off
+2026-10-02T10:53:48.092Z fault on: device 20005 reboot
+2026-10-02T10:55:18.177Z fault off: device 20005 reboot
+2026-10-02T10:56:48.276Z fault on: 20% loss to 1205
+2026-10-02T11:04:48.746Z fault on: server errors
+2026-10-02T11:06:48.872Z fault off: 20% loss to 1205
+2026-10-02T11:08:48.986Z fault on: 5% network loss
+2026-10-02T11:14:49.383Z fault off: server errors
+2026-10-02T11:18:49.629Z fault off: 5% network loss
+2026-10-02T11:20:49.742Z fault on: device 1206 slow
+2026-10-02T11:24:49.975Z fault on: server hangs
+2026-10-02T11:27:50.167Z fault off: server hangs
+2026-10-02T11:29:50.283Z fault on: box killed
+2026-10-02T11:30:53.528Z fault off: device 1206 slow
+2026-10-02T11:31:53.583Z fault on: device 1100 errors
+2026-10-02T11:32:23.607Z fault off: box killed
+2026-10-02T11:36:53.884Z fault off: device 1100 errors
+2026-10-02T11:37:53.940Z fault on: device 1202 odd values
+2026-10-02T11:40:54.112Z fault off: device 1202 odd values
+2026-10-02T11:41:54.157Z fault on: I-Am storm
+2026-10-02T11:42:14.172Z fault off: I-Am storm
+2026-10-02T11:44:54.453Z hour 18: 0 gaps, box 100 MB, driver 33 MB
+2026-10-02T11:46:54.568Z fault on: device 1201 off
+2026-10-02T11:51:54.842Z fault off: device 1201 off
+2026-10-02T11:53:54.965Z fault on: device 20005 reboot
+2026-10-02T11:55:25.037Z fault off: device 20005 reboot
+2026-10-02T11:56:55.136Z fault on: 20% loss to 1205
+2026-10-02T12:06:55.723Z fault off: 20% loss to 1205
+2026-10-02T12:08:55.835Z fault on: 5% network loss
+2026-10-02T12:18:56.483Z fault off: 5% network loss
+2026-10-02T12:20:56.598Z fault on: device 1206 slow
+2026-10-02T12:30:57.192Z fault off: device 1206 slow
+2026-10-02T12:31:47.223Z fault on: device 1100 errors
+2026-10-02T12:36:47.485Z fault off: device 1100 errors
+2026-10-02T12:37:47.535Z fault on: device 1202 odd values
+2026-10-02T12:40:47.704Z fault off: device 1202 odd values
+2026-10-02T12:41:47.751Z fault on: I-Am storm
+2026-10-02T12:42:07.774Z fault off: I-Am storm
+2026-10-02T12:44:48.054Z hour 19: 0 gaps, box 106 MB, driver 33 MB
+2026-10-02T12:46:48.151Z fault on: device 1201 off
+2026-10-02T12:51:48.463Z fault off: device 1201 off
+2026-10-02T12:53:48.571Z fault on: device 20005 reboot
+2026-10-02T12:55:18.655Z fault off: device 20005 reboot
+2026-10-02T12:56:48.747Z fault on: 20% loss to 1205
+2026-10-02T13:04:49.197Z fault on: server errors
+2026-10-02T13:06:49.310Z fault off: 20% loss to 1205
+2026-10-02T13:08:49.405Z fault on: 5% network loss
+2026-10-02T13:14:49.769Z fault off: server errors
+2026-10-02T13:14:49.770Z fault on: driver killed
+2026-10-02T13:17:49.968Z fault off: driver killed
+2026-10-02T13:18:50.052Z fault off: 5% network loss
+2026-10-02T13:20:50.179Z fault on: device 1206 slow
+2026-10-02T13:30:50.792Z fault off: device 1206 slow
+2026-10-02T13:31:50.834Z fault on: device 1100 errors
+2026-10-02T13:36:51.095Z fault off: device 1100 errors
+2026-10-02T13:37:51.152Z fault on: device 1202 odd values
+2026-10-02T13:40:51.314Z fault off: device 1202 odd values
+2026-10-02T13:41:51.369Z fault on: I-Am storm
+2026-10-02T13:42:11.393Z fault off: I-Am storm
+2026-10-02T13:44:51.692Z hour 20: 0 gaps, box 106 MB, driver 33 MB
+2026-10-02T13:46:51.816Z fault on: device 1201 off
+2026-10-02T13:51:52.123Z fault off: device 1201 off
+2026-10-02T13:53:52.237Z fault on: device 20005 reboot
+2026-10-02T13:55:22.320Z fault off: device 20005 reboot
+2026-10-02T13:56:52.419Z fault on: 20% loss to 1205
+2026-10-02T14:06:53.051Z fault off: 20% loss to 1205
+2026-10-02T14:08:53.161Z fault on: 5% network loss
+2026-10-02T14:18:53.768Z fault off: 5% network loss
+2026-10-02T14:20:53.887Z fault on: device 1206 slow
+2026-10-02T14:24:54.127Z fault on: server hangs
+2026-10-02T14:27:54.322Z fault off: server hangs
+2026-10-02T14:30:54.504Z fault off: device 1206 slow
+2026-10-02T14:31:54.560Z fault on: device 1100 errors
+2026-10-02T14:36:54.866Z fault off: device 1100 errors
+2026-10-02T14:37:54.923Z fault on: device 1202 odd values
+2026-10-02T14:40:55.095Z fault off: device 1202 odd values
+2026-10-02T14:41:55.152Z fault on: I-Am storm
+2026-10-02T14:42:15.175Z fault off: I-Am storm
+2026-10-02T14:44:55.461Z hour 21: 0 gaps, box 107 MB, driver 33 MB
+2026-10-02T14:46:55.579Z fault on: device 1201 off
+2026-10-02T14:51:55.878Z fault off: device 1201 off
+2026-10-02T14:53:55.976Z fault on: device 20005 reboot
+2026-10-02T14:55:26.067Z fault off: device 20005 reboot
+2026-10-02T14:56:56.167Z fault on: 20% loss to 1205
+2026-10-02T15:04:56.666Z fault on: server errors
+2026-10-02T15:06:56.791Z fault off: 20% loss to 1205
+2026-10-02T15:08:56.905Z fault on: 5% network loss
+2026-10-02T15:14:57.286Z fault off: server errors
+2026-10-02T15:18:57.550Z fault off: 5% network loss
+2026-10-02T15:20:47.665Z fault on: device 1206 slow
+2026-10-02T15:30:48.271Z fault off: device 1206 slow
+2026-10-02T15:31:48.323Z fault on: device 1100 errors
+2026-10-02T15:36:48.612Z fault off: device 1100 errors
+2026-10-02T15:37:48.666Z fault on: device 1202 odd values
+2026-10-02T15:40:48.829Z fault off: device 1202 odd values
+2026-10-02T15:41:48.883Z fault on: I-Am storm
+2026-10-02T15:42:08.897Z fault off: I-Am storm
+2026-10-02T15:44:49.185Z hour 22: 0 gaps, box 107 MB, driver 33 MB
+2026-10-02T15:46:49.294Z fault on: device 1201 off
+2026-10-02T15:51:49.569Z fault off: device 1201 off
+2026-10-02T15:53:49.683Z fault on: device 20005 reboot
+2026-10-02T15:55:19.774Z fault off: device 20005 reboot
+2026-10-02T15:56:49.874Z fault on: 20% loss to 1205
+2026-10-02T16:06:50.492Z fault off: 20% loss to 1205
+2026-10-02T16:08:50.611Z fault on: 5% network loss
+2026-10-02T16:18:51.265Z fault off: 5% network loss
+2026-10-02T16:19:01.277Z segment finished; the next run continues from here
