@@ -415,6 +415,18 @@
    "from": 1790937679313,
    "to": 1790937979640,
    "why": "station off"
+  },
+  {
+   "device": "*",
+   "from": 1790938229877,
+   "to": 1790938597614,
+   "why": "test machine restart"
+  },
+  {
+   "device": null,
+   "from": 1790938299063,
+   "to": null,
+   "why": "15% HTTP 500"
   }
  ],
  "hourly": [
@@ -860,6 +872,10 @@
   {
    "from": 1790918056751,
    "to": 1790918127572
+  },
+  {
+   "from": 1790938229877,
+   "to": 1790938297614
   }
  ],
  "done": {
@@ -930,9 +946,10 @@
   "10:5% network loss": true,
   "10:station hangs": true,
   "10:10% broken replies": true,
-  "11:station off": true
+  "11:station off": true,
+  "11:15% HTTP 500": true
  },
- "lastBeat": 1790938229877,
+ "lastBeat": 1790938339083,
  "restarts_expected": {
   "box": 1,
   "driver": 2
