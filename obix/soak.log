@@ -1,158 +1,74 @@
-2026-10-01T23:39:15.781Z obix_sim.py: 3 servers
-2026-10-01T23:39:16.999Z running until 2026-10-02T23:39:15.542Z
-2026-10-01T23:41:17.113Z fault on: station off
-2026-10-01T23:46:17.421Z fault off: station off
-2026-10-01T23:51:17.715Z fault on: 15% HTTP 500
-2026-10-02T00:01:18.291Z fault off: 15% HTTP 500
-2026-10-02T00:03:18.408Z fault on: 5% network loss
-2026-10-02T00:13:18.997Z fault off: 5% network loss
-2026-10-02T00:19:19.300Z fault on: station hangs
-2026-10-02T00:20:19.349Z fault off: station hangs
-2026-10-02T00:32:20.031Z fault on: 10% broken replies
-2026-10-02T00:37:20.318Z fault off: 10% broken replies
-2026-10-02T00:39:20.469Z hour 1: 0 gaps, box 94 MB, driver 25 MB
-2026-10-02T00:41:20.584Z fault on: station off
-2026-10-02T00:46:20.879Z fault off: station off
-2026-10-02T00:51:21.165Z fault on: 15% HTTP 500
-2026-10-02T00:59:21.639Z fault on: server errors
-2026-10-02T01:01:21.751Z fault off: 15% HTTP 500
-2026-10-02T01:03:21.864Z fault on: 5% network loss
-2026-10-02T01:09:22.230Z fault off: server errors
-2026-10-02T01:13:22.488Z fault off: 5% network loss
-2026-10-02T01:19:22.808Z fault on: station hangs
-2026-10-02T01:20:22.859Z fault off: station hangs
-2026-10-02T01:32:23.550Z fault on: 10% broken replies
-2026-10-02T01:37:23.854Z fault off: 10% broken replies
-2026-10-02T01:39:23.993Z hour 2: 0 gaps, box 95 MB, driver 25 MB
-2026-10-02T01:41:24.104Z fault on: station off
-2026-10-02T01:46:24.431Z fault off: station off
-2026-10-02T01:51:24.715Z fault on: 15% HTTP 500
-2026-10-02T02:01:25.294Z fault off: 15% HTTP 500
-2026-10-02T02:03:25.400Z fault on: 5% network loss
-2026-10-02T02:13:26.015Z fault off: 5% network loss
-2026-10-02T02:19:16.348Z fault on: station hangs
-2026-10-02T02:19:16.349Z fault on: server hangs
-2026-10-02T02:20:16.394Z fault off: station hangs
-2026-10-02T02:22:16.511Z fault off: server hangs
-2026-10-02T02:32:17.097Z fault on: 10% broken replies
-2026-10-02T02:37:17.385Z fault off: 10% broken replies
-2026-10-02T02:39:17.529Z hour 3: 0 gaps, box 97 MB, driver 25 MB
-2026-10-02T02:41:17.640Z fault on: station off
-2026-10-02T02:46:17.958Z fault off: station off
-2026-10-02T02:51:18.235Z fault on: 15% HTTP 500
-2026-10-02T02:59:18.694Z fault on: server errors
-2026-10-02T03:01:18.811Z fault off: 15% HTTP 500
-2026-10-02T03:03:18.919Z fault on: 5% network loss
-2026-10-02T03:09:19.285Z fault off: server errors
-2026-10-02T03:09:19.285Z fault on: driver killed
-2026-10-02T03:12:19.475Z fault off: driver killed
-2026-10-02T03:13:19.551Z fault off: 5% network loss
-2026-10-02T03:19:19.895Z fault on: station hangs
-2026-10-02T03:20:19.952Z fault off: station hangs
-2026-10-02T03:32:20.659Z fault on: 10% broken replies
-2026-10-02T03:37:20.948Z fault off: 10% broken replies
-2026-10-02T03:39:21.099Z hour 4: 12 gaps, box 100 MB, driver 24 MB
-2026-10-02T03:41:21.217Z fault on: station off
-2026-10-02T03:46:21.532Z fault off: station off
-2026-10-02T03:51:21.832Z fault on: 15% HTTP 500
-2026-10-02T04:01:22.417Z fault off: 15% HTTP 500
-2026-10-02T04:03:22.504Z fault on: 5% network loss
-2026-10-02T04:13:23.131Z fault off: 5% network loss
-2026-10-02T04:19:23.480Z fault on: station hangs
-2026-10-02T04:20:23.520Z fault off: station hangs
-2026-10-02T04:32:24.169Z fault on: 10% broken replies
-2026-10-02T04:37:24.446Z fault off: 10% broken replies
-2026-10-02T04:39:24.601Z hour 5: 15 gaps, box 101 MB, driver 24 MB
-2026-10-02T04:41:24.726Z fault on: station off
-2026-10-02T04:46:25.064Z fault off: station off
-2026-10-02T04:51:25.354Z fault on: 15% HTTP 500
-2026-10-02T04:59:15.832Z fault on: server errors
-2026-10-02T05:01:25.969Z fault off: 15% HTTP 500
-2026-10-02T05:03:16.062Z fault on: 5% network loss
-2026-10-02T05:09:16.440Z fault off: server errors
-2026-10-02T05:13:16.687Z fault off: 5% network loss
-2026-10-02T05:14:16.751Z segment finished; the next run continues from here
-2026-10-02T05:15:27.572Z resuming after 1 min away
-2026-10-02T05:15:27.820Z obix_sim.py: 3 servers
-2026-10-02T05:15:28.997Z running until 2026-10-02T23:39:15.542Z
-2026-10-02T05:19:19.208Z fault on: station hangs
-2026-10-02T05:19:19.209Z fault on: server hangs
-2026-10-02T05:20:19.264Z fault off: station hangs
-2026-10-02T05:22:19.373Z fault off: server hangs
-2026-10-02T05:24:19.481Z fault on: box killed
-2026-10-02T05:26:50.672Z fault off: box killed
-2026-10-02T05:32:20.992Z fault on: 10% broken replies
-2026-10-02T05:37:21.275Z fault off: 10% broken replies
-2026-10-02T05:39:21.454Z hour 6: 21 gaps, box 89 MB, driver 24 MB
-2026-10-02T05:41:21.578Z fault on: station off
-2026-10-02T05:46:21.886Z fault off: station off
-2026-10-02T05:51:22.177Z fault on: 15% HTTP 500
-2026-10-02T06:01:22.771Z fault off: 15% HTTP 500
-2026-10-02T06:03:22.875Z fault on: 5% network loss
-2026-10-02T06:13:23.458Z fault off: 5% network loss
-2026-10-02T06:19:23.781Z fault on: station hangs
-2026-10-02T06:20:23.827Z fault off: station hangs
-2026-10-02T06:32:24.539Z fault on: 10% broken replies
-2026-10-02T06:37:24.849Z fault off: 10% broken replies
-2026-10-02T06:39:24.998Z hour 7: 15 gaps, box 97 MB, driver 25 MB
-2026-10-02T06:41:25.099Z fault on: station off
-2026-10-02T06:46:25.424Z fault off: station off
-2026-10-02T06:51:15.718Z fault on: 15% HTTP 500
-2026-10-02T06:54:15.857Z fault on: clock +5 min
-2026-10-02T06:56:15.986Z fault off: clock +5 min
-2026-10-02T06:59:16.176Z fault on: server errors
-2026-10-02T07:01:16.294Z fault off: 15% HTTP 500
-2026-10-02T07:03:16.410Z fault on: 5% network loss
-2026-10-02T07:09:16.776Z fault off: server errors
-2026-10-02T07:09:16.776Z fault on: driver killed
-2026-10-02T07:12:16.971Z fault off: driver killed
-2026-10-02T07:13:17.046Z fault off: 5% network loss
-2026-10-02T07:19:17.420Z fault on: station hangs
-2026-10-02T07:20:17.472Z fault off: station hangs
-2026-10-02T07:32:18.171Z fault on: 10% broken replies
-2026-10-02T07:37:18.474Z fault off: 10% broken replies
-2026-10-02T07:39:18.633Z hour 8: 24 gaps, box 98 MB, driver 24 MB
-2026-10-02T07:41:18.739Z fault on: station off
-2026-10-02T07:46:19.054Z fault off: station off
-2026-10-02T07:51:19.329Z fault on: 15% HTTP 500
-2026-10-02T08:01:19.889Z fault off: 15% HTTP 500
-2026-10-02T08:03:20.000Z fault on: 5% network loss
-2026-10-02T08:13:20.621Z fault off: 5% network loss
-2026-10-02T08:19:20.988Z fault on: station hangs
-2026-10-02T08:19:20.989Z fault on: server hangs
-2026-10-02T08:20:21.034Z fault off: station hangs
-2026-10-02T08:22:21.138Z fault off: server hangs
-2026-10-02T08:32:21.722Z fault on: 10% broken replies
-2026-10-02T08:37:21.995Z fault off: 10% broken replies
-2026-10-02T08:39:22.147Z hour 9: 15 gaps, box 99 MB, driver 24 MB
-2026-10-02T08:41:22.265Z fault on: station off
-2026-10-02T08:46:22.553Z fault off: station off
-2026-10-02T08:51:22.833Z fault on: 15% HTTP 500
-2026-10-02T08:59:23.288Z fault on: server errors
-2026-10-02T09:01:23.410Z fault off: 15% HTTP 500
-2026-10-02T09:03:23.515Z fault on: 5% network loss
-2026-10-02T09:09:23.866Z fault off: server errors
-2026-10-02T09:13:24.095Z fault off: 5% network loss
-2026-10-02T09:19:24.448Z fault on: station hangs
-2026-10-02T09:20:24.497Z fault off: station hangs
-2026-10-02T09:32:25.195Z fault on: 10% broken replies
-2026-10-02T09:37:25.495Z fault off: 10% broken replies
-2026-10-02T09:39:15.632Z hour 10: 15 gaps, box 99 MB, driver 24 MB
-2026-10-02T09:41:15.744Z fault on: station off
-2026-10-02T09:46:16.072Z fault off: station off
-2026-10-02T09:51:16.371Z fault on: 15% HTTP 500
-2026-10-02T10:01:16.973Z fault off: 15% HTTP 500
-2026-10-02T10:03:17.077Z fault on: 5% network loss
-2026-10-02T10:13:17.687Z fault off: 5% network loss
-2026-10-02T10:19:18.059Z fault on: station hangs
-2026-10-02T10:20:18.114Z fault off: station hangs
-2026-10-02T10:32:18.795Z fault on: 10% broken replies
-2026-10-02T10:37:19.073Z fault off: 10% broken replies
-2026-10-02T10:39:19.199Z hour 11: 15 gaps, box 100 MB, driver 25 MB
-2026-10-02T10:41:19.313Z fault on: station off
-2026-10-02T10:46:19.640Z fault off: station off
-2026-10-02T10:50:29.878Z segment finished; the next run continues from here
-2026-10-02T10:51:37.614Z resuming after 1 min away
-2026-10-02T10:51:37.872Z obix_sim.py: 3 servers
-2026-10-02T10:51:39.063Z running until 2026-10-02T23:39:15.542Z
-2026-10-02T10:51:39.063Z fault on: 15% HTTP 500
+2026-10-02T10:52:50.096Z obix_sim.py: 3 servers
+2026-10-02T10:52:51.240Z running until 2026-10-03T10:52:49.853Z
+2026-10-02T10:54:51.358Z fault on: station off
+2026-10-02T10:59:51.677Z fault off: station off
+2026-10-02T11:04:51.956Z fault on: 15% HTTP 500
+2026-10-02T11:14:52.522Z fault off: 15% HTTP 500
+2026-10-02T11:16:52.628Z fault on: 5% network loss
+2026-10-02T11:26:53.224Z fault off: 5% network loss
+2026-10-02T11:32:53.572Z fault on: station hangs
+2026-10-02T11:33:53.628Z fault off: station hangs
+2026-10-02T11:45:54.350Z fault on: 10% broken replies
+2026-10-02T11:50:54.661Z fault off: 10% broken replies
+2026-10-02T11:52:54.831Z hour 1: 0 gaps, box 90 MB, driver 24 MB
+2026-10-02T11:54:54.957Z fault on: station off
+2026-10-02T11:59:55.293Z fault off: station off
+2026-10-02T12:04:55.590Z fault on: 15% HTTP 500
+2026-10-02T12:12:56.067Z fault on: server errors
+2026-10-02T12:14:56.178Z fault off: 15% HTTP 500
+2026-10-02T12:16:56.286Z fault on: 5% network loss
+2026-10-02T12:22:56.663Z fault off: server errors
+2026-10-02T12:26:56.916Z fault off: 5% network loss
+2026-10-02T12:32:57.289Z fault on: station hangs
+2026-10-02T12:33:57.338Z fault off: station hangs
+2026-10-02T12:45:58.058Z fault on: 10% broken replies
+2026-10-02T12:50:58.340Z fault off: 10% broken replies
+2026-10-02T12:52:58.494Z hour 2: 0 gaps, box 96 MB, driver 25 MB
+2026-10-02T12:54:58.619Z fault on: station off
+2026-10-02T12:59:58.936Z fault off: station off
+2026-10-02T13:04:59.225Z fault on: 15% HTTP 500
+2026-10-02T13:14:59.823Z fault off: 15% HTTP 500
+2026-10-02T13:16:49.921Z fault on: 5% network loss
+2026-10-02T13:26:50.542Z fault off: 5% network loss
+2026-10-02T13:32:50.921Z fault on: station hangs
+2026-10-02T13:32:50.922Z fault on: server hangs
+2026-10-02T13:33:50.979Z fault off: station hangs
+2026-10-02T13:35:51.089Z fault off: server hangs
+2026-10-02T13:45:51.673Z fault on: 10% broken replies
+2026-10-02T13:50:51.967Z fault off: 10% broken replies
+2026-10-02T13:52:52.113Z hour 3: 0 gaps, box 98 MB, driver 25 MB
+2026-10-02T13:54:52.231Z fault on: station off
+2026-10-02T13:59:52.556Z fault off: station off
+2026-10-02T14:04:52.865Z fault on: 15% HTTP 500
+2026-10-02T14:12:53.347Z fault on: server errors
+2026-10-02T14:14:53.466Z fault off: 15% HTTP 500
+2026-10-02T14:16:53.572Z fault on: 5% network loss
+2026-10-02T14:22:53.941Z fault off: server errors
+2026-10-02T14:22:53.941Z fault on: driver killed
+2026-10-02T14:25:54.126Z fault off: driver killed
+2026-10-02T14:26:54.211Z fault off: 5% network loss
+2026-10-02T14:32:54.559Z fault on: station hangs
+2026-10-02T14:33:54.605Z fault off: station hangs
+2026-10-02T14:45:55.334Z fault on: 10% broken replies
+2026-10-02T14:50:55.610Z fault off: 10% broken replies
+2026-10-02T14:52:55.764Z hour 4: 0 gaps, box 99 MB, driver 24 MB
+2026-10-02T14:54:55.877Z fault on: station off
+2026-10-02T14:59:56.211Z fault off: station off
+2026-10-02T15:04:56.499Z fault on: 15% HTTP 500
+2026-10-02T15:14:57.114Z fault off: 15% HTTP 500
+2026-10-02T15:16:57.210Z fault on: 5% network loss
+2026-10-02T15:26:57.795Z fault off: 5% network loss
+2026-10-02T15:32:58.143Z fault on: station hangs
+2026-10-02T15:33:58.188Z fault off: station hangs
+2026-10-02T15:45:58.886Z fault on: 10% broken replies
+2026-10-02T15:50:59.191Z fault off: 10% broken replies
+2026-10-02T15:52:59.345Z hour 5: 0 gaps, box 100 MB, driver 24 MB
+2026-10-02T15:54:59.465Z fault on: station off
+2026-10-02T15:59:59.804Z fault off: station off
+2026-10-02T16:04:50.086Z fault on: 15% HTTP 500
+2026-10-02T16:12:50.537Z fault on: server errors
+2026-10-02T16:14:50.655Z fault off: 15% HTTP 500
+2026-10-02T16:16:50.768Z fault on: 5% network loss
+2026-10-02T16:22:51.141Z fault off: server errors
+2026-10-02T16:26:51.385Z fault off: 5% network loss
+2026-10-02T16:27:51.438Z segment finished; the next run continues from here
