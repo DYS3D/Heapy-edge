@@ -475,6 +475,546 @@
    "from": 1790896134865,
    "to": 1790896735541,
    "why": "5% network loss"
+  },
+  {
+   "device": "*",
+   "from": 1790896795602,
+   "to": 1790897176587,
+   "why": "test machine restart"
+  },
+  {
+   "device": null,
+   "from": 1790896878339,
+   "to": 1790897480002,
+   "why": "RS-485 noise 5 bytes/s"
+  },
+  {
+   "device": null,
+   "from": 1790897098532,
+   "to": 1790897278726,
+   "why": "server hangs"
+  },
+  {
+   "device": "*",
+   "from": 1790897398835,
+   "to": 1790897550052,
+   "why": "box killed"
+  },
+  {
+   "device": "modbus://gw1-u01",
+   "from": 1790897520033,
+   "to": 1790897700226,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u02",
+   "from": 1790897520033,
+   "to": 1790897700226,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u03",
+   "from": 1790897520033,
+   "to": 1790897700226,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u04",
+   "from": 1790897520033,
+   "to": 1790897700226,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u05",
+   "from": 1790897520033,
+   "to": 1790897700226,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u06",
+   "from": 1790897520033,
+   "to": 1790897700226,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u07",
+   "from": 1790897520033,
+   "to": 1790897700226,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u08",
+   "from": 1790897520033,
+   "to": 1790897700226,
+   "why": "gateway off"
+  },
+  {
+   "device": null,
+   "from": 1790897880371,
+   "to": 1790898180660,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "modbus://tcp-03",
+   "from": 1790898421053,
+   "to": 1790898721376,
+   "why": "TCP device off"
+  },
+  {
+   "device": "modbus://tcp-04",
+   "from": 1790898841485,
+   "to": 1790898961595,
+   "why": "TCP device reboots"
+  },
+  {
+   "device": null,
+   "from": 1790899021643,
+   "to": 1790899622185,
+   "why": "20% lost replies behind the gateway"
+  },
+  {
+   "device": null,
+   "from": 1790899742289,
+   "to": 1790900342920,
+   "why": "5% network loss"
+  },
+  {
+   "device": null,
+   "from": 1790900463043,
+   "to": 1790901063641,
+   "why": "RS-485 noise 5 bytes/s"
+  },
+  {
+   "device": "modbus://gw1-u01",
+   "from": 1790901123685,
+   "to": 1790901303875,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u02",
+   "from": 1790901123685,
+   "to": 1790901303875,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u03",
+   "from": 1790901123685,
+   "to": 1790901303875,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u04",
+   "from": 1790901123685,
+   "to": 1790901303875,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u05",
+   "from": 1790901123685,
+   "to": 1790901303875,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u06",
+   "from": 1790901123685,
+   "to": 1790901303875,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u07",
+   "from": 1790901123685,
+   "to": 1790901303875,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u08",
+   "from": 1790901123685,
+   "to": 1790901303875,
+   "why": "gateway off"
+  },
+  {
+   "device": null,
+   "from": 1790901474025,
+   "to": 1790901774301,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "modbus://tcp-03",
+   "from": 1790902014683,
+   "to": 1790902314991,
+   "why": "TCP device off"
+  },
+  {
+   "device": "modbus://tcp-04",
+   "from": 1790902435100,
+   "to": 1790902555213,
+   "why": "TCP device reboots"
+  },
+  {
+   "device": null,
+   "from": 1790902615268,
+   "to": 1790903215865,
+   "why": "20% lost replies behind the gateway"
+  },
+  {
+   "device": "*",
+   "from": 1790902795446,
+   "to": 1790903515566,
+   "why": "clock +5 min"
+  },
+  {
+   "device": null,
+   "from": 1790903095747,
+   "to": 1790903696318,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1790903335965,
+   "to": 1790903936580,
+   "why": "5% network loss"
+  },
+  {
+   "device": "*",
+   "from": 1790903696318,
+   "to": 1790903876504,
+   "why": "driver killed"
+  },
+  {
+   "device": null,
+   "from": 1790904056696,
+   "to": 1790904657262,
+   "why": "RS-485 noise 5 bytes/s"
+  },
+  {
+   "device": "modbus://gw1-u01",
+   "from": 1790904717316,
+   "to": 1790904897510,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u02",
+   "from": 1790904717316,
+   "to": 1790904897510,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u03",
+   "from": 1790904717316,
+   "to": 1790904897510,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u04",
+   "from": 1790904717316,
+   "to": 1790904897510,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u05",
+   "from": 1790904717316,
+   "to": 1790904897510,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u06",
+   "from": 1790904717316,
+   "to": 1790904897510,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u07",
+   "from": 1790904717316,
+   "to": 1790904897510,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u08",
+   "from": 1790904717316,
+   "to": 1790904897510,
+   "why": "gateway off"
+  },
+  {
+   "device": null,
+   "from": 1790905077685,
+   "to": 1790905377970,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "modbus://tcp-03",
+   "from": 1790905618367,
+   "to": 1790905918663,
+   "why": "TCP device off"
+  },
+  {
+   "device": "modbus://tcp-04",
+   "from": 1790906038767,
+   "to": 1790906158883,
+   "why": "TCP device reboots"
+  },
+  {
+   "device": null,
+   "from": 1790906218931,
+   "to": 1790906819476,
+   "why": "20% lost replies behind the gateway"
+  },
+  {
+   "device": null,
+   "from": 1790906939592,
+   "to": 1790907540193,
+   "why": "5% network loss"
+  },
+  {
+   "device": null,
+   "from": 1790907660311,
+   "to": 1790908260900,
+   "why": "RS-485 noise 5 bytes/s"
+  },
+  {
+   "device": null,
+   "from": 1790907900553,
+   "to": 1790908080725,
+   "why": "server hangs"
+  },
+  {
+   "device": "modbus://gw1-u01",
+   "from": 1790908320949,
+   "to": 1790908501156,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u02",
+   "from": 1790908320949,
+   "to": 1790908501156,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u03",
+   "from": 1790908320949,
+   "to": 1790908501156,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u04",
+   "from": 1790908320949,
+   "to": 1790908501156,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u05",
+   "from": 1790908320949,
+   "to": 1790908501156,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u06",
+   "from": 1790908320949,
+   "to": 1790908501156,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u07",
+   "from": 1790908320949,
+   "to": 1790908501156,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u08",
+   "from": 1790908320949,
+   "to": 1790908501156,
+   "why": "gateway off"
+  },
+  {
+   "device": null,
+   "from": 1790908681299,
+   "to": 1790908981587,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "modbus://tcp-03",
+   "from": 1790909221996,
+   "to": 1790909522295,
+   "why": "TCP device off"
+  },
+  {
+   "device": "modbus://tcp-04",
+   "from": 1790909642377,
+   "to": 1790909762467,
+   "why": "TCP device reboots"
+  },
+  {
+   "device": null,
+   "from": 1790909822504,
+   "to": 1790910423090,
+   "why": "20% lost replies behind the gateway"
+  },
+  {
+   "device": null,
+   "from": 1790910302961,
+   "to": 1790910903578,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1790910543204,
+   "to": 1790911143830,
+   "why": "5% network loss"
+  },
+  {
+   "device": null,
+   "from": 1790911253939,
+   "to": 1790911854536,
+   "why": "RS-485 noise 5 bytes/s"
+  },
+  {
+   "device": "modbus://gw1-u01",
+   "from": 1790911914586,
+   "to": 1790912094779,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u02",
+   "from": 1790911914586,
+   "to": 1790912094779,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u03",
+   "from": 1790911914586,
+   "to": 1790912094779,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u04",
+   "from": 1790911914586,
+   "to": 1790912094779,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u05",
+   "from": 1790911914586,
+   "to": 1790912094779,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u06",
+   "from": 1790911914586,
+   "to": 1790912094779,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u07",
+   "from": 1790911914586,
+   "to": 1790912094779,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u08",
+   "from": 1790911914586,
+   "to": 1790912094779,
+   "why": "gateway off"
+  },
+  {
+   "device": null,
+   "from": 1790912274949,
+   "to": 1790912575241,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "modbus://tcp-03",
+   "from": 1790912815636,
+   "to": 1790913115962,
+   "why": "TCP device off"
+  },
+  {
+   "device": "modbus://tcp-04",
+   "from": 1790913236041,
+   "to": 1790913356151,
+   "why": "TCP device reboots"
+  },
+  {
+   "device": null,
+   "from": 1790913416205,
+   "to": 1790914016793,
+   "why": "20% lost replies behind the gateway"
+  },
+  {
+   "device": null,
+   "from": 1790914136888,
+   "to": 1790914737509,
+   "why": "5% network loss"
+  },
+  {
+   "device": null,
+   "from": 1790914857629,
+   "to": 1790915458212,
+   "why": "RS-485 noise 5 bytes/s"
+  },
+  {
+   "device": "modbus://gw1-u01",
+   "from": 1790915518256,
+   "to": 1790915698433,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u02",
+   "from": 1790915518256,
+   "to": 1790915698433,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u03",
+   "from": 1790915518256,
+   "to": 1790915698433,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u04",
+   "from": 1790915518256,
+   "to": 1790915698433,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u05",
+   "from": 1790915518256,
+   "to": 1790915698433,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u06",
+   "from": 1790915518256,
+   "to": 1790915698433,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u07",
+   "from": 1790915518256,
+   "to": 1790915698433,
+   "why": "gateway off"
+  },
+  {
+   "device": "modbus://gw1-u08",
+   "from": 1790915518256,
+   "to": 1790915698433,
+   "why": "gateway off"
+  },
+  {
+   "device": null,
+   "from": 1790915878590,
+   "to": 1790916178819,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "modbus://tcp-03",
+   "from": 1790916419200,
+   "to": 1790916719526,
+   "why": "TCP device off"
+  },
+  {
+   "device": "modbus://tcp-04",
+   "from": 1790916839619,
+   "to": 1790916959733,
+   "why": "TCP device reboots"
   }
  ],
  "hourly": [
@@ -607,9 +1147,170 @@
     "retries": 2254
    },
    "lanes_behind": []
+  },
+  {
+   "hour": 6,
+   "at": "2026-10-01T23:45:00.904Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 106,
+   "driver_rss_mb": 24,
+   "samples": 355575,
+   "backlog": 0,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 495,
+    "read_errors": 24,
+    "samples": 14112,
+    "cov_samples": 0,
+    "last_read": 1790898270277,
+    "missed_slots": 0,
+    "point_errors": 672,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 352
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 7,
+   "at": "2026-10-02T00:44:54.540Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 106,
+   "driver_rss_mb": 24,
+   "samples": 414795,
+   "backlog": 0,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 1905,
+    "read_errors": 54,
+    "samples": 73332,
+    "cov_samples": 0,
+    "last_read": 1790901870368,
+    "missed_slots": 0,
+    "point_errors": 3492,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 792
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 8,
+   "at": "2026-10-02T01:44:58.229Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 108,
+   "driver_rss_mb": 24,
+   "samples": 476031,
+   "backlog": 0,
+   "driver_restarts": 1,
+   "poll": {
+    "reads": 3372,
+    "read_errors": 84,
+    "samples": 134568,
+    "cov_samples": 0,
+    "last_read": 1790905470466,
+    "missed_slots": 0,
+    "point_errors": 6408,
+    "bad_values": 0,
+    "clock_jumps": 2,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 1232
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 9,
+   "at": "2026-10-02T02:45:01.844Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 108,
+   "driver_rss_mb": 24,
+   "samples": 535251,
+   "backlog": 0,
+   "driver_restarts": 1,
+   "poll": {
+    "reads": 4782,
+    "read_errors": 115,
+    "samples": 193788,
+    "cov_samples": 0,
+    "last_read": 1790909070389,
+    "missed_slots": 0,
+    "point_errors": 9228,
+    "bad_values": 0,
+    "clock_jumps": 2,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 1716
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 10,
+   "at": "2026-10-02T03:44:55.490Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 108,
+   "driver_rss_mb": 24,
+   "samples": 594471,
+   "backlog": 0,
+   "driver_restarts": 1,
+   "poll": {
+    "reads": 6193,
+    "read_errors": 145,
+    "samples": 253008,
+    "cov_samples": 0,
+    "last_read": 1790912670113,
+    "missed_slots": 0,
+    "point_errors": 12051,
+    "bad_values": 0,
+    "clock_jumps": 2,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 2159
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 11,
+   "at": "2026-10-02T04:44:59.048Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 109,
+   "driver_rss_mb": 25,
+   "samples": 653691,
+   "backlog": 0,
+   "driver_restarts": 1,
+   "poll": {
+    "reads": 7603,
+    "read_errors": 175,
+    "samples": 312228,
+    "cov_samples": 0,
+    "last_read": 1790916270047,
+    "missed_slots": 0,
+    "point_errors": 14871,
+    "bad_values": 0,
+    "clock_jumps": 2,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 2599
+   },
+   "lanes_behind": []
   }
  ],
- "outages": [],
+ "outages": [
+  {
+   "from": 1790896795602,
+   "to": 1790896876587
+  }
+ ],
  "done": {
   "0:TCP device off": true,
   "0:TCP device reboots": true,
@@ -654,11 +1355,58 @@
   "5:TCP device reboots": true,
   "5:20% lost replies behind the gateway": true,
   "5:server500": true,
-  "5:5% network loss": true
+  "5:5% network loss": true,
+  "5:RS-485 noise 5 bytes/s": true,
+  "5:serverhang": true,
+  "5:killbox": true,
+  "5:gateway off": true,
+  "5:10% garbage replies": true,
+  "6:TCP device off": true,
+  "6:TCP device reboots": true,
+  "6:20% lost replies behind the gateway": true,
+  "6:5% network loss": true,
+  "6:RS-485 noise 5 bytes/s": true,
+  "6:gateway off": true,
+  "6:10% garbage replies": true,
+  "7:TCP device off": true,
+  "7:TCP device reboots": true,
+  "7:20% lost replies behind the gateway": true,
+  "7:clock": true,
+  "7:server500": true,
+  "7:5% network loss": true,
+  "7:killdriver": true,
+  "7:RS-485 noise 5 bytes/s": true,
+  "7:gateway off": true,
+  "7:10% garbage replies": true,
+  "8:TCP device off": true,
+  "8:TCP device reboots": true,
+  "8:20% lost replies behind the gateway": true,
+  "8:5% network loss": true,
+  "8:RS-485 noise 5 bytes/s": true,
+  "8:serverhang": true,
+  "8:gateway off": true,
+  "8:10% garbage replies": true,
+  "9:TCP device off": true,
+  "9:TCP device reboots": true,
+  "9:20% lost replies behind the gateway": true,
+  "9:server500": true,
+  "9:5% network loss": true,
+  "9:RS-485 noise 5 bytes/s": true,
+  "9:gateway off": true,
+  "9:10% garbage replies": true,
+  "10:TCP device off": true,
+  "10:TCP device reboots": true,
+  "10:20% lost replies behind the gateway": true,
+  "10:5% network loss": true,
+  "10:RS-485 noise 5 bytes/s": true,
+  "10:gateway off": true,
+  "10:10% garbage replies": true,
+  "11:TCP device off": true,
+  "11:TCP device reboots": true
  },
- "lastBeat": 1790896795602,
+ "lastBeat": 1790916979751,
  "restarts_expected": {
-  "box": 0,
-  "driver": 1
+  "box": 1,
+  "driver": 2
  }
 }
