@@ -407,3 +407,38 @@
 2026-10-03T09:47:28.062Z fault on: 5% network loss
 2026-10-03T09:57:28.679Z fault off: 5% network loss
 2026-10-03T09:57:38.681Z segment finished; the next run continues from here
+2026-10-03T09:58:58.592Z resuming after 1 min away
+2026-10-03T09:58:59.009Z Modbus site: 24 devices
+2026-10-03T09:59:01.326Z running until 2026-10-03T11:23:24.612Z
+2026-10-03T09:59:31.353Z fault on: RS-485 noise 5 bytes/s
+2026-10-03T10:09:31.904Z fault off: RS-485 noise 5 bytes/s
+2026-10-03T10:10:31.943Z fault on: gateway off
+2026-10-03T10:13:32.148Z fault off: gateway off
+2026-10-03T10:16:32.306Z fault on: 10% garbage replies
+2026-10-03T10:21:32.606Z fault off: 10% garbage replies
+2026-10-03T10:23:32.991Z hour 23: 0 gaps, box 101 MB, driver 24 MB
+2026-10-03T10:25:33.088Z fault on: TCP device off
+2026-10-03T10:30:33.408Z fault off: TCP device off
+2026-10-03T10:32:33.531Z fault on: TCP device reboots
+2026-10-03T10:34:33.632Z fault off: TCP device reboots
+2026-10-03T10:35:33.689Z fault on: 20% lost replies behind the gateway
+2026-10-03T10:38:33.866Z fault on: clock +5 min
+2026-10-03T10:40:33.998Z fault off: clock +5 min
+2026-10-03T10:43:34.163Z fault on: server errors
+2026-10-03T10:45:34.295Z fault off: 20% lost replies behind the gateway
+2026-10-03T10:47:34.412Z fault on: 5% network loss
+2026-10-03T10:53:24.775Z fault on: driver killed
+2026-10-03T10:53:34.801Z fault off: server errors
+2026-10-03T10:56:24.961Z fault off: driver killed
+2026-10-03T10:57:35.047Z fault off: 5% network loss
+2026-10-03T10:59:25.147Z fault on: RS-485 noise 5 bytes/s
+2026-10-03T11:03:25.388Z fault on: server hangs
+2026-10-03T11:06:25.580Z fault off: server hangs
+2026-10-03T11:08:25.712Z fault on: box killed
+2026-10-03T11:09:26.940Z fault off: RS-485 noise 5 bytes/s
+2026-10-03T11:10:26.995Z fault on: gateway off
+2026-10-03T11:10:57.021Z fault off: box killed
+2026-10-03T11:13:27.219Z fault off: gateway off
+2026-10-03T11:16:27.372Z fault on: 10% garbage replies
+2026-10-03T11:21:27.659Z fault off: 10% garbage replies
+2026-10-03T11:26:43.637Z FINISHED: PASS {"kind":"modbus","loss":{"box":1430545,"server":1430545,"missing":0,"extra":0,"duplicates":0,"box_dup_rows":0},"gaps":0,"gap_examples":[],"max_rate":["tcp-01",11],"hours":24,"points":1056,"samples":1430545,"outages":[{"from":1790960305959,"to":1790960382927},{"from":1790980486603,"to":1790980561629},{"from":1791000822714,"to":1791000893781},{"from":1791021458680,"to":1791021538592}],"unexpected_box_stops":0}
