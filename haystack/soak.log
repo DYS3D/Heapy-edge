@@ -359,3 +359,36 @@
 2026-10-03T09:04:53.385Z fault on: 15% HTTP 500
 2026-10-03T09:14:53.989Z fault off: 15% HTTP 500
 2026-10-03T09:16:44.091Z segment finished; the next run continues from here
+2026-10-03T09:18:11.481Z resuming after 1 min away
+2026-10-03T09:18:11.667Z Haystack site: 4 servers
+2026-10-03T09:18:13.006Z running until 2026-10-03T10:52:51.031Z
+2026-10-03T09:28:53.604Z fault on: login tokens expire
+2026-10-03T09:29:53.664Z fault off: login tokens expire
+2026-10-03T09:32:53.829Z fault on: server hangs
+2026-10-03T09:33:53.880Z fault off: server hangs
+2026-10-03T09:45:54.555Z fault on: 10% broken replies
+2026-10-03T09:50:54.859Z fault off: 10% broken replies
+2026-10-03T09:52:55.026Z hour 23: 0 gaps, box 92 MB, driver 25 MB
+2026-10-03T09:54:55.139Z fault on: server off
+2026-10-03T09:59:55.460Z fault off: server off
+2026-10-03T10:04:55.749Z fault on: 15% HTTP 500
+2026-10-03T10:07:55.930Z fault on: clock +5 min
+2026-10-03T10:09:56.053Z fault off: clock +5 min
+2026-10-03T10:12:56.238Z fault on: server errors
+2026-10-03T10:14:56.352Z fault off: 15% HTTP 500
+2026-10-03T10:16:56.475Z fault on: 5% network loss
+2026-10-03T10:22:56.821Z fault off: server errors
+2026-10-03T10:22:56.821Z fault on: driver killed
+2026-10-03T10:25:57.009Z fault off: driver killed
+2026-10-03T10:26:57.089Z fault off: 5% network loss
+2026-10-03T10:28:57.211Z fault on: login tokens expire
+2026-10-03T10:29:57.265Z fault off: login tokens expire
+2026-10-03T10:32:57.440Z fault on: server hangs
+2026-10-03T10:32:57.441Z fault on: server hangs
+2026-10-03T10:33:57.496Z fault off: server hangs
+2026-10-03T10:35:57.610Z fault off: server hangs
+2026-10-03T10:37:57.729Z fault on: box killed
+2026-10-03T10:40:28.939Z fault off: box killed
+2026-10-03T10:45:59.269Z fault on: 10% broken replies
+2026-10-03T10:50:59.544Z fault off: 10% broken replies
+2026-10-03T10:56:08.323Z FINISHED: PASS {"kind":"haystack","loss":{"box":152564,"server":152564,"missing":0,"extra":0,"duplicates":0,"box_dup_rows":0},"gaps":0,"gap_examples":[],"max_rate":["hs-01",6],"hours":24,"points":120,"samples":152564,"outages":[{"from":1790958472764,"to":1790958552442},{"from":1790978655695,"to":1790978728587},{"from":1790998830973,"to":1790998901574},{"from":1791019004091,"to":1791019091481}],"unexpected_box_stops":0}

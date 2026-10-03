@@ -991,6 +991,96 @@
    "from": 1791018293385,
    "to": 1791018893989,
    "why": "15% HTTP 500"
+  },
+  {
+   "device": "*",
+   "from": 1791019004091,
+   "to": 1791019391481,
+   "why": "test machine restart"
+  },
+  {
+   "device": null,
+   "from": 1791019733604,
+   "to": 1791019793664,
+   "why": "login tokens expire"
+  },
+  {
+   "device": "haystack://hs-04",
+   "from": 1791019973829,
+   "to": 1791020033880,
+   "why": "server hangs"
+  },
+  {
+   "device": null,
+   "from": 1791020754555,
+   "to": 1791021054859,
+   "why": "10% broken replies"
+  },
+  {
+   "device": "haystack://hs-01",
+   "from": 1791021295139,
+   "to": 1791021595460,
+   "why": "server off"
+  },
+  {
+   "device": null,
+   "from": 1791021895749,
+   "to": 1791022496352,
+   "why": "15% HTTP 500"
+  },
+  {
+   "device": "*",
+   "from": 1791022075930,
+   "to": 1791022796053,
+   "why": "clock +5 min"
+  },
+  {
+   "device": null,
+   "from": 1791022376238,
+   "to": 1791022976821,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1791022616475,
+   "to": 1791023217089,
+   "why": "5% network loss"
+  },
+  {
+   "device": "*",
+   "from": 1791022976821,
+   "to": 1791023157009,
+   "why": "driver killed"
+  },
+  {
+   "device": null,
+   "from": 1791023337211,
+   "to": 1791023397265,
+   "why": "login tokens expire"
+  },
+  {
+   "device": "haystack://hs-04",
+   "from": 1791023577440,
+   "to": 1791023637496,
+   "why": "server hangs"
+  },
+  {
+   "device": null,
+   "from": 1791023577441,
+   "to": 1791023757610,
+   "why": "server hangs"
+  },
+  {
+   "device": "*",
+   "from": 1791023877729,
+   "to": 1791024028939,
+   "why": "box killed"
+  },
+  {
+   "device": null,
+   "from": 1791024359269,
+   "to": 1791024659544,
+   "why": "10% broken replies"
   }
  ],
  "hourly": [
@@ -1561,6 +1651,32 @@
     "retries": 240
    },
    "lanes_behind": []
+  },
+  {
+   "hour": 23,
+   "at": "2026-10-03T09:52:54.987Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 92,
+   "driver_rss_mb": 25,
+   "samples": 145706,
+   "backlog": 0,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 181,
+    "read_errors": 2,
+    "samples": 3816,
+    "cov_samples": 0,
+    "last_read": 1791021149783,
+    "missed_slots": 0,
+    "point_errors": 424,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 30
+   },
+   "lanes_behind": []
   }
  ],
  "outages": [
@@ -1575,6 +1691,10 @@
   {
    "from": 1790998830973,
    "to": 1790998901574
+  },
+  {
+   "from": 1791019004091,
+   "to": 1791019091481
   }
  ],
  "done": {
@@ -1739,11 +1859,66 @@
   "21:server hangs": true,
   "21:10% broken replies": true,
   "22:server off": true,
-  "22:15% HTTP 500": true
+  "22:15% HTTP 500": true,
+  "22:login tokens expire": true,
+  "22:server hangs": true,
+  "22:10% broken replies": true,
+  "23:server off": true,
+  "23:15% HTTP 500": true,
+  "23:clock": true,
+  "23:server500": true,
+  "23:5% network loss": true,
+  "23:killdriver": true,
+  "23:login tokens expire": true,
+  "23:server hangs": true,
+  "23:serverhang": true,
+  "23:killbox": true,
+  "23:10% broken replies": true
  },
- "lastBeat": 1791019004091,
+ "lastBeat": 1791024769651,
  "restarts_expected": {
-  "box": 3,
-  "driver": 5
- }
+  "box": 4,
+  "driver": 6
+ },
+ "final": {
+  "kind": "haystack",
+  "loss": {
+   "box": 152564,
+   "server": 152564,
+   "missing": 0,
+   "extra": 0,
+   "duplicates": 0,
+   "box_dup_rows": 0
+  },
+  "gaps": 0,
+  "gap_examples": [],
+  "max_rate": [
+   "hs-01",
+   6
+  ],
+  "hours": 24,
+  "points": 120,
+  "samples": 152564,
+  "outages": [
+   {
+    "from": 1790958472764,
+    "to": 1790958552442
+   },
+   {
+    "from": 1790978655695,
+    "to": 1790978728587
+   },
+   {
+    "from": 1790998830973,
+    "to": 1790998901574
+   },
+   {
+    "from": 1791019004091,
+    "to": 1791019091481
+   }
+  ],
+  "unexpected_box_stops": 0
+ },
+ "pass": true,
+ "finished": true
 }
