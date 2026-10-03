@@ -158,7 +158,16 @@ async function main() {
 
   let lastHour = Math.floor((now() - st.start) / 3600000);
   while (now() < st.end) {
-    if (now() > SEG_END && !active.size) {
+    // Stop at the segment end once no fault is running; the MS/TP plan can chain
+    // faults for 22 minutes, so after a 15-minute wait end them and stop anyway
+    // (the GitHub job would otherwise be killed by its time limit).
+    if (now() > SEG_END && (!active.size || now() > SEG_END + 15 * MIN)) {
+      for (const [key, a] of active) {
+        try { await a.undo(); } catch (e) { lab.note(`undo ${a.why} failed: ${e.message}`); }
+        a.f.to = now();
+        active.delete(key);
+        lab.note(`fault off (segment end): ${a.why}`);
+      }
       st.lastBeat = now();
       save(st);
       lab.note('segment finished; the next run continues from here');
