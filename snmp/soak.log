@@ -361,3 +361,34 @@
 2026-10-03T09:17:04.232Z fault on: 5% network loss
 2026-10-03T09:27:04.797Z fault off: 5% network loss
 2026-10-03T09:27:14.806Z segment finished; the next run continues from here
+2026-10-03T09:28:23.905Z resuming after 1 min away
+2026-10-03T09:28:27.232Z SNMP site: 7 agents
+2026-10-03T09:28:28.495Z running until 2026-10-03T10:52:58.346Z
+2026-10-03T09:28:58.520Z fault on: stale and duplicate replies
+2026-10-03T09:38:59.106Z fault off: stale and duplicate replies
+2026-10-03T09:45:59.505Z fault on: 10% garbage replies
+2026-10-03T09:50:59.798Z fault off: 10% garbage replies
+2026-10-03T09:52:59.999Z hour 23: 0 gaps, box 91 MB, driver 59 MB
+2026-10-03T09:55:00.122Z fault on: agent off
+2026-10-03T10:00:00.443Z fault off: agent off
+2026-10-03T10:02:00.550Z fault on: agent reboots
+2026-10-03T10:04:00.645Z fault off: agent reboots
+2026-10-03T10:05:00.692Z fault on: 20% lost replies
+2026-10-03T10:08:00.861Z fault on: clock +5 min
+2026-10-03T10:10:00.975Z fault off: clock +5 min
+2026-10-03T10:13:01.160Z fault on: server errors
+2026-10-03T10:15:01.276Z fault off: 20% lost replies
+2026-10-03T10:17:01.382Z fault on: 5% network loss
+2026-10-03T10:23:01.727Z fault off: server errors
+2026-10-03T10:23:01.727Z fault on: driver killed
+2026-10-03T10:26:01.932Z fault off: driver killed
+2026-10-03T10:27:02.011Z fault off: 5% network loss
+2026-10-03T10:29:02.140Z fault on: stale and duplicate replies
+2026-10-03T10:33:02.389Z fault on: server hangs
+2026-10-03T10:36:02.555Z fault off: server hangs
+2026-10-03T10:38:02.660Z fault on: box killed
+2026-10-03T10:39:03.768Z fault off: stale and duplicate replies
+2026-10-03T10:40:33.839Z fault off: box killed
+2026-10-03T10:46:04.169Z fault on: 10% garbage replies
+2026-10-03T10:51:04.443Z fault off: 10% garbage replies
+2026-10-03T10:56:13.516Z FINISHED: PASS {"kind":"snmp","loss":{"box":207103,"server":207103,"missing":0,"extra":0,"duplicates":0,"box_dup_rows":0},"gaps":0,"gap_examples":[],"max_rate":["ups-01",5],"hours":24,"points":161,"samples":207103,"outages":[{"from":1790958484149,"to":1790958557629},{"from":1790978662899,"to":1790978760434},{"from":1790998866906,"to":1790998939575},{"from":1791019634805,"to":1791019703905}],"unexpected_box_stops":0}
