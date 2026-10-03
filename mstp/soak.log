@@ -62,3 +62,71 @@
 2026-10-03T16:36:57.380Z fault off: server errors
 2026-10-03T16:40:57.630Z fault off: trunk loses 0.02% of bytes
 2026-10-03T16:41:07.641Z segment finished; the next run continues from here
+2026-10-03T16:43:17.712Z resuming after 2 min away
+2026-10-03T16:43:17.829Z MS/TP trunk: 20 devices, box port /dev/pts/0
+2026-10-03T16:43:32.171Z running until 2026-10-04T11:06:52.236Z
+2026-10-03T16:46:52.383Z fault on: box cable pulled
+2026-10-03T16:46:52.385Z fault on: server hangs
+2026-10-03T16:47:52.441Z fault off: box cable pulled
+2026-10-03T16:49:52.559Z fault off: server hangs
+2026-10-03T16:51:52.683Z fault on: box killed
+2026-10-03T16:54:31.992Z fault off: box killed
+2026-10-03T17:06:52.872Z hour 6: 0 gaps, box 95 MB, driver 32 MB
+2026-10-03T17:08:52.996Z fault on: MS/TP device 4 off
+2026-10-03T17:13:53.306Z fault off: MS/TP device 4 off
+2026-10-03T17:18:53.611Z fault on: trunk noise 5 bytes/s
+2026-10-03T17:28:54.234Z fault off: trunk noise 5 bytes/s
+2026-10-03T17:30:54.351Z fault on: trunk loses 0.02% of bytes
+2026-10-03T17:40:54.973Z fault off: trunk loses 0.02% of bytes
+2026-10-03T17:46:55.343Z fault on: box cable pulled
+2026-10-03T17:47:55.398Z fault off: box cable pulled
+2026-10-03T18:06:56.674Z hour 7: 0 gaps, box 100 MB, driver 32 MB
+2026-10-03T18:08:56.796Z fault on: MS/TP device 4 off
+2026-10-03T18:13:57.104Z fault off: MS/TP device 4 off
+2026-10-03T18:18:57.412Z fault on: trunk noise 5 bytes/s
+2026-10-03T18:21:57.594Z fault on: clock +5 min
+2026-10-03T18:23:57.728Z fault off: clock +5 min
+2026-10-03T18:26:57.917Z fault on: server errors
+2026-10-03T18:28:58.045Z fault off: trunk noise 5 bytes/s
+2026-10-03T18:30:58.163Z fault on: trunk loses 0.02% of bytes
+2026-10-03T18:36:58.534Z fault off: server errors
+2026-10-03T18:36:58.534Z fault on: driver killed
+2026-10-03T18:39:58.738Z fault off: driver killed
+2026-10-03T18:40:58.801Z fault off: trunk loses 0.02% of bytes
+2026-10-03T18:46:59.168Z fault on: box cable pulled
+2026-10-03T18:47:59.222Z fault off: box cable pulled
+2026-10-03T19:07:00.508Z hour 8: 0 gaps, box 100 MB, driver 32 MB
+2026-10-03T19:09:00.631Z fault on: MS/TP device 4 off
+2026-10-03T19:14:00.943Z fault off: MS/TP device 4 off
+2026-10-03T19:19:01.247Z fault on: trunk noise 5 bytes/s
+2026-10-03T19:29:01.876Z fault off: trunk noise 5 bytes/s
+2026-10-03T19:31:01.993Z fault on: trunk loses 0.02% of bytes
+2026-10-03T19:41:02.616Z fault off: trunk loses 0.02% of bytes
+2026-10-03T19:46:52.974Z fault on: box cable pulled
+2026-10-03T19:46:52.975Z fault on: server hangs
+2026-10-03T19:47:53.026Z fault off: box cable pulled
+2026-10-03T19:49:53.146Z fault off: server hangs
+2026-10-03T20:06:54.305Z hour 9: 0 gaps, box 101 MB, driver 32 MB
+2026-10-03T20:08:54.429Z fault on: MS/TP device 4 off
+2026-10-03T20:13:54.733Z fault off: MS/TP device 4 off
+2026-10-03T20:18:55.038Z fault on: trunk noise 5 bytes/s
+2026-10-03T20:26:55.534Z fault on: server errors
+2026-10-03T20:28:55.660Z fault off: trunk noise 5 bytes/s
+2026-10-03T20:30:55.773Z fault on: trunk loses 0.02% of bytes
+2026-10-03T20:36:56.143Z fault off: server errors
+2026-10-03T20:40:56.393Z fault off: trunk loses 0.02% of bytes
+2026-10-03T20:46:56.765Z fault on: box cable pulled
+2026-10-03T20:47:56.819Z fault off: box cable pulled
+2026-10-03T21:06:58.101Z hour 10: 0 gaps, box 101 MB, driver 32 MB
+2026-10-03T21:08:58.223Z fault on: MS/TP device 4 off
+2026-10-03T21:13:58.531Z fault off: MS/TP device 4 off
+2026-10-03T21:18:58.834Z fault on: trunk noise 5 bytes/s
+2026-10-03T21:28:59.454Z fault off: trunk noise 5 bytes/s
+2026-10-03T21:30:59.570Z fault on: trunk loses 0.02% of bytes
+2026-10-03T21:41:00.192Z fault off: trunk loses 0.02% of bytes
+2026-10-03T21:47:00.563Z fault on: box cable pulled
+2026-10-03T21:48:00.619Z fault off: box cable pulled
+2026-10-03T22:07:01.903Z hour 11: 0 gaps, box 101 MB, driver 32 MB
+2026-10-03T22:09:02.026Z fault on: MS/TP device 4 off
+2026-10-03T22:14:02.336Z fault off: MS/TP device 4 off
+2026-10-03T22:14:12.347Z segment finished; the next run continues from here
