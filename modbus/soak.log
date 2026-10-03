@@ -198,3 +198,108 @@
 2026-10-02T22:32:26.473Z fault on: TCP device reboots
 2026-10-02T22:34:26.592Z fault off: TCP device reboots
 2026-10-02T22:34:46.604Z segment finished; the next run continues from here
+2026-10-02T22:36:01.629Z resuming after 1 min away
+2026-10-02T22:36:01.867Z Modbus site: 24 devices
+2026-10-02T22:36:03.335Z running until 2026-10-03T11:23:24.612Z
+2026-10-02T22:36:03.335Z fault on: 20% lost replies behind the gateway
+2026-10-02T22:43:34.501Z fault on: server errors
+2026-10-02T22:46:04.651Z fault off: 20% lost replies behind the gateway
+2026-10-02T22:47:24.733Z fault on: 5% network loss
+2026-10-02T22:53:25.093Z fault on: driver killed
+2026-10-02T22:53:35.107Z fault off: server errors
+2026-10-02T22:56:25.281Z fault off: driver killed
+2026-10-02T22:57:25.351Z fault off: 5% network loss
+2026-10-02T22:59:25.466Z fault on: RS-485 noise 5 bytes/s
+2026-10-02T23:03:25.995Z fault on: server hangs
+2026-10-02T23:06:26.182Z fault off: server hangs
+2026-10-02T23:08:26.307Z fault on: box killed
+2026-10-02T23:09:27.418Z fault off: RS-485 noise 5 bytes/s
+2026-10-02T23:10:27.476Z fault on: gateway off
+2026-10-02T23:10:57.502Z fault off: box killed
+2026-10-02T23:13:27.687Z fault off: gateway off
+2026-10-02T23:16:27.854Z fault on: 10% garbage replies
+2026-10-02T23:21:28.285Z fault off: 10% garbage replies
+2026-10-02T23:23:28.845Z hour 12: 0 gaps, box 103 MB, driver 24 MB
+2026-10-02T23:25:28.934Z fault on: TCP device off
+2026-10-02T23:30:29.241Z fault off: TCP device off
+2026-10-02T23:32:29.349Z fault on: TCP device reboots
+2026-10-02T23:34:29.468Z fault off: TCP device reboots
+2026-10-02T23:35:29.512Z fault on: 20% lost replies behind the gateway
+2026-10-02T23:45:30.108Z fault off: 20% lost replies behind the gateway
+2026-10-02T23:47:30.226Z fault on: 5% network loss
+2026-10-02T23:57:30.862Z fault off: 5% network loss
+2026-10-02T23:59:31.017Z fault on: RS-485 noise 5 bytes/s
+2026-10-03T00:09:31.596Z fault off: RS-485 noise 5 bytes/s
+2026-10-03T00:10:31.652Z fault on: gateway off
+2026-10-03T00:13:31.881Z fault off: gateway off
+2026-10-03T00:16:32.050Z fault on: 10% garbage replies
+2026-10-03T00:21:32.361Z fault off: 10% garbage replies
+2026-10-03T00:23:32.620Z hour 13: 0 gaps, box 106 MB, driver 24 MB
+2026-10-03T00:25:32.731Z fault on: TCP device off
+2026-10-03T00:30:33.357Z fault off: TCP device off
+2026-10-03T00:32:33.480Z fault on: TCP device reboots
+2026-10-03T00:34:33.605Z fault off: TCP device reboots
+2026-10-03T00:35:33.643Z fault on: 20% lost replies behind the gateway
+2026-10-03T00:43:34.127Z fault on: server errors
+2026-10-03T00:45:34.253Z fault off: 20% lost replies behind the gateway
+2026-10-03T00:47:34.375Z fault on: 5% network loss
+2026-10-03T00:53:35.423Z fault off: server errors
+2026-10-03T00:57:35.689Z fault off: 5% network loss
+2026-10-03T00:59:25.807Z fault on: RS-485 noise 5 bytes/s
+2026-10-03T01:09:26.416Z fault off: RS-485 noise 5 bytes/s
+2026-10-03T01:10:26.463Z fault on: gateway off
+2026-10-03T01:13:26.658Z fault off: gateway off
+2026-10-03T01:16:26.815Z fault on: 10% garbage replies
+2026-10-03T01:21:27.113Z fault off: 10% garbage replies
+2026-10-03T01:23:27.354Z hour 14: 0 gaps, box 107 MB, driver 24 MB
+2026-10-03T01:25:27.601Z fault on: TCP device off
+2026-10-03T01:30:27.943Z fault off: TCP device off
+2026-10-03T01:32:28.061Z fault on: TCP device reboots
+2026-10-03T01:34:28.237Z fault off: TCP device reboots
+2026-10-03T01:35:28.288Z fault on: 20% lost replies behind the gateway
+2026-10-03T01:45:28.940Z fault off: 20% lost replies behind the gateway
+2026-10-03T01:47:29.054Z fault on: 5% network loss
+2026-10-03T01:57:30.968Z fault off: 5% network loss
+2026-10-03T01:59:31.372Z fault on: RS-485 noise 5 bytes/s
+2026-10-03T02:03:31.622Z fault on: server hangs
+2026-10-03T02:06:31.794Z fault off: server hangs
+2026-10-03T02:09:32.298Z fault off: RS-485 noise 5 bytes/s
+2026-10-03T02:10:32.355Z fault on: gateway off
+2026-10-03T02:13:32.536Z fault off: gateway off
+2026-10-03T02:16:33.038Z fault on: 10% garbage replies
+2026-10-03T02:21:33.616Z fault off: 10% garbage replies
+2026-10-03T02:23:34.105Z hour 15: 0 gaps, box 108 MB, driver 24 MB
+2026-10-03T02:25:34.220Z fault on: TCP device off
+2026-10-03T02:30:35.221Z fault off: TCP device off
+2026-10-03T02:32:25.330Z fault on: TCP device reboots
+2026-10-03T02:34:25.433Z fault off: TCP device reboots
+2026-10-03T02:35:25.484Z fault on: 20% lost replies behind the gateway
+2026-10-03T02:38:25.660Z fault on: clock +5 min
+2026-10-03T02:40:25.951Z fault off: clock +5 min
+2026-10-03T02:43:26.145Z fault on: server errors
+2026-10-03T02:45:26.357Z fault off: 20% lost replies behind the gateway
+2026-10-03T02:47:26.554Z fault on: 5% network loss
+2026-10-03T02:53:26.936Z fault off: server errors
+2026-10-03T02:53:26.936Z fault on: driver killed
+2026-10-03T02:56:27.137Z fault off: driver killed
+2026-10-03T02:57:27.193Z fault off: 5% network loss
+2026-10-03T02:59:27.325Z fault on: RS-485 noise 5 bytes/s
+2026-10-03T03:09:27.951Z fault off: RS-485 noise 5 bytes/s
+2026-10-03T03:10:27.995Z fault on: gateway off
+2026-10-03T03:13:28.477Z fault off: gateway off
+2026-10-03T03:16:28.656Z fault on: 10% garbage replies
+2026-10-03T03:21:29.290Z fault off: 10% garbage replies
+2026-10-03T03:23:29.535Z hour 16: 0 gaps, box 107 MB, driver 24 MB
+2026-10-03T03:25:29.658Z fault on: TCP device off
+2026-10-03T03:30:29.993Z fault off: TCP device off
+2026-10-03T03:32:30.108Z fault on: TCP device reboots
+2026-10-03T03:34:30.218Z fault off: TCP device reboots
+2026-10-03T03:35:30.263Z fault on: 20% lost replies behind the gateway
+2026-10-03T03:45:30.924Z fault off: 20% lost replies behind the gateway
+2026-10-03T03:47:31.039Z fault on: 5% network loss
+2026-10-03T03:57:31.676Z fault off: 5% network loss
+2026-10-03T03:59:31.799Z fault on: RS-485 noise 5 bytes/s
+2026-10-03T04:09:32.423Z fault off: RS-485 noise 5 bytes/s
+2026-10-03T04:10:32.480Z fault on: gateway off
+2026-10-03T04:13:32.701Z fault off: gateway off
+2026-10-03T04:13:42.715Z segment finished; the next run continues from here
