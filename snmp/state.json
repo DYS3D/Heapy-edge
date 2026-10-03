@@ -739,6 +739,264 @@
    "from": 1790998145938,
    "to": 1790998746805,
    "why": "stale and duplicate replies"
+  },
+  {
+   "device": "*",
+   "from": 1790998866906,
+   "to": 1790999239575,
+   "why": "test machine restart"
+  },
+  {
+   "device": null,
+   "from": 1790999164151,
+   "to": 1790999464417,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "snmp://ups-02",
+   "from": 1790999704699,
+   "to": 1791000004978,
+   "why": "agent off"
+  },
+  {
+   "device": "snmp://ups-04",
+   "from": 1791000125084,
+   "to": 1791000245193,
+   "why": "agent reboots"
+  },
+  {
+   "device": null,
+   "from": 1791000305242,
+   "to": 1791000905810,
+   "why": "20% lost replies"
+  },
+  {
+   "device": null,
+   "from": 1791000785691,
+   "to": 1791001386268,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1791001025909,
+   "to": 1791001626495,
+   "why": "5% network loss"
+  },
+  {
+   "device": null,
+   "from": 1791001746604,
+   "to": 1791002348215,
+   "why": "stale and duplicate replies"
+  },
+  {
+   "device": null,
+   "from": 1791001986816,
+   "to": 1791002166981,
+   "why": "server hangs"
+  },
+  {
+   "device": "*",
+   "from": 1791002287109,
+   "to": 1791002438291,
+   "why": "box killed"
+  },
+  {
+   "device": null,
+   "from": 1791002758612,
+   "to": 1791003058872,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "snmp://ups-02",
+   "from": 1791003299127,
+   "to": 1791003599429,
+   "why": "agent off"
+  },
+  {
+   "device": "snmp://ups-04",
+   "from": 1791003719542,
+   "to": 1791003839653,
+   "why": "agent reboots"
+  },
+  {
+   "device": null,
+   "from": 1791003899704,
+   "to": 1791004500281,
+   "why": "20% lost replies"
+  },
+  {
+   "device": null,
+   "from": 1791004620380,
+   "to": 1791005220982,
+   "why": "5% network loss"
+  },
+  {
+   "device": null,
+   "from": 1791005341101,
+   "to": 1791005941701,
+   "why": "stale and duplicate replies"
+  },
+  {
+   "device": null,
+   "from": 1791006362171,
+   "to": 1791006662463,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "snmp://ups-02",
+   "from": 1791006902754,
+   "to": 1791007203069,
+   "why": "agent off"
+  },
+  {
+   "device": "snmp://ups-04",
+   "from": 1791007323161,
+   "to": 1791007443250,
+   "why": "agent reboots"
+  },
+  {
+   "device": null,
+   "from": 1791007503290,
+   "to": 1791008103830,
+   "why": "20% lost replies"
+  },
+  {
+   "device": null,
+   "from": 1791007983717,
+   "to": 1791008584283,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1791008223918,
+   "to": 1791008824542,
+   "why": "5% network loss"
+  },
+  {
+   "device": "*",
+   "from": 1791008584283,
+   "to": 1791008764470,
+   "why": "driver killed"
+  },
+  {
+   "device": null,
+   "from": 1791008944660,
+   "to": 1791009545250,
+   "why": "stale and duplicate replies"
+  },
+  {
+   "device": null,
+   "from": 1791009965609,
+   "to": 1791010265853,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "snmp://ups-02",
+   "from": 1791010506098,
+   "to": 1791010806409,
+   "why": "agent off"
+  },
+  {
+   "device": "snmp://ups-04",
+   "from": 1791010926517,
+   "to": 1791011046619,
+   "why": "agent reboots"
+  },
+  {
+   "device": null,
+   "from": 1791011106667,
+   "to": 1791011707227,
+   "why": "20% lost replies"
+  },
+  {
+   "device": null,
+   "from": 1791011827319,
+   "to": 1791012427926,
+   "why": "5% network loss"
+  },
+  {
+   "device": null,
+   "from": 1791012548034,
+   "to": 1791013148623,
+   "why": "stale and duplicate replies"
+  },
+  {
+   "device": null,
+   "from": 1791012788253,
+   "to": 1791012968438,
+   "why": "server hangs"
+  },
+  {
+   "device": null,
+   "from": 1791013559003,
+   "to": 1791013859283,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "snmp://ups-02",
+   "from": 1791014099524,
+   "to": 1791014399831,
+   "why": "agent off"
+  },
+  {
+   "device": "snmp://ups-04",
+   "from": 1791014519969,
+   "to": 1791014640078,
+   "why": "agent reboots"
+  },
+  {
+   "device": null,
+   "from": 1791014700126,
+   "to": 1791015300701,
+   "why": "20% lost replies"
+  },
+  {
+   "device": null,
+   "from": 1791015180588,
+   "to": 1791015781123,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1791015420786,
+   "to": 1791016021378,
+   "why": "5% network loss"
+  },
+  {
+   "device": null,
+   "from": 1791016141502,
+   "to": 1791016742072,
+   "why": "stale and duplicate replies"
+  },
+  {
+   "device": null,
+   "from": 1791017162415,
+   "to": 1791017462685,
+   "why": "10% garbage replies"
+  },
+  {
+   "device": "snmp://ups-02",
+   "from": 1791017702954,
+   "to": 1791018003258,
+   "why": "agent off"
+  },
+  {
+   "device": "snmp://ups-04",
+   "from": 1791018123359,
+   "to": 1791018243469,
+   "why": "agent reboots"
+  },
+  {
+   "device": null,
+   "from": 1791018303516,
+   "to": 1791018904129,
+   "why": "20% lost replies"
+  },
+  {
+   "device": null,
+   "from": 1791019024232,
+   "to": 1791019624797,
+   "why": "5% network loss"
   }
  ],
  "hourly": [
@@ -1155,6 +1413,161 @@
     "retries": 184
    },
    "lanes_behind": []
+  },
+  {
+   "hour": 17,
+   "at": "2026-10-03T03:53:04.551Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 86,
+   "driver_rss_mb": 59,
+   "samples": 146360,
+   "backlog": 21,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 168,
+    "read_errors": 0,
+    "samples": 1640,
+    "cov_samples": 0,
+    "last_read": 1790999583388,
+    "missed_slots": 0,
+    "point_errors": 180,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "late_reads": 1
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 18,
+   "at": "2026-10-03T04:52:58.995Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 93,
+   "driver_rss_mb": 59,
+   "samples": 154934,
+   "backlog": 0,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 175,
+    "read_errors": 0,
+    "samples": 2154,
+    "cov_samples": 0,
+    "last_read": 1791003147856,
+    "missed_slots": 0,
+    "point_errors": 240,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 19,
+   "at": "2026-10-03T05:53:02.606Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 102,
+   "driver_rss_mb": 59,
+   "samples": 163508,
+   "backlog": 0,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 589,
+    "read_errors": 6,
+    "samples": 10728,
+    "cov_samples": 0,
+    "last_read": 1791006747857,
+    "missed_slots": 0,
+    "point_errors": 1188,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 46
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 20,
+   "at": "2026-10-03T06:53:05.970Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 104,
+   "driver_rss_mb": 59,
+   "samples": 172122,
+   "backlog": 21,
+   "driver_restarts": 1,
+   "poll": {
+    "reads": 1005,
+    "read_errors": 11,
+    "samples": 19342,
+    "cov_samples": 0,
+    "last_read": 1791010383379,
+    "missed_slots": 0,
+    "point_errors": 2142,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 72
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 21,
+   "at": "2026-10-03T07:52:59.418Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 106,
+   "driver_rss_mb": 59,
+   "samples": 180696,
+   "backlog": 0,
+   "driver_restarts": 1,
+   "poll": {
+    "reads": 1419,
+    "read_errors": 16,
+    "samples": 27916,
+    "cov_samples": 0,
+    "last_read": 1791013948043,
+    "missed_slots": 0,
+    "point_errors": 3090,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 118
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 22,
+   "at": "2026-10-03T08:53:02.814Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 107,
+   "driver_rss_mb": 59,
+   "samples": 189270,
+   "backlog": 0,
+   "driver_restarts": 1,
+   "poll": {
+    "reads": 1833,
+    "read_errors": 22,
+    "samples": 36490,
+    "cov_samples": 0,
+    "last_read": 1791017547962,
+    "missed_slots": 0,
+    "point_errors": 4038,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 164
+   },
+   "lanes_behind": []
   }
  ],
  "outages": [
@@ -1165,6 +1578,10 @@
   {
    "from": 1790978662899,
    "to": 1790978760434
+  },
+  {
+   "from": 1790998866906,
+   "to": 1790998939575
   }
  ],
  "done": {
@@ -1288,11 +1705,53 @@
   "16:agent reboots": true,
   "16:20% lost replies": true,
   "16:5% network loss": true,
-  "16:stale and duplicate replies": true
+  "16:stale and duplicate replies": true,
+  "16:10% garbage replies": true,
+  "17:agent off": true,
+  "17:agent reboots": true,
+  "17:20% lost replies": true,
+  "17:server500": true,
+  "17:5% network loss": true,
+  "17:stale and duplicate replies": true,
+  "17:serverhang": true,
+  "17:killbox": true,
+  "17:10% garbage replies": true,
+  "18:agent off": true,
+  "18:agent reboots": true,
+  "18:20% lost replies": true,
+  "18:5% network loss": true,
+  "18:stale and duplicate replies": true,
+  "18:10% garbage replies": true,
+  "19:agent off": true,
+  "19:agent reboots": true,
+  "19:20% lost replies": true,
+  "19:server500": true,
+  "19:5% network loss": true,
+  "19:killdriver": true,
+  "19:stale and duplicate replies": true,
+  "19:10% garbage replies": true,
+  "20:agent off": true,
+  "20:agent reboots": true,
+  "20:20% lost replies": true,
+  "20:5% network loss": true,
+  "20:stale and duplicate replies": true,
+  "20:serverhang": true,
+  "20:10% garbage replies": true,
+  "21:agent off": true,
+  "21:agent reboots": true,
+  "21:20% lost replies": true,
+  "21:server500": true,
+  "21:5% network loss": true,
+  "21:stale and duplicate replies": true,
+  "21:10% garbage replies": true,
+  "22:agent off": true,
+  "22:agent reboots": true,
+  "22:20% lost replies": true,
+  "22:5% network loss": true
  },
- "lastBeat": 1790998866906,
+ "lastBeat": 1791019634805,
  "restarts_expected": {
-  "box": 2,
-  "driver": 4
+  "box": 3,
+  "driver": 5
  }
 }
