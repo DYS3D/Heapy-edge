@@ -315,3 +315,32 @@
 2026-10-03T09:04:51.075Z fault on: 15% HTTP 500
 2026-10-03T09:14:51.684Z fault off: 15% HTTP 500
 2026-10-03T09:16:41.778Z segment finished; the next run continues from here
+2026-10-03T09:17:53.409Z resuming after 1 min away
+2026-10-03T09:17:53.647Z obix_sim.py: 3 servers
+2026-10-03T09:17:54.847Z running until 2026-10-03T10:52:49.853Z
+2026-10-03T09:32:55.745Z fault on: station hangs
+2026-10-03T09:33:55.802Z fault off: station hangs
+2026-10-03T09:45:56.521Z fault on: 10% broken replies
+2026-10-03T09:50:56.804Z fault off: 10% broken replies
+2026-10-03T09:52:56.957Z hour 23: 0 gaps, box 94 MB, driver 25 MB
+2026-10-03T09:54:57.076Z fault on: station off
+2026-10-03T09:59:57.400Z fault off: station off
+2026-10-03T10:04:57.709Z fault on: 15% HTTP 500
+2026-10-03T10:07:57.874Z fault on: clock +5 min
+2026-10-03T10:09:58.004Z fault off: clock +5 min
+2026-10-03T10:12:58.172Z fault on: server errors
+2026-10-03T10:14:58.300Z fault off: 15% HTTP 500
+2026-10-03T10:16:58.410Z fault on: 5% network loss
+2026-10-03T10:22:58.761Z fault off: server errors
+2026-10-03T10:22:58.761Z fault on: driver killed
+2026-10-03T10:25:58.938Z fault off: driver killed
+2026-10-03T10:26:59.014Z fault off: 5% network loss
+2026-10-03T10:32:59.361Z fault on: station hangs
+2026-10-03T10:32:59.362Z fault on: server hangs
+2026-10-03T10:33:59.418Z fault off: station hangs
+2026-10-03T10:35:59.511Z fault off: server hangs
+2026-10-03T10:37:59.629Z fault on: box killed
+2026-10-03T10:40:30.819Z fault off: box killed
+2026-10-03T10:45:51.130Z fault on: 10% broken replies
+2026-10-03T10:50:51.425Z fault off: 10% broken replies
+2026-10-03T10:56:00.048Z FINISHED: PASS {"kind":"obix","loss":{"box":84037,"server":84037,"missing":0,"extra":0,"duplicates":0,"box_dup_rows":0},"gaps":0,"gap_examples":[],"max_rate":["jace-01",6],"hours":24,"points":69,"samples":84037,"outages":[{"from":1790958471438,"to":1790958540478},{"from":1790978642572,"to":1790978713713},{"from":1790998816000,"to":1790998899083},{"from":1791019001777,"to":1791019073409}],"unexpected_box_stops":0}
