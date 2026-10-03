@@ -415,6 +415,234 @@
    "from": 1790978092013,
    "to": 1790978392352,
    "why": "station off"
+  },
+  {
+   "device": "*",
+   "from": 1790978642572,
+   "to": 1790979013713,
+   "why": "test machine restart"
+  },
+  {
+   "device": null,
+   "from": 1790978715135,
+   "to": 1790979315692,
+   "why": "15% HTTP 500"
+  },
+  {
+   "device": null,
+   "from": 1790979175552,
+   "to": 1790979776155,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1790979415781,
+   "to": 1790980016394,
+   "why": "5% network loss"
+  },
+  {
+   "device": "*",
+   "from": 1790979776155,
+   "to": 1790979956334,
+   "why": "driver killed"
+  },
+  {
+   "device": "obix://jace-03",
+   "from": 1790980376746,
+   "to": 1790980436801,
+   "why": "station hangs"
+  },
+  {
+   "device": null,
+   "from": 1790980376747,
+   "to": 1790980556913,
+   "why": "server hangs"
+  },
+  {
+   "device": "*",
+   "from": 1790980677019,
+   "to": 1790980828214,
+   "why": "box killed"
+  },
+  {
+   "device": null,
+   "from": 1790981158520,
+   "to": 1790981458820,
+   "why": "10% broken replies"
+  },
+  {
+   "device": "obix://jace-01",
+   "from": 1790981699085,
+   "to": 1790981999393,
+   "why": "station off"
+  },
+  {
+   "device": null,
+   "from": 1790982299703,
+   "to": 1790982900282,
+   "why": "15% HTTP 500"
+  },
+  {
+   "device": null,
+   "from": 1790983010380,
+   "to": 1790983610993,
+   "why": "5% network loss"
+  },
+  {
+   "device": "obix://jace-03",
+   "from": 1790983971328,
+   "to": 1790984031380,
+   "why": "station hangs"
+  },
+  {
+   "device": null,
+   "from": 1790984752082,
+   "to": 1790985052368,
+   "why": "10% broken replies"
+  },
+  {
+   "device": "obix://jace-01",
+   "from": 1790985292640,
+   "to": 1790985592970,
+   "why": "station off"
+  },
+  {
+   "device": null,
+   "from": 1790985893239,
+   "to": 1790986493808,
+   "why": "15% HTTP 500"
+  },
+  {
+   "device": null,
+   "from": 1790986373693,
+   "to": 1790986974247,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1790986613890,
+   "to": 1790987214496,
+   "why": "5% network loss"
+  },
+  {
+   "device": "obix://jace-03",
+   "from": 1790987574845,
+   "to": 1790987634891,
+   "why": "station hangs"
+  },
+  {
+   "device": null,
+   "from": 1790988355577,
+   "to": 1790988655873,
+   "why": "10% broken replies"
+  },
+  {
+   "device": "obix://jace-01",
+   "from": 1790988896139,
+   "to": 1790989196464,
+   "why": "station off"
+  },
+  {
+   "device": null,
+   "from": 1790989496770,
+   "to": 1790990097348,
+   "why": "15% HTTP 500"
+  },
+  {
+   "device": null,
+   "from": 1790990217449,
+   "to": 1790990818086,
+   "why": "5% network loss"
+  },
+  {
+   "device": "obix://jace-03",
+   "from": 1790991178445,
+   "to": 1790991238495,
+   "why": "station hangs"
+  },
+  {
+   "device": null,
+   "from": 1790991178447,
+   "to": 1790991358604,
+   "why": "server hangs"
+  },
+  {
+   "device": null,
+   "from": 1790991959200,
+   "to": 1790992259494,
+   "why": "10% broken replies"
+  },
+  {
+   "device": "obix://jace-01",
+   "from": 1790992499774,
+   "to": 1790992800081,
+   "why": "station off"
+  },
+  {
+   "device": null,
+   "from": 1790993090341,
+   "to": 1790993690937,
+   "why": "15% HTTP 500"
+  },
+  {
+   "device": "*",
+   "from": 1790993270512,
+   "to": 1790993990642,
+   "why": "clock +5 min"
+  },
+  {
+   "device": null,
+   "from": 1790993570814,
+   "to": 1790994171409,
+   "why": "server errors"
+  },
+  {
+   "device": null,
+   "from": 1790993811042,
+   "to": 1790994411672,
+   "why": "5% network loss"
+  },
+  {
+   "device": "*",
+   "from": 1790994171409,
+   "to": 1790994351597,
+   "why": "driver killed"
+  },
+  {
+   "device": "obix://jace-03",
+   "from": 1790994772035,
+   "to": 1790994832090,
+   "why": "station hangs"
+  },
+  {
+   "device": null,
+   "from": 1790995552781,
+   "to": 1790995853078,
+   "why": "10% broken replies"
+  },
+  {
+   "device": "obix://jace-01",
+   "from": 1790996093312,
+   "to": 1790996393634,
+   "why": "station off"
+  },
+  {
+   "device": null,
+   "from": 1790996693908,
+   "to": 1790997294502,
+   "why": "15% HTTP 500"
+  },
+  {
+   "device": null,
+   "from": 1790997414603,
+   "to": 1790998015220,
+   "why": "5% network loss"
+  },
+  {
+   "device": "obix://jace-03",
+   "from": 1790998375574,
+   "to": 1790998435629,
+   "why": "station hangs"
   }
  ],
  "hourly": [
@@ -702,12 +930,145 @@
     "retries": 253
    },
    "lanes_behind": []
+  },
+  {
+   "hour": 12,
+   "at": "2026-10-02T22:52:58.947Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 90,
+   "driver_rss_mb": 24,
+   "samples": 41877,
+   "backlog": 0,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 78,
+    "read_errors": 0,
+    "samples": 900,
+    "cov_samples": 0,
+    "last_read": 1790981539007,
+    "missed_slots": 0,
+    "point_errors": 135,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 13,
+   "at": "2026-10-02T23:52:52.491Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 98,
+   "driver_rss_mb": 24,
+   "samples": 45357,
+   "backlog": 0,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 252,
+    "read_errors": 6,
+    "samples": 4380,
+    "cov_samples": 0,
+    "last_read": 1790985139134,
+    "missed_slots": 0,
+    "point_errors": 657,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 46
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 14,
+   "at": "2026-10-03T00:52:56.001Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 100,
+   "driver_rss_mb": 24,
+   "samples": 48837,
+   "backlog": 0,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 426,
+    "read_errors": 12,
+    "samples": 7860,
+    "cov_samples": 0,
+    "last_read": 1790988739209,
+    "missed_slots": 0,
+    "point_errors": 1179,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 92
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 15,
+   "at": "2026-10-03T01:52:59.625Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 101,
+   "driver_rss_mb": 25,
+   "samples": 52317,
+   "backlog": 0,
+   "driver_restarts": 0,
+   "poll": {
+    "reads": 600,
+    "read_errors": 18,
+    "samples": 11340,
+    "cov_samples": 0,
+    "last_read": 1790992339213,
+    "missed_slots": 0,
+    "point_errors": 1701,
+    "bad_values": 0,
+    "clock_jumps": 0,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 138
+   },
+   "lanes_behind": []
+  },
+  {
+   "hour": 16,
+   "at": "2026-10-03T02:52:53.190Z",
+   "gaps": 0,
+   "gap_examples": [],
+   "box_rss_mb": 102,
+   "driver_rss_mb": 24,
+   "samples": 55917,
+   "backlog": 0,
+   "driver_restarts": 1,
+   "poll": {
+    "reads": 782,
+    "read_errors": 24,
+    "samples": 14940,
+    "cov_samples": 0,
+    "last_read": 1790995938847,
+    "missed_slots": 0,
+    "point_errors": 2241,
+    "bad_values": 0,
+    "clock_jumps": 2,
+    "relocated": 0,
+    "store_errors": 0,
+    "retries": 184
+   },
+   "lanes_behind": []
   }
  ],
  "outages": [
   {
    "from": 1790958471438,
    "to": 1790958540478
+  },
+  {
+   "from": 1790978642572,
+   "to": 1790978713713
   }
  ],
  "done": {
@@ -778,11 +1139,48 @@
   "10:5% network loss": true,
   "10:station hangs": true,
   "10:10% broken replies": true,
-  "11:station off": true
+  "11:station off": true,
+  "11:15% HTTP 500": true,
+  "11:server500": true,
+  "11:5% network loss": true,
+  "11:killdriver": true,
+  "11:station hangs": true,
+  "11:serverhang": true,
+  "11:killbox": true,
+  "11:10% broken replies": true,
+  "12:station off": true,
+  "12:15% HTTP 500": true,
+  "12:5% network loss": true,
+  "12:station hangs": true,
+  "12:10% broken replies": true,
+  "13:station off": true,
+  "13:15% HTTP 500": true,
+  "13:server500": true,
+  "13:5% network loss": true,
+  "13:station hangs": true,
+  "13:10% broken replies": true,
+  "14:station off": true,
+  "14:15% HTTP 500": true,
+  "14:5% network loss": true,
+  "14:station hangs": true,
+  "14:serverhang": true,
+  "14:10% broken replies": true,
+  "15:station off": true,
+  "15:15% HTTP 500": true,
+  "15:clock": true,
+  "15:server500": true,
+  "15:5% network loss": true,
+  "15:killdriver": true,
+  "15:station hangs": true,
+  "15:10% broken replies": true,
+  "16:station off": true,
+  "16:15% HTTP 500": true,
+  "16:5% network loss": true,
+  "16:station hangs": true
  },
- "lastBeat": 1790978642572,
+ "lastBeat": 1790998816000,
  "restarts_expected": {
-  "box": 1,
-  "driver": 2
+  "box": 2,
+  "driver": 4
  }
 }
