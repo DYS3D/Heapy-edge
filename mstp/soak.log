@@ -267,3 +267,30 @@
 2026-10-04T09:08:52.526Z fault on: MS/TP device 4 off
 2026-10-04T09:13:52.839Z fault off: MS/TP device 4 off
 2026-10-04T09:18:23.116Z segment finished; the next run continues from here
+2026-10-04T09:20:22.442Z resuming after 2 min away
+2026-10-04T09:20:22.552Z MS/TP trunk: 20 devices, box port /dev/pts/0
+2026-10-04T09:20:37.359Z running until 2026-10-04T11:06:52.236Z
+2026-10-04T09:30:58.020Z fault on: trunk loses 0.02% of bytes
+2026-10-04T09:40:58.651Z fault off: trunk loses 0.02% of bytes
+2026-10-04T09:46:59.020Z fault on: box cable pulled
+2026-10-04T09:47:59.077Z fault off: box cable pulled
+2026-10-04T10:07:00.432Z hour 23: 0 gaps, box 96 MB, driver 32 MB
+2026-10-04T10:09:00.555Z fault on: MS/TP device 4 off
+2026-10-04T10:14:00.870Z fault off: MS/TP device 4 off
+2026-10-04T10:19:01.176Z fault on: trunk noise 5 bytes/s
+2026-10-04T10:22:01.357Z fault on: clock +5 min
+2026-10-04T10:24:01.485Z fault off: clock +5 min
+2026-10-04T10:27:01.677Z fault on: server errors
+2026-10-04T10:29:01.807Z fault off: trunk noise 5 bytes/s
+2026-10-04T10:31:01.924Z fault on: trunk loses 0.02% of bytes
+2026-10-04T10:36:52.283Z fault on: driver killed
+2026-10-04T10:37:02.313Z fault off: server errors
+2026-10-04T10:39:52.489Z fault off: driver killed
+2026-10-04T10:41:02.565Z fault off: trunk loses 0.02% of bytes
+2026-10-04T10:46:52.927Z fault on: box cable pulled
+2026-10-04T10:46:52.928Z fault on: server hangs
+2026-10-04T10:47:52.983Z fault off: box cable pulled
+2026-10-04T10:49:53.101Z fault off: server hangs
+2026-10-04T10:51:53.226Z fault on: box killed
+2026-10-04T10:54:32.756Z fault off: box killed
+2026-10-04T11:10:03.460Z FINISHED: PASS {"kind":"mstp","loss":{"box":343680,"server":343680,"missing":0,"extra":0,"duplicates":0,"box_dup_rows":0},"gaps":0,"gap_examples":[],"max_rate":["n/a",0],"hours":24,"points":240,"samples":343680,"outages":[{"from":1791045667641,"to":1791045797712},{"from":1791065652347,"to":1791065773966},{"from":1791085578916,"to":1791085697812},{"from":1791105503115,"to":1791105622442}],"unexpected_box_stops":0}
