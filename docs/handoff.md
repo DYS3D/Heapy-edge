@@ -4,19 +4,28 @@ Read `README.md` first, then this. The project plan (`docs/HEAPY Edge - Project 
 has the phases, decisions and open items; the HEAPY Data Collection project in Claude has the
 same plan plus `claude/heapy-edge-status.md`.
 
-## Where things stand (2026-10-01, v0.3.2 + c44591a/ffa1038)
+## Where things stand (2026-10-04, v0.3.3)
 
-- Every driver is built and its fault suite passes: BACnet/IP, BACnet MS/TP, Modbus
-  (TCP, gateways, RTU, RTU over TCP), SNMP v1/v2c/v3, Project Haystack, Niagara oBIX.
+- **Every driver has passed its fault suite and its 24-hour soak.** The soak injects a fault
+  every few minutes (devices off, lost/garbled replies, network loss, server errors and hangs,
+  clock jumps, driver and box killed) and checks slot by slot: one reading per point per
+  interval, every reading counted on the box and on the server. Verdicts (GitHub run ids):
+  - BACnet/IP: PASS 2026-10-01 (36901590727) — 732,893 readings, 0 gaps, 0 lost
+  - Modbus: PASS 2026-10-02 (36901607319) and again 2026-10-03 (37000696195) — 1,430,545 readings, 0 gaps, 0 lost
+  - SNMP: PASS 2026-10-03 (36997864122) — 207,103 readings, 0 gaps, 0 lost
+  - Haystack: PASS 2026-10-03 (36997869776) — 152,564 readings, 0 gaps, 0 lost
+  - oBIX: PASS 2026-10-03 (36997875287) — 84,037 readings, 0 gaps, 0 lost
+  - BACnet MS/TP: PASS 2026-10-04 (37118530932) — 343,680 readings, 0 gaps, 0 lost
+  Box memory stayed flat (96–113 MB) in every soak; no unexpected box stops.
 - Rule from Justin (2026-09-30): collection must be foolproof before anything connects to
-  Trend Tracker. Pass bar per driver = full fault suite + a 24-hour soak with scheduled faults
-  (no unexplained gap, no wrong value, nothing lost between box and server).
+  Trend Tracker. That bar is now met on the simulators; real equipment (bench kit) is still owed.
 - 24-hour soaks: `tests/soak24.js --kind <driver>`; on GitHub, Actions → Soak test → Run
-  workflow (five 5.6-hour parts, state handed between them). Results go to the
-  `soak-results` branch (`<driver>/state.json`, `final.pass`) and to artifacts.
-  Private repo on a personal account = 2,000 free Actions minutes/month; a full set of six
-  soaks needs ~8,600. See the open item below.
-- Not started: Phase 2 (central intake in Trend Tracker), bench kit, LON/ARCNET decision.
+  workflow (five 330-minute parts, state handed between them; a part ends within 15 minutes
+  of its budget even while faults are chained). Results go to the `soak-results` branch
+  (`<driver>/state.json` with `pass`, `<driver>/soak.log`) and to artifacts. The repository
+  is public, so Actions minutes are unlimited.
+- Next: Phase 2 (central intake in Trend Tracker) — needs the central server decision.
+  Then bench kit, LON/ARCNET decision, pilot site.
 
 ## Running the lab on a PC (WSL2 Ubuntu, as root)
 
@@ -59,9 +68,8 @@ Workflows, Actions: read and write).
 
 ## Open items (need Justin)
 
-1. Actions minutes for the soaks: public repo, paid minutes with a cap, or run on a HEAPY
-   machine.
+1. Central server host/owner — blocks Phase 2, which is next.
 2. LON and ARCNET: read through what the site has (JACE, iLON/SmartServer, BACnet router) vs
    direct hardware support built when a site needs it.
 3. Bench kit parts list, then every driver against real equipment before the pilot.
-4. Central server host/owner (blocks Phase 2), pilot site, HEAPY IT review of the security sheet.
+4. Pilot site, and HEAPY IT review of the security sheet.

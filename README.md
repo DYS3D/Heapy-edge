@@ -44,6 +44,8 @@ The 24-hour soaks also run on GitHub Actions: Actions → Soak test → Run work
 
 Pass bar for every driver before it is used on a site: the full fault suite passes (device off and back, reboots, lost and garbled replies, slow devices, network loss, driver and box killed) and a 24-hour soak with scheduled faults ends with no unexplained gap, no wrong value and nothing lost between box and server.
 
+Status 2026-10-04: every driver (BACnet/IP, BACnet MS/TP, Modbus, SNMP, Haystack, oBIX) has passed its fault suite and its 24-hour soak on GitHub Actions; verdicts and run ids are in `docs/handoff.md`, results on the `soak-results` branch.
+
 ## Adding a protocol
 
 Write a program that follows `contracts/driver-protocol.json` (JSON lines on stdin/stdout: hello, configure, discover, browse, read, optional subscribe), pick a key scheme (`modbus://`, `haystack://` …) and add it under `drivers` in the settings. The core handles schedules, rate limits, the buffer and uploads.

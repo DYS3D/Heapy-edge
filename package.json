@@ -1,6 +1,6 @@
 {
   "name": "heapy-edge",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "private": true,
   "description": "HEAPY Edge site box: finds BAS devices, reads their points and sends the readings to HEAPY Trend Tracker",
   "main": "core/main.js",
