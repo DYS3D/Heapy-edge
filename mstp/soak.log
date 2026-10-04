@@ -201,3 +201,69 @@
 2026-10-04T03:30:57.962Z fault on: trunk loses 0.02% of bytes
 2026-10-04T03:40:58.589Z fault off: trunk loses 0.02% of bytes
 2026-10-04T03:46:18.916Z segment finished; the next run continues from here
+2026-10-04T03:48:17.812Z resuming after 2 min away
+2026-10-04T03:48:17.924Z MS/TP trunk: 20 devices, box port /dev/pts/0
+2026-10-04T03:48:32.570Z running until 2026-10-04T11:06:52.236Z
+2026-10-04T04:06:53.835Z hour 17: 0 gaps, box 96 MB, driver 32 MB
+2026-10-04T04:08:53.956Z fault on: MS/TP device 4 off
+2026-10-04T04:13:54.267Z fault off: MS/TP device 4 off
+2026-10-04T04:18:54.574Z fault on: trunk noise 5 bytes/s
+2026-10-04T04:26:55.073Z fault on: server errors
+2026-10-04T04:28:55.203Z fault off: trunk noise 5 bytes/s
+2026-10-04T04:30:55.321Z fault on: trunk loses 0.02% of bytes
+2026-10-04T04:36:55.699Z fault off: server errors
+2026-10-04T04:40:55.949Z fault off: trunk loses 0.02% of bytes
+2026-10-04T04:46:56.322Z fault on: box cable pulled
+2026-10-04T04:46:56.324Z fault on: server hangs
+2026-10-04T04:47:56.381Z fault off: box cable pulled
+2026-10-04T04:49:56.499Z fault off: server hangs
+2026-10-04T04:51:56.621Z fault on: box killed
+2026-10-04T04:54:36.106Z fault off: box killed
+2026-10-04T05:06:57.007Z hour 18: 0 gaps, box 93 MB, driver 33 MB
+2026-10-04T05:08:57.130Z fault on: MS/TP device 4 off
+2026-10-04T05:13:57.442Z fault off: MS/TP device 4 off
+2026-10-04T05:18:57.746Z fault on: trunk noise 5 bytes/s
+2026-10-04T05:28:58.372Z fault off: trunk noise 5 bytes/s
+2026-10-04T05:30:58.491Z fault on: trunk loses 0.02% of bytes
+2026-10-04T05:40:59.122Z fault off: trunk loses 0.02% of bytes
+2026-10-04T05:46:59.495Z fault on: box cable pulled
+2026-10-04T05:47:59.549Z fault off: box cable pulled
+2026-10-04T06:07:00.844Z hour 19: 0 gaps, box 105 MB, driver 33 MB
+2026-10-04T06:09:00.967Z fault on: MS/TP device 4 off
+2026-10-04T06:14:01.282Z fault off: MS/TP device 4 off
+2026-10-04T06:19:01.591Z fault on: trunk noise 5 bytes/s
+2026-10-04T06:27:02.086Z fault on: server errors
+2026-10-04T06:29:02.214Z fault off: trunk noise 5 bytes/s
+2026-10-04T06:30:52.323Z fault on: trunk loses 0.02% of bytes
+2026-10-04T06:36:52.699Z fault on: driver killed
+2026-10-04T06:37:02.731Z fault off: server errors
+2026-10-04T06:39:52.907Z fault off: driver killed
+2026-10-04T06:40:52.971Z fault off: trunk loses 0.02% of bytes
+2026-10-04T06:46:53.344Z fault on: box cable pulled
+2026-10-04T06:47:53.398Z fault off: box cable pulled
+2026-10-04T07:06:54.721Z hour 20: 0 gaps, box 105 MB, driver 33 MB
+2026-10-04T07:08:54.847Z fault on: MS/TP device 4 off
+2026-10-04T07:13:55.162Z fault off: MS/TP device 4 off
+2026-10-04T07:18:55.469Z fault on: trunk noise 5 bytes/s
+2026-10-04T07:28:56.098Z fault off: trunk noise 5 bytes/s
+2026-10-04T07:30:56.217Z fault on: trunk loses 0.02% of bytes
+2026-10-04T07:40:56.844Z fault off: trunk loses 0.02% of bytes
+2026-10-04T07:46:57.217Z fault on: box cable pulled
+2026-10-04T07:46:57.218Z fault on: server hangs
+2026-10-04T07:47:57.271Z fault off: box cable pulled
+2026-10-04T07:49:57.389Z fault off: server hangs
+2026-10-04T08:06:58.570Z hour 21: 0 gaps, box 106 MB, driver 33 MB
+2026-10-04T08:08:58.695Z fault on: MS/TP device 4 off
+2026-10-04T08:13:59.007Z fault off: MS/TP device 4 off
+2026-10-04T08:18:59.315Z fault on: trunk noise 5 bytes/s
+2026-10-04T08:26:59.815Z fault on: server errors
+2026-10-04T08:28:59.943Z fault off: trunk noise 5 bytes/s
+2026-10-04T08:31:00.060Z fault on: trunk loses 0.02% of bytes
+2026-10-04T08:37:00.437Z fault off: server errors
+2026-10-04T08:41:00.687Z fault off: trunk loses 0.02% of bytes
+2026-10-04T08:47:01.058Z fault on: box cable pulled
+2026-10-04T08:48:01.113Z fault off: box cable pulled
+2026-10-04T09:06:52.400Z hour 22: 0 gaps, box 106 MB, driver 33 MB
+2026-10-04T09:08:52.526Z fault on: MS/TP device 4 off
+2026-10-04T09:13:52.839Z fault off: MS/TP device 4 off
+2026-10-04T09:18:23.116Z segment finished; the next run continues from here
